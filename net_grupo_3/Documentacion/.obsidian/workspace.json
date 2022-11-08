@@ -30,9 +30,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "d0fbe0b74efde338",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2. Información general.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -149,8 +161,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "868e6aef6e56747f",
+  "active": "d0fbe0b74efde338",
   "lastOpenFiles": [
-    "1. DB.md"
+    "Reuniones.md",
+    "1. DB.md",
+    "2. Información general.md"
   ]
 }
