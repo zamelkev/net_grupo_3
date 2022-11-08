@@ -7,6 +7,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// MYSQL connection
+// create MySQL DB setting
+string url = "server=localhost;port=3306;user=root;password=admin;database=ecomerce";
+builder.Services.AddDbContext<AppDbContext>
+    (
+        options => options.UseMySql(url, ServerVersion.AutoDetect(url))
+    );
+
+// Add repos
+builder.Services.AddScoped<IProductRepository, ProductDbRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
