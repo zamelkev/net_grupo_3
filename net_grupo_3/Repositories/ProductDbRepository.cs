@@ -1,6 +1,5 @@
-﻿namespace net_grupo_3.Repositories
+﻿namespace net_grupo_3.Repositories;
+
+public class ProductDbRepository
 {
-    public class ProductDbRepository;
-    {
-    }
 }
