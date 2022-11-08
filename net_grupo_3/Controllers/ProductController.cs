@@ -6,4 +6,27 @@ namespace net_grupo_3.Controllers;
 [Route("api/books")]
 public class ProductController
 {
+    // Attrs
+    private IProductRepository ProductRepo;
+
+    public ProductController(IProductRepository productRepository)
+    {
+        ProductRepo = productRepository;
+    }
+
+    // API Methods
+    // https://localhost:7230/api/books/1
+    [HttpGet("{id}")]
+    public Product FindById(int id)
+    {
+        return ProductRepo.FindById(id);
+    }
+
+/*
+    // https://localhost:7230/api/books/findall
+    [HttpGet]
+    public List<Product> FindAll()
+    {
+        return ProductRepo.FindAll();
+    }*/
 }
