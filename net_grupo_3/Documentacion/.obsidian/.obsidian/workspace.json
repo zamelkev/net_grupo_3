@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "c47bec24a1100348",
+        "id": "5e42f0402d7bc9ec",
         "type": "tabs",
         "children": [
           {
-            "id": "618479db9f89e0fd",
+            "id": "ddad427b7ffa7f5f",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -128,6 +128,6 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "618479db9f89e0fd",
+  "active": "ddad427b7ffa7f5f",
   "lastOpenFiles": []
 }
