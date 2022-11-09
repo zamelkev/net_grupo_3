@@ -104,7 +104,7 @@ ___
 ___
 ## Trello
 
-![img/trello-9-11-22.jpg]
+![trello](img/trello-9-11-22.jpg)
 https://trello.com/b/5PpvD5DO/dise%C3%B1o-de-aplicaci%C3%B3n-web
 
 **Nota**: De momento está privado, nos gustaría invitaros como miembros, si queréis podéis mandarnos vuestros usuarios de Trello para que lo podamos compartir con vosotros.
