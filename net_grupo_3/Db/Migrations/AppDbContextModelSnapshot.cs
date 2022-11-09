@@ -18,6 +18,44 @@ namespace net_grupo_3.Db.Migrations
                 .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("net_grupo_3.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_category")
+                        .HasColumnOrder(0);
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("varchar(75)")
+                        .HasColumnName("category_name")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("categories");
+                });
+
+            modelBuilder.Entity("net_grupo_3.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_client")
+                        .HasColumnOrder(0);
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("varchar(75)")
+                        .HasColumnName("client_name")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("client");
+                });
+
             modelBuilder.Entity("net_grupo_3.Models.Product", b =>
                 {
                     b.Property<int>("Id")

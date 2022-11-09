@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 
 // MYSQL connection
 // create MySQL DB setting
-string url = "server=localhost;port=3306;user=root;password=admin;database=ecomerce";
+string url = "server=localhost;port=3380;user=root;password=.Rio2016;database=ecomerce";
 builder.Services.AddDbContext<AppDbContext>
     (
         options => options.UseMySql(url, ServerVersion.AutoDetect(url))
@@ -17,6 +17,10 @@ builder.Services.AddDbContext<AppDbContext>
 
 // Add repos
 builder.Services.AddScoped<IProductRepository, ProductDbRepository>();
+// Add repos
+builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
+// Add repos
+builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
 
 var app = builder.Build();
 
