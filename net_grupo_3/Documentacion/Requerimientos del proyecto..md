@@ -6,12 +6,17 @@ ___
 * Kevin Zamora Amela
 * Juan Carlos Villalobos
 ___
+## Repositorio Github:
+
+Necesitamos vuestros usuarios de github porque este está en privado (Lo hemos cambiado a público para que podáis verlo).
+https://github.com/zamelkev/net_grupo_3/
+___
 ## Horario de reuniones:
 
 Kevin:
 Lunes-Jueves 
 Martes y Jueves 16:00-21:00 h 
-Lunes y Miercoles 16:00-18:00 h
+Lunes y Miércoles 16:00-18:00 h
 
 Jacint:
 Lunes-Jueves 16:00-21:00 h
@@ -25,7 +30,7 @@ ___
 ## Temario del proyecto:
 
 **E-comerce de informática** (PC, Laptop, Tablets, Perifericos?, etc).
-Limitar el e-commerce a productos de informática, tomando como inspiración principalmente, **Amazon**, como segunda fuente de inspiración **pcpartpicker**.
+Limitar el e-commerce a productos de informática, tomando como inspiración principalmente, **Amazon** y como segunda fuente de inspiración **pcpartpicker**.
 
 > Como Amazon pero en simple
 ______
@@ -60,8 +65,59 @@ Estos Modelos son implementados de la siguiente forma:
 5. Integración del Modelo dentro de ASP.NET (API)
 6. Integración del Modelo dentro de Entity Framework Core (C# - DB)
 ___
+
+## Plan de acción indicado por el profesor (Alan Sastre):
+
+## Semana 07/11/2022
+
+-   Representantes
+-   Crear proyectos en GitHub y añadir colaboradores
+-   Crear tableros Trello
+    -   Crear tareas
+    -   Repartición de tareas
+-   Avanzar con las primeras tareas: creación de modelos
+-   Empezar los repositorios
+
+## Semana 14/11/2022
+
+-   Terminar Repositorios
+-   Empezar Controladores
+
+## Semana 21/11/2022
+
+-   Terminar controladores
+-   Empezar pantallas frontend
+
+## Semana 28/11/2022
+
+-   Frontend
+-   Ensayo
+
+## Semana 05/12/2022
+
+-   Frontend
+-   Pruebas
+-   Detalles
+-   Presentación:
+    -   Diapositivas
+    -   Demo de la aplicación
+
+___
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Trello:
 
-![[Pasted image 20221109181211.png]]
+![[img/trello-9-11-22.jpg]]
 
 
