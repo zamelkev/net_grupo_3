@@ -10,17 +10,17 @@ ___
 *Foreign Key*
 <em><u>PK y FK a la vez</u></em>
 
-**Product**: <u>Id</u>, Name, Cost, Price, Stock, Tax, ReleaseDate(Date), *ManufacturerId*
-**Manufacturer**: <u>Id</u>, Name, FoundationDate(Date), *LocationId*, *ContactId*
-**Category**: <u>Id</u>, Name
-**CategoryProduct**: <em><u>IdProduct, IdCategory</u></em>
-**Comment**: <u>Id</u>, Title, Body, PostDate(TimeStamp), *ProductId*, *ClientId*
-**Store**: <u>Id</u>, Name, CreationDate(Date), *LocationId*, *ContactId*
-**ProductStore**: <em><u>IdProduct</u></em>,<em><u>IdStore</u></em>
-**Order**: <u>Id</u>, OrderDate(TimeStamp), *ClientId*, *StoreId*
-**Client**: <u>Id</u>, Username, FirstName, LastName, CreationDate(TimeStamp), *LocationId*, *ContactId*
-**Location**: <u>Id</u>, Country, State?, City, Address
-**Contact**: <u>Id</u>, Phone, Mail
+**Product**: <u>Id</u>, Name, Cost, Price, Stock, Tax, ReleaseDate(Date), *ManufacturerId*  
+**Manufacturer**: <u>Id</u>, Name, FoundationDate(Date), *LocationId*, *ContactId*  
+**Category**: <u>Id</u>, Name  
+**CategoryProduct**: <em><u>IdProduct, IdCategory</u></em>  
+**Comment**: <u>Id</u>, Title, Body, PostDate(TimeStamp), *ProductId*, *ClientId*  
+**Store**: <u>Id</u>, Name, CreationDate(Date), *LocationId*, *ContactId*  
+**ProductStore**: <em><u>IdProduct</u></em>,<em><u>IdStore</u></em>  
+**Order**: <u>Id</u>, OrderDate(TimeStamp), *ClientId*, *StoreId*  
+**Client**: <u>Id</u>, Username, FirstName, LastName, CreationDate(TimeStamp), *LocationId*, *ContactId*  
+**Location**: <u>Id</u>, Country, State?, City, Address  
+**Contact**: <u>Id</u>, Phone, Mail  
 ___
 
 ## Modelos C\#/.NET
