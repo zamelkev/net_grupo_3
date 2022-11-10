@@ -57,14 +57,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. DB.md",
+                "file": "DB/1. DB.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fb2172434ab0ca74",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DB/DB Model Relationships.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -114,7 +126,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 412.5
+    "width": 412.5,
+    "collapsed": true
   },
   "right": {
     "id": "255a7757c34704b5",
@@ -130,7 +143,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. DB.md",
+                "file": "DB/DB Model Relationships.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +160,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. DB.md",
+                "file": "DB/DB Model Relationships.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +183,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. DB.md"
+                "file": "DB/DB Model Relationships.md"
               }
             }
           }
@@ -181,16 +194,16 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "beb20a60c5c7f0a0",
+  "active": "fb2172434ab0ca74",
   "lastOpenFiles": [
-    "2. Información general.md",
+    "DB/1. DB.md",
     "Requerimientos del proyecto..md",
+    "DB/DB Model Relationships.md",
+    "2. Información general.md",
     "Reuniones.md",
-    "1. DB.md",
     "img/trello-9-11-22.jpg",
     "Pasted image 20221109181211.png",
     "DB/Relaciones.md",
-    "Mentor.md",
-    "DB/1. DB.md"
+    "Mentor.md"
   ]
 }
