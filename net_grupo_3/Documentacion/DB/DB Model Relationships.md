@@ -1,6 +1,6 @@
 ## Diagrama Entidad Relacción
 
-![Entity Relationship Diagram](img/ER_Diagram.png)
+![Entity Relationship Diagram](../img/ER_Diagram.png)
 ___
 
 ## Esquema Lógico
