@@ -57,7 +57,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Requerimientos del proyecto..md",
+                "file": "1. DB.md",
                 "mode": "source",
                 "source": false
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Requerimientos del proyecto..md",
+                "file": "1. DB.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Requerimientos del proyecto..md",
+                "file": "1. DB.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Requerimientos del proyecto..md"
+                "file": "1. DB.md"
               }
             }
           }
@@ -183,11 +183,13 @@
   },
   "active": "beb20a60c5c7f0a0",
   "lastOpenFiles": [
-    "Pasted image 20221109181211.png",
     "2. Información general.md",
-    "DB/Relaciones.md",
     "Requerimientos del proyecto..md",
     "Reuniones.md",
+    "1. DB.md",
+    "img/trello-9-11-22.jpg",
+    "Pasted image 20221109181211.png",
+    "DB/Relaciones.md",
     "Mentor.md",
     "DB/1. DB.md"
   ]
