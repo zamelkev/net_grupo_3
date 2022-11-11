@@ -8,11 +8,18 @@ public class ProductController
 {
     // Attrs
     private IProductRepository ProductRepo;
+    private IProductCommentReporitory ProductCommentRepo;
 
     public ProductController(IProductRepository productRepository)
     {
         ProductRepo = productRepository;
     }
+
+    public ProductController(IProductRepository productRepo, IProductCommentReporitory productCommentRepo) : this(productRepo) {
+        ProductCommentRepo = productCommentRepo;
+    }
+
+
 
     // API Methods
     // https://localhost:7230/api/books/1

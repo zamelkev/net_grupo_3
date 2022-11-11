@@ -22,6 +22,8 @@ builder.Services.AddScoped<IProductRepository, ProductDbRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
 // Add repos
 builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
+// Add repos
+builder.Services.AddScoped<IProductCommentRepository, ProductCommentDbRepository>();
 
 var app = builder.Build();
 

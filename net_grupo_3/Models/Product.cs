@@ -33,11 +33,11 @@ public class Product {
 
     [Required,
     Column("comment")]
-    ProductComment? comment { get; set; }
+    ProductComment comment { get; set; }
 
 
 
-    public Product(int id, string name, double cost, double price, int stock, double tax, DateTime releaseDate, ProductComment? comment) {
+    public Product(int id, string name, double cost, double price, int stock, double tax, DateTime releaseDate, ProductComment comment) {
         Id = id;
         Name = name;
         Cost = cost;
