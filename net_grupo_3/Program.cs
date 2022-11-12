@@ -1,3 +1,5 @@
+using net_grupo_3.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,7 +25,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
 // Add repos
 builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
 // Add repos
-builder.Services.AddScoped<IProductCommentRepository, ProductCommentDbRepository>();
+builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
 
 var app = builder.Build();
 
