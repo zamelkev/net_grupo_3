@@ -1,3 +1,5 @@
+using net_grupo_3.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 // MYSQL connection
 // create MySQL DB setting
+//string url = "server=localhost;port=3380;user=root;password=.Rio2016;database=ecomerce";
 string url = "server=localhost;port=3306;user=root;password=admin;database=ecomerce";
 builder.Services.AddDbContext<AppDbContext>
     (
@@ -17,6 +20,11 @@ builder.Services.AddDbContext<AppDbContext>
 
 // Add repos
 builder.Services.AddScoped<IProductRepository, ProductDbRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
+builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
+builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
+builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 
 var app = builder.Build();
 

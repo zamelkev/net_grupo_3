@@ -2,12 +2,37 @@
 
 [Table("product")]
 public class Product {
-    // attrs
+    // atributos
     [Key, 
     Column("id")]
     public int Id { get; set; }
 
-    [Required,
+    [
     Column("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
+
+    [ 
+    Column("Cost")]
+    public Double Cost { get; set; }
+
+    [ 
+    Column("price")]
+    public Double Price { get; set; }
+
+    [ 
+    Column("stock")]
+    public int Stock { get; set; }
+
+    [ 
+    Column("tax")]
+    public Double Tax { get; set; }
+
+    [ 
+    Column("date")]
+    public DateTime ReleaseDate { get; set; }
+
+    [ 
+    Column("comment")]
+    public ICollection<ProductComment>? ProductComments { get; set; }
+    
 }
