@@ -11,7 +11,7 @@ using net_grupo_3.Db;
 namespace net_grupo_3.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221113153922_Setup")]
+    [Migration("20221113160747_Setup")]
     partial class Setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,34 @@ namespace net_grupo_3.Db.Migrations
                     b.ToTable("client");
                 });
 
+            modelBuilder.Entity("net_grupo_3.Models.Container", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<double>("Depth")
+                        .HasColumnType("double")
+                        .HasColumnName("depth");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("double")
+                        .HasColumnName("height");
+
+                    b.Property<double?>("Volume")
+                        .HasColumnType("double")
+                        .HasColumnName("volume");
+
+                    b.Property<double>("Width")
+                        .HasColumnType("double")
+                        .HasColumnName("width");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("container");
+                });
+
             modelBuilder.Entity("net_grupo_3.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -94,6 +122,9 @@ namespace net_grupo_3.Db.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
+                    b.Property<int?>("ContainerId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Cost")
                         .HasColumnType("double")
                         .HasColumnName("Cost");
@@ -119,6 +150,8 @@ namespace net_grupo_3.Db.Migrations
                         .HasColumnName("tax");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContainerId");
 
                     b.ToTable("product");
                 });
@@ -159,6 +192,13 @@ namespace net_grupo_3.Db.Migrations
                     b.Navigation("Client");
                 });
 
+            modelBuilder.Entity("net_grupo_3.Models.Product", b =>
+                {
+                    b.HasOne("net_grupo_3.Models.Container", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ContainerId");
+                });
+
             modelBuilder.Entity("net_grupo_3.Models.ProductComment", b =>
                 {
                     b.HasOne("net_grupo_3.Models.Product", "Product")
@@ -168,6 +208,11 @@ namespace net_grupo_3.Db.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("net_grupo_3.Models.Container", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("net_grupo_3.Models.Product", b =>

@@ -24,6 +24,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
 builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
 builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
+builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 
 var app = builder.Build();
 
