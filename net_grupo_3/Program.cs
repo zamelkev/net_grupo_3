@@ -20,12 +20,10 @@ builder.Services.AddDbContext<AppDbContext>
 
 // Add repos
 builder.Services.AddScoped<IProductRepository, ProductDbRepository>();
-// Add repos
 builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
-// Add repos
 builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
-// Add repos
 builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
 
 var app = builder.Build();
 

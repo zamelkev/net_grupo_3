@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
 
     public DbSet<ProductComment> ProductComments { get; set; }
 
+    public DbSet<Order> Orders { get; set; }
 
 
     public AppDbContext(DbContextOptions options) : base(options)
