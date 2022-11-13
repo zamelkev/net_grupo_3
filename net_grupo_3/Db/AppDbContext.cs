@@ -8,8 +8,10 @@ public class AppDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
 
     public DbSet<Client> Client { get; set; }
-    
-    public DbSet<ProductComment> productComments { get; set; }
+
+    public DbSet<ProductComment> ProductComments { get; set; }
+
+
 
     public AppDbContext(DbContextOptions options) : base(options)
     {

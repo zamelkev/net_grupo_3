@@ -15,9 +15,9 @@ public class ProductController
         ProductRepo = productRepository;
     }
 
-    public ProductController(IProductRepository productRepo, IProductCommentReporitory productCommentRepo) : this(productRepo) {
-        ProductCommentRepo = productCommentRepo;
-    }
+    //public ProductController(IProductRepository productRepo, IProductCommentReporitory productCommentRepo) : this(productRepo) {
+    //    ProductCommentRepo = productCommentRepo;
+    //}
 
 
 

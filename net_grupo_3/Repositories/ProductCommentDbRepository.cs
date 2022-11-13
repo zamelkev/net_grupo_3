@@ -10,10 +10,10 @@ public class ProductCommentDbRepository : IProductCommentReporitory {
     }
     // methods
     public ProductComment FindById(int id) {
-        return Context.productComments.Find(id);
+        return Context.ProductComments.Find(id);
     }
     public List<ProductComment> FindAll() {
-        return Context.productComments.ToList();
+        return Context.ProductComments.ToList();
     }
 
 }
