@@ -6,6 +6,8 @@ public interface IProductRepository {
     
     Product FindById(int id);
 
+    Product FindByIdWithInclude(int id);
+
 
    /*
     List<Product> FindAll();

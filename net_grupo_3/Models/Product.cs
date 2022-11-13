@@ -32,7 +32,7 @@ public class Product {
     public DateTime ReleaseDate { get; set; }
 
     [ 
-    Column("comment")]
+    Column("comment"), JsonIgnore]
     public ICollection<ProductComment> ProductComments { get; set; }
     //ProductComment? comment { get; set; }
 

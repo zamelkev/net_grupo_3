@@ -29,11 +29,17 @@ public class ProductController
         return ProductRepo.FindById(id);
     }
 
-/*
-    // https://localhost:7230/api/books/findall
-    [HttpGet]
-    public List<Product> FindAll()
-    {
-        return ProductRepo.FindAll();
-    }*/
+    // https://localhost:7230/api/books/1
+    [HttpGet("comment/{id}")]
+    public Product FindWithInclude(int id) {
+        return ProductRepo.FindByIdWithInclude(id);
+    }
+
+    /*
+        // https://localhost:7230/api/books/findall
+        [HttpGet]
+        public List<Product> FindAll()
+        {
+            return ProductRepo.FindAll();
+        }*/
 }

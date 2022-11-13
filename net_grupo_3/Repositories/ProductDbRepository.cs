@@ -16,4 +16,13 @@ public class ProductDbRepository : IProductRepository
         return Context.Products.Find(id);
     }
 
+    public Product FindByIdWithInclude(int id) {
+        return Context.Products
+            .Include(product => product.ProductComments)
+            .Where(product =>
+            product.Id
+             == id)
+        .FirstOrDefault();
+    }
+
 }
