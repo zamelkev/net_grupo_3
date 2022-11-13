@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     DashboardComponent,
     LoginComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ProfileDetailsComponent
   ],
   imports: [
     BrowserModule
