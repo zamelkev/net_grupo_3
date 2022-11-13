@@ -9,7 +9,7 @@ public class Product {
 
     [
     Column("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [ 
     Column("Cost")]
@@ -32,20 +32,7 @@ public class Product {
     public DateTime ReleaseDate { get; set; }
 
     [ 
-    Column("comment"), JsonIgnore]
-    public ICollection<ProductComment> ProductComments { get; set; }
-    //ProductComment? comment { get; set; }
-
-
-
-    //public Product(int id, string name, double cost, double price, int stock, double tax, DateTime releaseDate, ICollection<ProductComment> ProductComments) {
-    //    Id = id;
-    //    Name = name;
-    //    Cost = cost;
-    //    Price = price;
-    //    Stock = stock;
-    //    Tax = tax;
-    //    ReleaseDate = releaseDate;
-    //    ProductComments = ProductComments;
-    //}
+    Column("comment")]
+    public ICollection<ProductComment>? ProductComments { get; set; }
+    
 }

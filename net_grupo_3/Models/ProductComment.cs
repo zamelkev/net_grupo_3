@@ -8,16 +8,8 @@ public class ProductComment {
     public string Body { get; set; }
 
     public DateTime PostDate { get; set;}
-
-    public Product Product { get; set; }
+    [JsonIgnore]
+    public Product? Product { get; set; }
     public int ProductId { get; set; }
 
-    //public ProductComment(int id, string title, string body, DateTime postDate, Product product, int productId) {
-    //    Id = id;
-    //    Title = title;
-    //    Body = body;
-    //    PostDate = postDate;
-    //    Product = product;
-    //    ProductId = productId;
-    //}
 }
