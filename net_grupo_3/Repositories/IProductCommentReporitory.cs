@@ -5,4 +5,10 @@ public interface IProductCommentReporitory {
 
     public List<ProductComment> FindAll();
 
+    ProductComment Create(ProductComment productcomment);
+
+    ProductComment Update(ProductComment productcomment);
+
+    bool DeleteById(int id);
+
 }

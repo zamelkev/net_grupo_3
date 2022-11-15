@@ -8,13 +8,12 @@ public interface IProductRepository {
 
     Product FindByIdWithInclude(int id);
 
-
-   /*
     List<Product> FindAll();
 
-    // guardar
     Product Create(Product product);
 
-    bool RemoveById(int id);
-   */
+    Product Update(Product product);
+
+    bool DeleteById(int id);
+
 }

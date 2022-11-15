@@ -85,6 +85,23 @@ namespace net_grupo_3.Db.Migrations
                     b.ToTable("container");
                 });
 
+            modelBuilder.Entity("net_grupo_3.Models.Manufacture", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Manufacture");
+                });
+
             modelBuilder.Entity("net_grupo_3.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -179,6 +196,23 @@ namespace net_grupo_3.Db.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductComments");
+                });
+
+            modelBuilder.Entity("net_grupo_3.Models.Shop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shop");
                 });
 
             modelBuilder.Entity("net_grupo_3.Models.Order", b =>

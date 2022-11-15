@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 // MYSQL connection
 // create MySQL DB setting
-//string url = "server=localhost;port=3380;user=root;password=.Rio2016;database=ecomerce";
+
 string url = "server=localhost;port=3306;user=root;password=admin;database=ecomerce";
 builder.Services.AddDbContext<AppDbContext>
     (
