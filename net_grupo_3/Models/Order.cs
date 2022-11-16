@@ -8,10 +8,9 @@ public class Order
     Column("id")]
     public int Id { get; set; }
 
-    [Column("name")]
-    public string? Name { get; set; }
     [Column("description")]
     public string? Description { get; set; }
+    [Column("order_date")]
     public DateTime? OrderDate { get; set; }
 
     // relationships
@@ -21,14 +20,4 @@ public class Order
     // foreign keys (FK)
     public int? ClientId { get; set; }
     //public int? StoreID  { get; set; }
-
-    /*
-     * OrderDate (DateTime)
-Relationships
-Client
-Store
-FKs
-ClientId
-StoreId
-     */
 }

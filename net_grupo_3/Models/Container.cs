@@ -7,19 +7,20 @@ public class Container
     Column("id")]  
     public int Id { get; set; }
 
-    [Column("volume")]
-    public double? Volume { get; set; }
+    [Column("volume"), Precision(14, 2)]
+    public decimal? Volume { get; set; }
 
-    [Column("height")]
-    public double Height { get; set; }
+    [Column("height"), Precision(14, 2)]
+    public decimal Height { get; set; }
 
-    [Column("width")]
-    public double Width { get; set; }
+    [Column("width"), Precision(14, 2)]
+    public decimal Width { get; set; }
 
-    [Column("depth")]
-    public double Depth { get; set; }
+    [Column("depth"), Precision(14, 2)]
+    public decimal Depth { get; set; }
+
 
     // associations
-    public IList<Product> Products { get; set; }
+    public IList<Product>? Products { get; set; }
 
 }
