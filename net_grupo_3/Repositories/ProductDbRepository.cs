@@ -67,4 +67,11 @@ public class ProductDbRepository : IProductRepository
             .FirstOrDefault();
     }
 
+    public IList<Product> FindByContainerId(int containerId)
+    {
+        return Context.Products
+            .Include(product => product.Container)
+            .Where(product => product.ContainerId == containerId)
+            .ToList();
+    }
 }

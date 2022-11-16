@@ -7,11 +7,13 @@ public class ContainerDbRepository : IContainerRepository
 {
     // attrs
     private AppDbContext Context;
+    private IProductRepository ProductRepo;
 
     // constructor
-    public ContainerDbRepository(AppDbContext context)
+    public ContainerDbRepository(AppDbContext context, IProductRepository productRepository)
     {
         Context = context;
+        ProductRepo = productRepository;
     }
     // methods
 
@@ -71,6 +73,13 @@ public class ContainerDbRepository : IContainerRepository
         Container container = FindById(id);
         if (container == null)
             return false;
+        // DESASOCIAR los books primero antes de borrar el autor
+        IList<Product> products = ProductRepo.FindByContainerId(id);
+        foreach (Product product in products)
+        {
+            product.ContainerId = null; // desasociar
+            ProductRepo.Update(product); // actualizar en base de datos
+        }
 
         Context.Containers.Remove(container); // Un libro puede tener: author y categories
 
@@ -78,11 +87,11 @@ public class ContainerDbRepository : IContainerRepository
         return true;
     }
 
-    public IList<Container> Filter(int? id, decimal? minVol, decimal? maxVol, decimal? height, decimal? width, decimal? depth, IList<Product>? products)
+
+
+    // Extra API functionalites
+    public IList<Container> Filter(ContainerFilter cf)
     {
         throw new NotImplementedException();
     }
-
-    // Extra API functionalites
-
 }

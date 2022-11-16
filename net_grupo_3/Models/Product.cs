@@ -31,8 +31,11 @@ public class Product {
     Column("date")]
     public DateTime ReleaseDate { get; set; }
 
+    // associations
     [ 
     Column("comment")]
     public ICollection<ProductComment>? ProductComments { get; set; }
+    public Container? Container { get; set; }
+    public int? ContainerId { get; set; }
     
 }

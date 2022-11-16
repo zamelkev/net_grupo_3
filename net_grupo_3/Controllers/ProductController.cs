@@ -23,6 +23,25 @@ public class ProductController {
     public Product FindById(int id) {
         return ProductRepo.FindById(id);
     }
+    // https://localhost:7230/api/products/findWithinclude
+    [HttpGet("comment/{id}")]
+    public Product FindWithInclude(int id)
+    {
+        return ProductRepo.FindByIdWithInclude(id);
+    }
+
+    // https://localhost:7230/api/products/findall
+    [HttpGet]
+    public List<Product> FindAll()
+    {
+        return ProductRepo.FindAll();
+    }
+    // https://localhost:7230/api/products/find_by_container
+    [HttpGet("container/{id}")]
+    public IList<Product> FindByContainer(int id)
+    {
+        return ProductRepo.FindByContainerId(id);
+    }
 
     // https://localhost:7230/api/products/create
     [HttpPost]
@@ -42,16 +61,7 @@ public class ProductController {
         return ProductRepo.DeleteById(id);
     }
 
-    // https://localhost:7230/api/products/findWithinclude
-    [HttpGet("comment/{id}")]
-    public Product FindWithInclude(int id) {
-        return ProductRepo.FindByIdWithInclude(id);
-    }
 
-    // https://localhost:7230/api/products/findall
-    [HttpGet]
-    public List<Product> FindAll() {
-        return ProductRepo.FindAll();
-    }
+
 }
 

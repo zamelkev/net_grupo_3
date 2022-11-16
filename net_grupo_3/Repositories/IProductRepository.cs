@@ -10,6 +10,8 @@ public interface IProductRepository {
 
     List<Product> FindAll();
 
+    IList<Product> FindByContainerId(int id);
+
     Product Create(Product product);
 
     Product Update(Product product);

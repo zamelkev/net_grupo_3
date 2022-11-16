@@ -8,7 +8,6 @@ public interface IOrderRepository
 
     IList<Order> FindAll();
 
-
     Order Create(Order order);
     Order Update(Order order);
     bool Delete(int id);
