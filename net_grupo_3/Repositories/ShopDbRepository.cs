@@ -22,11 +22,11 @@ public class ShopDbRepository : IShopRepository
             .FirstOrDefault();
     }
 
-    public List<Shop> FindByNameContains(string title)
+    public List<Shop> FindByNameContains(string name)
     {
 
         return Context.Shops
-            .Where(shop => shop.Name.ToLower().Contains(title.ToLower()))
+            .Where(shop => shop.Name.ToLower().Contains(name.ToLower()))
             .ToList();
     }
 

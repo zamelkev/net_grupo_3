@@ -18,7 +18,8 @@ public class AppDbContext : DbContext
 
 
     public DbSet<Shop> Shops { get; set; }
-    
+    public DbSet<Manufacturer> Manufacturers { get; set; }
+
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }

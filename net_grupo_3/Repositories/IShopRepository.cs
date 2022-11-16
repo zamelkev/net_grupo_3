@@ -15,10 +15,10 @@ public interface IShopRepository
     List<Shop> FindAll();
 
     // guardar
-    Shop Create(Shop book);
+    Shop Create(Shop shop);
 
     // actualizar restringiendo campos
-    Shop Update(Shop book);
+    Shop Update(Shop shop);
 
     // borrar por id
     bool Remove(int id);
