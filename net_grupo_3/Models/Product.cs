@@ -36,6 +36,8 @@ public class Product {
     Column("comment")]
     public ICollection<ProductComment>? ProductComments { get; set; }
     public Container? Container { get; set; }
+    public IList<Order>? Orders { get; set; }
+    // FKs
     public int? ContainerId { get; set; }
     
 }

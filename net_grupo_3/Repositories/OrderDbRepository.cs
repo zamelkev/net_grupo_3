@@ -56,7 +56,6 @@ public class OrderDbRepository : IOrderRepository
 
         Context.Orders.Attach(order);
 
-        Context.Entry(order).Property(o => o.Description).IsModified = true;
         Context.Entry(order).Property(o => o.OrderDate).IsModified = true;
         Context.Entry(order).Property(o => o.Client).IsModified = true;
         Context.Entry(order).Property(o => o.ClientId).IsModified = true;

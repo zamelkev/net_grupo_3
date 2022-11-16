@@ -8,15 +8,12 @@ public class Order
     Column("id")]
     public int Id { get; set; }
 
-    [Column("description")]
-    public string? Description { get; set; }
     [Column("order_date")]
     public DateTime? OrderDate { get; set; }
 
     // relationships
     public Client? Client { get; set; }
-    //public Store? Store { get; set; }
-
+    public IList<Product>? Products { get; set; }
     // foreign keys (FK)
     public int? ClientId { get; set; }
     //public int? StoreID  { get; set; }

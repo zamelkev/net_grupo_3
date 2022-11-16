@@ -29,4 +29,34 @@ public class ContainerController
     {
         return ContainerRepo.FindByIdWithInclude(id);
     }
+
+    [HttpGet]
+    public IList<Container> FindAll()
+    {
+        return ContainerRepo.FindAll();
+    }
+    [HttpPost]
+    public Container Create(Container container)
+    {
+        return ContainerRepo.Create(container);
+    }
+
+    [HttpPut]
+    public Container Update(Container container)
+    {
+        return ContainerRepo.Update(container);
+    }
+
+    [HttpDelete("{id}")]
+    public void DeleteById(int id)
+    {
+        ContainerRepo.Delete(id);
+    }
+
+    // filters
+    [HttpPost("filter")]
+    public IList<Container> FilterOrder(ContainerFilter cf)
+    {
+        return ContainerRepo.Filter(cf);
+    }
 }

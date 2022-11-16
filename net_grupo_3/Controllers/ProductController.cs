@@ -24,7 +24,7 @@ public class ProductController {
         return ProductRepo.FindById(id);
     }
     // https://localhost:7230/api/products/findWithinclude
-    [HttpGet("comment/{id}")]
+    [HttpGet("include/{id}")]
     public Product FindWithInclude(int id)
     {
         return ProductRepo.FindByIdWithInclude(id);

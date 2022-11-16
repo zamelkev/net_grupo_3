@@ -56,8 +56,8 @@ public class OrderController
 
     // filters
     [HttpPost("filter")]
-    public IList<Order> FilterParams(OrderFilter of)
+    public IList<Order> FilterOrder(OrderFilter of)
     {
-        return (IList<Order>)OrderRepo.Filter(of);
+        return OrderRepo.Filter(of);
     }
 }

@@ -27,7 +27,7 @@ public class ContainerDbRepository : IContainerRepository
     {
         return Context.Containers
             .Include(container => container.Products)
-            .Where(container => container.Id == id)
+            .Where(product => product.Id == id)
             .FirstOrDefault();
     }
 
@@ -92,6 +92,30 @@ public class ContainerDbRepository : IContainerRepository
     // Extra API functionalites
     public IList<Container> Filter(ContainerFilter cf)
     {
-        throw new NotImplementedException();
+        // collection declaration to apply filters to it later
+        var query = Context.Containers.AsQueryable(); ;
+        // filter by Id
+        if (cf.Id.HasValue && cf.Id > 0)
+        {
+            query = query.Where(c => c.Id == cf.Id);
+        }
+        if(cf.Volume.HasValue && cf.Volume > 0)
+        {
+            query = query.Where(c => c.Volume == cf.Volume);
+        }
+        if (cf.Height.HasValue && cf.Height > 0)
+        {
+            query = query.Where(c => c.Height == cf.Height);
+        }
+        if (cf.Width.HasValue && cf.Width > 0)
+        {
+            query = query.Where(c => c.Width == cf.Width);
+        }
+        if (cf.Depth.HasValue && cf.Depth > 0)
+        {
+            query = query.Where(c => c.Depth == cf.Depth);
+        }
+        // Then use data (for ex. make a list).
+        return query.ToList();
     }
 }

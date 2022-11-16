@@ -21,6 +21,7 @@ public class Container
 
 
     // associations
+    [JsonIgnore]
     public IList<Product>? Products { get; set; }
 
 }
