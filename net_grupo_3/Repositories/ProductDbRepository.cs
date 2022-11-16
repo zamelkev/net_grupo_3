@@ -20,11 +20,18 @@ public class ProductDbRepository : IProductRepository
         return Context.Products.ToList();
     }
 
+    public bool ExistsById(int id) {
+        Product existentProduct = FindById(id);
+        if (existentProduct != null) return true;
+        return false;
+    }
+
     public Product Create(Product product) {
+        
         if (product.Id > 0) // 1
             return Update(product);
 
-        Context.Products.Add(product); // Un libro puede tener: author y categories
+        Context.Products.Add(product); 
         Context.SaveChanges();
         return product;
     }
@@ -46,7 +53,7 @@ public class ProductDbRepository : IProductRepository
         Context.Entry(product).Collection(b => b.ProductComments).IsModified = true;
         Context.SaveChanges();
 
-        return FindById(product.Id);
+        return product;
     }
 
     public bool DeleteById(int id) {
