@@ -1,4 +1,6 @@
 ﻿
+using net_grupo_3.Models;
+
 namespace net_grupo_3.Db;
 
 public class AppDbContext : DbContext
@@ -15,10 +17,10 @@ public class AppDbContext : DbContext
     public DbSet<Container> Containers { get; set; }
 
 
-
+    public DbSet<Shop> Shops { get; set; }
+    
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }
-    public DbSet<Shop> Shops { get; set; }
-    public DbSet<Manufacture> Manufactures { get; set; }
+    
 }

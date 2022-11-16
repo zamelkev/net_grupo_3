@@ -25,6 +25,8 @@ builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
 builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
 builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
+builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
+
 
 var app = builder.Build();
 
