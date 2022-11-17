@@ -21,11 +21,9 @@ public class ProductCommentDbRepository : IProductCommentReporitory {
             return UpdateC (productcomment);
 
         Context.ProductComments.Add(productcomment); // Un libro puede tener: author y categories
-        try
-        {
+        
             Context.SaveChanges();
-        }
-        catch (Exception ex) { }
+        
         return productcomment;
     }
 
