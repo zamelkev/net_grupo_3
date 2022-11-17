@@ -7,8 +7,7 @@ namespace net_grupo_3.Controllers;
 public class ProductController {
     // Attrs
     private IProductRepository ProductRepo;
-    private IProductCommentReporitory ProductCommentRepo;
-
+    
     public ProductController(IProductRepository productRepository) {
         ProductRepo = productRepository;
     }

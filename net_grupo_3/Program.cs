@@ -28,6 +28,7 @@ builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
 builder.Services.AddScoped<IManufacturerRepository, ManufacturerDbRepository>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

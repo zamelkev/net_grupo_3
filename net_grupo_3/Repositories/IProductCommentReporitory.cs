@@ -1,14 +1,14 @@
 ﻿namespace net_grupo_3.Repositories; 
 public interface IProductCommentReporitory {
 
-    public ProductComment FindById(int id);
+    public ProductComment FindCById(int id);
 
-    public List<ProductComment> FindAll();
+    public List<ProductComment> FindAllC();
 
-    ProductComment Create(ProductComment productcomment);
+    ProductComment CreateC(ProductComment productcomment);
 
-    ProductComment Update(ProductComment productcomment);
+    ProductComment UpdateC(ProductComment productcomment);
 
-    bool DeleteById(int id);
+    bool DeleteCById(int id);
 
 }

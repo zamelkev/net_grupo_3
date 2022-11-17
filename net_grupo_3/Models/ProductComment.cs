@@ -7,10 +7,10 @@ public class ProductComment {
     public int Id { get; set; }
 
     [Column("title")]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     [Column("body")]
-    public string Body { get; set; }
+    public string? Body { get; set; }
 
     [Column("post_date")]
     public DateTime PostDate { get; set;}
