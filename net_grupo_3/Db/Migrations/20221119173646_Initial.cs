@@ -29,21 +29,6 @@ namespace net_grupo_3.Db.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "client",
-                columns: table => new
-                {
-                    id_client = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    client_name = table.Column<string>(type: "varchar(75)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_client", x => x.id_client);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "container",
                 columns: table => new
                 {
@@ -61,52 +46,56 @@ namespace net_grupo_3.Db.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Manufacture",
+                name: "manufacturer",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    foundation_date = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manufacture", x => x.id);
+                    table.PrimaryKey("PK_manufacturer", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Shop",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shop", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "order",
+                name: "shop",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    order_date = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    ClientId = table.Column<int>(type: "int", nullable: true)
+                    name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    foundation_date = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_order", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_order_client_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "client",
-                        principalColumn: "id_client");
+                    table.PrimaryKey("PK_shop", x => x.id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    full_name = table.Column<string>(type: "varchar(75)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    username = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    email = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    password = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    role = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -123,7 +112,9 @@ namespace net_grupo_3.Db.Migrations
                     stock = table.Column<int>(type: "int", nullable: false),
                     tax = table.Column<double>(type: "double", nullable: false),
                     date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ContainerId = table.Column<int>(type: "int", nullable: true)
+                    ContainerId = table.Column<int>(type: "int", nullable: true),
+                    ManufacturerId = table.Column<int>(type: "int", nullable: true),
+                    ShopId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -133,6 +124,61 @@ namespace net_grupo_3.Db.Migrations
                         column: x => x.ContainerId,
                         principalTable: "container",
                         principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_product_manufacturer_ManufacturerId",
+                        column: x => x.ManufacturerId,
+                        principalTable: "manufacturer",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_product_shop_ShopId",
+                        column: x => x.ShopId,
+                        principalTable: "shop",
+                        principalColumn: "id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "order",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    order_date = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_order", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_order_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "product_comment",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    title = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    body = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    post_date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_product_comment", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_product_comment_product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "product",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -161,35 +207,10 @@ namespace net_grupo_3.Db.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "product_comment",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    body = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    post_date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_product_comment", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_product_comment_product_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "product",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateIndex(
-                name: "IX_order_ClientId",
+                name: "IX_order_UserId",
                 table: "order",
-                column: "ClientId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderProduct_ProductsId",
@@ -200,6 +221,16 @@ namespace net_grupo_3.Db.Migrations
                 name: "IX_product_ContainerId",
                 table: "product",
                 column: "ContainerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_product_ManufacturerId",
+                table: "product",
+                column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_product_ShopId",
+                table: "product",
+                column: "ShopId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_product_comment_ProductId",
@@ -213,16 +244,10 @@ namespace net_grupo_3.Db.Migrations
                 name: "categories");
 
             migrationBuilder.DropTable(
-                name: "Manufacture");
-
-            migrationBuilder.DropTable(
                 name: "OrderProduct");
 
             migrationBuilder.DropTable(
                 name: "product_comment");
-
-            migrationBuilder.DropTable(
-                name: "Shop");
 
             migrationBuilder.DropTable(
                 name: "order");
@@ -231,10 +256,16 @@ namespace net_grupo_3.Db.Migrations
                 name: "product");
 
             migrationBuilder.DropTable(
-                name: "client");
+                name: "user");
 
             migrationBuilder.DropTable(
                 name: "container");
+
+            migrationBuilder.DropTable(
+                name: "manufacturer");
+
+            migrationBuilder.DropTable(
+                name: "shop");
         }
     }
 }

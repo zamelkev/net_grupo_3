@@ -12,9 +12,9 @@ public class Order
     public DateTime? OrderDate { get; set; }
 
     // relationships
-    public Client? Client { get; set; }
+    public User? User { get; set; }
     public IList<Product>? Products { get; set; }
     // foreign keys (FK)
-    public int? ClientId { get; set; }
+    public int? UserId { get; set; }
     //public int? StoreID  { get; set; }
 }
