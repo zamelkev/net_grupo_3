@@ -12,4 +12,5 @@ global using net_grupo_3;
 global using net_grupo_3.Db;
 global using net_grupo_3.Models;
 global using net_grupo_3.Repositories;
+global using net_grupo_3.Helpers;
 
