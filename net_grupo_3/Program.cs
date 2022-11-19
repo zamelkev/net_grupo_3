@@ -4,6 +4,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+// CORS
+builder.Services.AddCors(options => {
+    /* options.AddPolicy("AllowAll", builder => {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+
+    });*/
+    options.AddPolicy(name: "frontend", policy => {
+        policy.WithOrigins("http://localhost:4200", "http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -40,8 +55,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("frontend");
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+
