@@ -8,10 +8,10 @@ public class Manufacturer
     public int Id { get; set; }
 
     [Column("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [Column("foundation_date")]
-    public DateTime FoundationDate { get; set; }
+    public DateTime? FoundationDate { get; set; }
 
     /*
     [Column("Location")]

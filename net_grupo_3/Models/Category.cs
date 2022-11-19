@@ -7,11 +7,11 @@ public class Category
 {
 
     // atributos
-    [Key, Column("id_category", Order = 0)]
+    [Key, Column("id", Order = 0)]
     public int Id { get; set; }
 
-    [Column("category_name", TypeName = "varchar(75)", Order = 2)]
-    public string CategoryName { get; set; }
+    [Column("name", Order = 2)]
+    public string? Name { get; set; }
 
 
 }

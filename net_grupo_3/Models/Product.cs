@@ -27,17 +27,44 @@ public class Product {
     Column("tax")]
     public Double Tax { get; set; }
 
+
+
+    // nuevas propiedades
+    [Column("cpu")]
+    public string? CPU { get; set; }
+
+    [Column("ram")]
+    public string? Ram { get; set; }
+
+    [Column("graphiccard")]
+    public string? GraphicCard { get; set; }
+
+
     [ 
     Column("date")]
     public DateTime ReleaseDate { get; set; }
 
+    
     // associations
-    [ 
-    Column("comment")]
+
     public ICollection<ProductComment>? ProductComments { get; set; }
     public Container? Container { get; set; }
     public IList<Order>? Orders { get; set; }
-    // FKs
-    public int? ContainerId { get; set; }
+
+
+    public Manufacturer? Manufacturer { get; set; }
     
+    public Category? Category { get; set; }
+    // foreign key
+    
+    public int? ManufacturerId { get; set; }
+
+    public int? CategoryId { get; set; }
+
+    public int? ContainerId { get; set; }
+
+
+
+
+
 }
