@@ -82,4 +82,15 @@ public class ProductDbRepository : IProductRepository
             .Where(product => product.ContainerId == containerId)
             .ToList();
     }
+
+    public IList<Product> FindProductsByManufacturerId(int manufacturerId) {
+
+        return Context.Products
+                .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
+                .Where(p => p.Manufacturer.Id == manufacturerId)
+                .ToList();
+
+    }
+
 }

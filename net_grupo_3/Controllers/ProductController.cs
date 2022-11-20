@@ -42,6 +42,14 @@ public class ProductController {
         return ProductRepo.FindByContainerId(id);
     }
 
+    // https://localhost:7230/api/products/find_by_manufacturer
+    [HttpGet("manufacturer/{manufacturer_id}")]
+    public IList<Product> FindProductsByManufacturerId(int manufacturer_id) {
+
+        return ProductRepo.FindProductsByManufacturerId(manufacturer_id);
+
+    }
+
     // https://localhost:7230/api/products/create
     [HttpPost]
     public Product Create(Product product) {
