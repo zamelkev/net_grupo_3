@@ -8,6 +8,10 @@ export interface Product {
   tax?: number;
   releaseDate?: any;
 
+  cpu?: string;
+  ram?: number;
+  graphicCard?: string;
+
   // Associations
   productComments?: any;
   orders?: any;

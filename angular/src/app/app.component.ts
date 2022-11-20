@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular';
+  // atributos
+  title: string = 'angular';
+
+
+
+  // constructor
+
+  // metodos
+  hello() {
+    this.title = "titulo cambiado desde un boton"
+  }
 }

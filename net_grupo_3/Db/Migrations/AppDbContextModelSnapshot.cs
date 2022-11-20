@@ -24,13 +24,12 @@ namespace net_grupo_3.Db.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id_category")
+                        .HasColumnName("id")
                         .HasColumnOrder(0);
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("varchar(75)")
-                        .HasColumnName("category_name")
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext")
+                        .HasColumnName("name")
                         .HasColumnOrder(2);
 
                     b.HasKey("Id");
@@ -89,21 +88,24 @@ namespace net_grupo_3.Db.Migrations
                     b.ToTable("container");
                 });
 
-            modelBuilder.Entity("net_grupo_3.Models.Manufacture", b =>
+            modelBuilder.Entity("net_grupo_3.Models.Manufacturer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
 
+                    b.Property<DateTime?>("FoundationDate")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("foundation_date");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Manufacture");
+                    b.ToTable("manufacturer");
                 });
 
             modelBuilder.Entity("net_grupo_3.Models.Order", b =>
@@ -134,12 +136,26 @@ namespace net_grupo_3.Db.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
+                    b.Property<string>("CPU")
+                        .HasColumnType("longtext")
+                        .HasColumnName("cpu");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ContainerId")
                         .HasColumnType("int");
 
                     b.Property<double>("Cost")
                         .HasColumnType("double")
                         .HasColumnName("Cost");
+
+                    b.Property<string>("GraphicCard")
+                        .HasColumnType("longtext")
+                        .HasColumnName("graphiccard");
+
+                    b.Property<int?>("ManufacturerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext")
@@ -149,9 +165,16 @@ namespace net_grupo_3.Db.Migrations
                         .HasColumnType("double")
                         .HasColumnName("price");
 
+                    b.Property<string>("Ram")
+                        .HasColumnType("longtext")
+                        .HasColumnName("ram");
+
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("date");
+
+                    b.Property<int?>("ShopId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int")
@@ -163,7 +186,13 @@ namespace net_grupo_3.Db.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("ContainerId");
+
+                    b.HasIndex("ManufacturerId");
+
+                    b.HasIndex("ShopId");
 
                     b.ToTable("product");
                 });
@@ -176,7 +205,6 @@ namespace net_grupo_3.Db.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Body")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("body");
 
@@ -188,7 +216,6 @@ namespace net_grupo_3.Db.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("title");
 
@@ -204,16 +231,20 @@ namespace net_grupo_3.Db.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("FoundationDate")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("foundation_date");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext")
-                        .HasColumnName("Name");
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shop");
+                    b.ToTable("shop");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>
@@ -242,11 +273,27 @@ namespace net_grupo_3.Db.Migrations
 
             modelBuilder.Entity("net_grupo_3.Models.Product", b =>
                 {
+                    b.HasOne("net_grupo_3.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("net_grupo_3.Models.Container", "Container")
                         .WithMany("Products")
                         .HasForeignKey("ContainerId");
 
+                    b.HasOne("net_grupo_3.Models.Manufacturer", "Manufacturer")
+                        .WithMany("Products")
+                        .HasForeignKey("ManufacturerId");
+
+                    b.HasOne("net_grupo_3.Models.Shop", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ShopId");
+
+                    b.Navigation("Category");
+
                     b.Navigation("Container");
+
+                    b.Navigation("Manufacturer");
                 });
 
             modelBuilder.Entity("net_grupo_3.Models.ProductComment", b =>
@@ -280,9 +327,19 @@ namespace net_grupo_3.Db.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("net_grupo_3.Models.Manufacturer", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("net_grupo_3.Models.Product", b =>
                 {
                     b.Navigation("ProductComments");
+                });
+
+            modelBuilder.Entity("net_grupo_3.Models.Shop", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

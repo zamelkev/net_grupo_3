@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace net_grupo_3.Db.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Setup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,14 +17,14 @@ namespace net_grupo_3.Db.Migrations
                 name: "categories",
                 columns: table => new
                 {
-                    id_category = table.Column<int>(type: "int", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    category_name = table.Column<string>(type: "varchar(75)", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_categories", x => x.id_category);
+                    table.PrimaryKey("PK_categories", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -61,32 +61,34 @@ namespace net_grupo_3.Db.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Manufacture",
+                name: "manufacturer",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    foundation_date = table.Column<DateTime>(type: "datetime(6)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_manufacturer", x => x.id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "shop",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    foundation_date = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manufacture", x => x.id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Shop",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shop", x => x.Id);
+                    table.PrimaryKey("PK_shop", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -122,16 +124,40 @@ namespace net_grupo_3.Db.Migrations
                     price = table.Column<double>(type: "double", nullable: false),
                     stock = table.Column<int>(type: "int", nullable: false),
                     tax = table.Column<double>(type: "double", nullable: false),
+                    cpu = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ram = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    graphiccard = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ContainerId = table.Column<int>(type: "int", nullable: true)
+                    ManufacturerId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    ContainerId = table.Column<int>(type: "int", nullable: true),
+                    ShopId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_product", x => x.id);
                     table.ForeignKey(
+                        name: "FK_product_categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "categories",
+                        principalColumn: "id");
+                    table.ForeignKey(
                         name: "FK_product_container_ContainerId",
                         column: x => x.ContainerId,
                         principalTable: "container",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_product_manufacturer_ManufacturerId",
+                        column: x => x.ManufacturerId,
+                        principalTable: "manufacturer",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_product_shop_ShopId",
+                        column: x => x.ShopId,
+                        principalTable: "shop",
                         principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -167,9 +193,9 @@ namespace net_grupo_3.Db.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    title = table.Column<string>(type: "longtext", nullable: false)
+                    title = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    body = table.Column<string>(type: "longtext", nullable: false)
+                    body = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     post_date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
@@ -197,9 +223,24 @@ namespace net_grupo_3.Db.Migrations
                 column: "ProductsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_product_CategoryId",
+                table: "product",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_product_ContainerId",
                 table: "product",
                 column: "ContainerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_product_ManufacturerId",
+                table: "product",
+                column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_product_ShopId",
+                table: "product",
+                column: "ShopId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_product_comment_ProductId",
@@ -210,19 +251,10 @@ namespace net_grupo_3.Db.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "categories");
-
-            migrationBuilder.DropTable(
-                name: "Manufacture");
-
-            migrationBuilder.DropTable(
                 name: "OrderProduct");
 
             migrationBuilder.DropTable(
                 name: "product_comment");
-
-            migrationBuilder.DropTable(
-                name: "Shop");
 
             migrationBuilder.DropTable(
                 name: "order");
@@ -234,7 +266,16 @@ namespace net_grupo_3.Db.Migrations
                 name: "client");
 
             migrationBuilder.DropTable(
+                name: "categories");
+
+            migrationBuilder.DropTable(
                 name: "container");
+
+            migrationBuilder.DropTable(
+                name: "manufacturer");
+
+            migrationBuilder.DropTable(
+                name: "shop");
         }
     }
 }

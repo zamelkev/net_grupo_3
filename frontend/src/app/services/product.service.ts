@@ -15,4 +15,13 @@ export class ProductService {
     return this.http.get<Product[]>(this.url);
   }
 
+  findById(id: number) {
+    return this.http.get<Product>(`${this.url}/${id}`);
+  }
+
+  findByManufacturerId(id: number) {
+    return this.http.get<Product[]>(`${this.url}/manufacturer/${id}`);
+  }
+
 }
+
