@@ -69,7 +69,7 @@ public class ProductDbRepository : IProductRepository
 
     public Product FindByIdWithInclude(int id) {
         return Context.Products
-            .Include(product => product.ProductComments)
+            .Include(product => product.Manufacturer)
             .Include(product => product.Container)
             .Where(product => product.Id == id)
             .FirstOrDefault();
