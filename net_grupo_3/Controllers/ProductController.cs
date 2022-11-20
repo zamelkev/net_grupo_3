@@ -28,7 +28,21 @@ public class ProductController {
     {
         return ProductRepo.FindByIdWithInclude(id);
     }
-
+    [HttpGet("product/{slug}")]
+    public Product FindBySlug(string slug)
+    {
+        return ProductRepo.FindBySlug(slug);
+    }
+    [HttpGet("manufactuer/slug/{slug}")]
+    public IList<Product> FindByManufactuerSlug(string slug)
+    {
+        return ProductRepo.FindByManufactuerSlug(slug);
+    }
+    [HttpGet("category/slug/{slug}")]
+    public IList<Product> FindByCategorySlug(string slug)
+    {
+        return ProductRepo.FindByCategorySlug(slug);
+    }
     // https://localhost:7230/api/products/findall
     [HttpGet]
     public List<Product> FindAll()

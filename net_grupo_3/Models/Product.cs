@@ -7,26 +7,30 @@ public class Product {
     Column("id")]
     public int Id { get; set; }
 
-    [
-    Column("name")]
+    [Column("name")]
     public string? Name { get; set; }
 
-    [ 
-    Column("Cost")]
-    public Double Cost { get; set; }
+    [Column("slug")]
+    public string? Slug { get; set; }
 
-    [ 
-    Column("price")]
-    public Double Price { get; set; }
+    [Column("Cost"),
+    Precision(14, 2)]
+    public decimal? Cost { get; set; }
+
+    [Column("price"),
+    Precision(14, 2)]
+    public decimal? Price { get; set; }
 
     [ 
     Column("stock")]
-    public int Stock { get; set; }
+    public int? Stock { get; set; }
 
-    [ 
-    Column("tax")]
-    public Double Tax { get; set; }
+    [Column("tax"),
+    Precision(14, 2)]
+    public decimal? Tax { get; set; }
 
+    [Column("img_url")]
+    public string? ImgUrl { get; set; }
 
 
     // nuevas propiedades
@@ -36,13 +40,13 @@ public class Product {
     [Column("ram")]
     public string? Ram { get; set; }
 
-    [Column("graphiccard")]
+    [Column("graphic_card")]
     public string? GraphicCard { get; set; }
 
 
     [ 
     Column("date")]
-    public DateTime ReleaseDate { get; set; }
+    public DateTime? ReleaseDate { get; set; }
 
     
     // associations

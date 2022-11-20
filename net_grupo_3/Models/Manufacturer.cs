@@ -9,10 +9,14 @@ public class Manufacturer
 
     [Column("name")]
     public string? Name { get; set; }
+    [Column("slug")]
+    public string? Slug { get; set; }
 
     [Column("foundation_date")]
     public DateTime? FoundationDate { get; set; }
 
+    [Column("img_url")]
+    public string? ImgUrl { get; set; }
     /*
     [Column("Location")]
     public string Location { get; set; }

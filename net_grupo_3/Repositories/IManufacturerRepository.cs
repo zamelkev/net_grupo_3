@@ -8,6 +8,8 @@
         // buscar por id incluyendo asociaciones
         Manufacturer FindByIdWithInclude(int id);
 
+        Manufacturer FindBySlug(string slug);
+
         // buscar por Name que contenga el texto
         List<Manufacturer> FindByNameContains(string name);
 

@@ -1,4 +1,5 @@
 ﻿using net_grupo_3.Models;
+using System.Xml.Linq;
 
 namespace net_grupo_3.Repositories
 {
@@ -30,6 +31,13 @@ namespace net_grupo_3.Repositories
             return Context.Manufacturers
                 .Where(manufacturer => manufacturer.Name.ToLower().Contains(name.ToLower()))
             .ToList();
+        }
+
+        public Manufacturer FindBySlug(string slug)
+        {
+            return Context.Manufacturers
+                .Where(manufacturer => manufacturer.Slug.ToLower().Equals(slug.ToLower()))
+            .FirstOrDefault();
         }
 
         public List<Manufacturer> FindAll()

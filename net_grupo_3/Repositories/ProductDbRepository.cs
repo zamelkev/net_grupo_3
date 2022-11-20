@@ -15,7 +15,31 @@ public class ProductDbRepository : IProductRepository
     {
         return Context.Products.Find(id);
     }
+    public Product FindBySlug(string slug)
+    {
+        return Context.Products
+            .Include(p => p.Manufacturer)
+            .Include(p => p.Category)
+            .Where(p => p.Slug == slug)
+            .FirstOrDefault();
+    }
+    public IList<Product> FindByManufactuerSlug(string slug)
+    {
+        return Context.Products
+            .Include(p => p.Manufacturer)
+            .Include(p => p.Category)
+            .Where(p => p.Manufacturer.Slug == slug)
+            .ToList();
+    }
 
+    public IList<Product> FindByCategorySlug(string slug)
+    {
+        return Context.Products
+            .Include(p => p.Manufacturer)
+            .Include(p => p.Category)
+            .Where(p => p.Category.Slug == slug)
+            .ToList();
+    }
     public List<Product> FindAll() {
         return Context.Products.ToList();
     }
@@ -69,8 +93,8 @@ public class ProductDbRepository : IProductRepository
 
     public Product FindByIdWithInclude(int id) {
         return Context.Products
-            .Include(product => product.ProductComments)
-            .Include(product => product.Container)
+            .Include(product => product.Category)
+            .Include(product => product.Manufacturer)
             .Where(product => product.Id == id)
             .FirstOrDefault();
     }

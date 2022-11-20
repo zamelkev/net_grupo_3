@@ -12,6 +12,10 @@ public class Category
 
     [Column("name", Order = 2)]
     public string? Name { get; set; }
+    [Column("slug")]
+    public string? Slug { get; set; }
+    [Column("img_url")]
+    public string? ImgUrl { get; set; }
 
 
 }

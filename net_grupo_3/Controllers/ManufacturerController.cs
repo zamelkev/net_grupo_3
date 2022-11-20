@@ -37,6 +37,12 @@ public class ManufacturersController
         return ManufacturerRepo.FindByIdWithInclude(id);
     }
 
+    [HttpGet("manufacturer/{slug}")]
+    public Manufacturer FindBySlug(string slug)
+    {
+        return ManufacturerRepo.FindBySlug(slug);
+    }
+
     [HttpGet("name/{name}")]
     public List<Manufacturer> FindByNameContains(string name)
     {
