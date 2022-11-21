@@ -65,6 +65,7 @@ import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form
       { path: 'manufacturers', component: ManufacturerListComponent },
       { path: 'manufacturers/new', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/edit', component: ManufacturerFormComponent },
+      { path: 'manufacturers/:id/detail', component: ManufacturerDetailComponent },
      
      
     ])

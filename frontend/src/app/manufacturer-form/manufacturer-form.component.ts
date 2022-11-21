@@ -23,8 +23,9 @@ export class ManufacturerFormComponent implements OnInit {
   createFormGroup() {
     return new FormGroup({
       id: new FormControl({ value: null, disabled: true }),
-      fullName: new FormControl()      
-    });
+      fullName: new FormControl(),
+      foundationDate: new FormControl()
+    })
   }
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ export class ManufacturerFormComponent implements OnInit {
             {
               id: { value: manufacturerFromBackend.id, disabled: true},
               fullName: manufacturerFromBackend.name,
-              foundationDate: manufacturerFromBackend.foundation_date             
+              foundationDate: manufacturerFromBackend.foundationDate             
 
             } as any);
 
@@ -63,7 +64,7 @@ export class ManufacturerFormComponent implements OnInit {
 
     let manufacturer = {
       name: this.editForm.get("fullName")?.value,
-      foundationDate: new Date() 
+      foundationDate: this.editForm.get("foundationDate")?.value, 
     } as any;
 
     let id = this.editForm.get("id")?.value;
