@@ -23,5 +23,13 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.url}/manufacturer/${id}`);
   }
 
+  create(product: Product) {
+    return this.http.post<Product>(`${this.url}`, product);
+  }
+
+  update(product: Product) {
+    return this.http.post<Product>(`${this.url}`, product);
+  }
+
 }
 
