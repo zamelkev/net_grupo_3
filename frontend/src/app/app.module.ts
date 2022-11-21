@@ -58,7 +58,8 @@ import { ProductFormComponent } from './product-form/product-form.component';
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
 
-      { path: 'products/:id/edit', component: ProductFormComponent }, 
+      { path: 'products/:id/edit', component: ProductFormComponent },
+      { path: 'products/new', component: ProductFormComponent }, 
 
     ])
   ],
