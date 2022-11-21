@@ -1,0 +1,29 @@
+<h1>Detalle de una Marca</h1>
+<mat-card class="example-card" *ngIf="manufacturer">
+
+  <mat-card-title>{{manufacturer.id}}: {{manufacturer.name}} / {{manufacturer.foundationDate | date:'M/d/y'}}</mat-card-title>
+
+
+  
+
+  
+
+  <mat-divider inset></mat-divider>
+
+  <mat-card-actions>
+    <button mat-raised-button routerLink="/manufacturers/{{manufacturer.id}}/edit" color="primary">Editar</button>
+    <button mat-raised-button color="warn" (click)="onDelete(manufacturer.id)">Borrar</button>
+    <button mat-raised-button routerLink="/manufacturers">Volver</button>
+  </mat-card-actions>
+
+  <mat-card-footer>
+    <small></small>
+  </mat-card-footer>
+
+</mat-card>
+
+<mat-card class="example-card" *ngIf="!manufacturer">
+  <mat-card-content>
+    <p>Cargando producto....</p>
+  </mat-card-content>
+</mat-card>

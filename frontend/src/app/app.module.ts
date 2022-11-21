@@ -21,6 +21,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ManufacturerDetailComponent } from './manufacturer-detail/manufacturer-detail.component';
+import { ManufacturerListComponent } from './manufacturer-list/manufacturer-list.component';
+import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form.component';
 
 
 
@@ -29,7 +32,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     AppComponent,
     ProductListComponent,
     ProductByManufacturerListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ManufacturerDetailComponent,
+    ManufacturerListComponent,
+    ManufacturerFormComponent
   ],
   imports: [
     MatButtonModule,
@@ -55,6 +61,13 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
       { path: 'products/manufacturer/:id', component: ProductByManufacturerListComponent },
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
+     
+      { path: 'manufacturers', component: ManufacturerListComponent },
+      { path: 'manufacturers/new', component: ManufacturerFormComponent },
+      { path: 'manufacturers/:id/edit', component: ManufacturerFormComponent },
+      { path: 'manufacturers/:id/detail', component: ManufacturerDetailComponent },
+     
+     
     ])
   ],
   providers: [],
