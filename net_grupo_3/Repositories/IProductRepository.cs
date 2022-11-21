@@ -10,6 +10,9 @@ public interface IProductRepository {
 
     List<Product> FindAll();
 
+    Product FindBySlug(string slug);
+    IList<Product> FindByManufactuerSlug(string slug);
+    IList<Product> FindByCategorySlug(string slug);
     IList<Product> FindByContainerId(int id);
 
     public IList<Product> FindProductsByManufacturerId(int manufacturerId);

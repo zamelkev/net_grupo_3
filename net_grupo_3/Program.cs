@@ -36,7 +36,7 @@ builder.Services.AddDbContext<AppDbContext>
 // Add repos
 builder.Services.AddScoped<IProductRepository, ProductDbRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
-builder.Services.AddScoped<IClientRepository, ClientDbRepository>();
+builder.Services.AddScoped<IUserRepository, UserDbRepository>();
 builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
 builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();

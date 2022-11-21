@@ -33,7 +33,7 @@ public class OrderDbRepository : IOrderRepository
     public Order FindByIdIncludeClient(int id)
     {
         return Context.Orders
-            .Include(order => order.Client)
+            .Include(order => order.User)
             .Where(order => order.Id == id)
             .FirstOrDefault();
     }
@@ -57,8 +57,8 @@ public class OrderDbRepository : IOrderRepository
         Context.Orders.Attach(order);
 
         Context.Entry(order).Property(o => o.OrderDate).IsModified = true;
-        Context.Entry(order).Property(o => o.Client).IsModified = true;
-        Context.Entry(order).Property(o => o.ClientId).IsModified = true;
+        Context.Entry(order).Property(o => o.User).IsModified = true;
+        Context.Entry(order).Property(o => o.UserId).IsModified = true;
         Context.SaveChanges();
 
         Context.Orders.Update(order);
@@ -110,9 +110,9 @@ public class OrderDbRepository : IOrderRepository
 
         }
         // filter by Client.Id
-        if (of.ClientId is not null)
+        if (of.UserId is not null)
         {
-            query = query.Where(o => o.ClientId == of.ClientId);
+            query = query.Where(o => o.UserId == of.UserId);
         }
         // Then use data (for ex. make a list).
         return query.ToList();
