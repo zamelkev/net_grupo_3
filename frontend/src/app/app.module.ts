@@ -11,9 +11,11 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductByCategoryListComponent } from './product-by-category-list/product-by-category-list.component';
 import { ManufacturerDetailComponent } from './manufacturer-detail/manufacturer-detail.component';
 import { ManufacturerListComponent } from './manufacturer-list/manufacturer-list.component';
 import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form.component';
+import { HomeComponent } from './home/home.component';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -31,13 +33,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { ProductFormComponent } from './product-form/product-form.component';
-import { ManufacturerDetailComponent } from './manufacturer-detail/manufacturer-detail.component';
-import { ManufacturerListComponent } from './manufacturer-list/manufacturer-list.component';
-import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form.component';
-import { HomeComponent } from './home/home.component';
-import { ProductByCategoryListComponent } from './product-by-category-list/product-by-category-list.component';
 
 
 @NgModule({
