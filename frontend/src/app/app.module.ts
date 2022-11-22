@@ -25,6 +25,9 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { ManufacturerDetailComponent } from './manufacturer-detail/manufacturer-detail.component';
 import { ManufacturerListComponent } from './manufacturer-list/manufacturer-list.component';
 import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form.component';
+import { CategoriesDetailComponent } from './categories-detail/categories-detail.component';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { CategoriesFormComponent } from './categories-form/categories-form.component';
 
 
 
@@ -36,9 +39,12 @@ import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form
     ProductDetailComponent,
     ManufacturerDetailComponent,
     ManufacturerListComponent,
-    ManufacturerFormComponent
+    ManufacturerFormComponent,
     ProductDetailComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    CategoriesDetailComponent,
+    CategoriesFormComponent,
+    CategoriesListComponent
   ],
   imports: [
     MatButtonModule,
@@ -58,23 +64,20 @@ import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'products', pathMatch: 'full' },
-
       { path: 'products', component: ProductListComponent },
-
       { path: 'products/manufacturer/:id', component: ProductByManufacturerListComponent },
-
       { path: 'products/:id/detail', component: ProductDetailComponent },
-     
+      { path: 'products/:id/edit', component: ProductFormComponent },
+      { path: 'products/new', component: ProductFormComponent },
       { path: 'manufacturers', component: ManufacturerListComponent },
       { path: 'manufacturers/new', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/edit', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/detail', component: ManufacturerDetailComponent },
-     
-     
-
-      { path: 'products/:id/edit', component: ProductFormComponent },
-      { path: 'products/new', component: ProductFormComponent }, 
-
+      { path: 'categories', component: CategoriesListComponent },
+      { path: 'categories/new', component: CategoriesFormComponent },
+      { path: 'categories/:id/edit', component: CategoriesFormComponent },
+      { path: 'categories/:id/detail', component: CategoriesDetailComponent }
+      
     ])
   ],
   providers: [],
