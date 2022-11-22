@@ -31,5 +31,12 @@ export class ProductService {
     return this.http.post<Product>(`${this.url}`, product);
   }
 
+  // home
+  findByManufacturerSlug(slug: string | null) {
+    return this.http.get<Product[]>(`${this.url}/manufactuer/slug/${slug}`);
+  }
+  findByCategorySlug(slug: string | null) {
+    return this.http.get<Product[]>(`${this.url}/category/slug/${slug}`);
+  }
 }
 

@@ -30,7 +30,5 @@ export class ManufacturerService {
   deleteById(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
- 
-
 }
 
