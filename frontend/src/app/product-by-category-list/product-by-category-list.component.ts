@@ -7,11 +7,11 @@ import { ProductService } from '../services/product.service';
 
 
 @Component({
-  selector: 'app-product-by-manufacturer-list',
-  templateUrl: './product-by-manufacturer-list.component.html',
-  styleUrls: ['./product-by-manufacturer-list.component.css'],
+  selector: 'app-product-by-category-list',
+  templateUrl: './product-by-category-list.component.html',
+  styleUrls: ['./product-by-category-list.component.css'],
 })
-export class ProductByManufacturerListComponent implements OnInit {
+export class ProductByCategoryListComponent implements OnInit {
 
   products: Product[] = [];
 
@@ -27,14 +27,14 @@ export class ProductByManufacturerListComponent implements OnInit {
     // extrae el id de la URL
     this.activatedRoute.paramMap.subscribe(
       {
-        next: pmap => this.findByManufacturer(pmap.get("slug")),
+        next: pmap => this.findByCategory(pmap.get("slug")),
         error: err => console.log(err)
       }
     );
   }
 
-  private findByManufacturer(slug: string | null) {
-    this.service.findByManufacturerSlug(slug).subscribe(
+  private findByCategory(slug: string | null) {
+    this.service.findByCategorySlug(slug).subscribe(
       {
         next: products => this.products = products,
         error: err => console.log(err)

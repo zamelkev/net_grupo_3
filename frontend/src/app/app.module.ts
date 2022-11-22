@@ -31,6 +31,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { ManufacturerDetailComponent } from './manufacturer-detail/manufacturer-detail.component';
+import { ManufacturerListComponent } from './manufacturer-list/manufacturer-list.component';
+import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form.component';
+import { HomeComponent } from './home/home.component';
+import { ProductByCategoryListComponent } from './product-by-category-list/product-by-category-list.component';
 
 
 @NgModule({
@@ -38,11 +45,14 @@ import { MatMenuModule } from '@angular/material/menu';
     AppComponent,
     ProductListComponent,
     ProductByManufacturerListComponent,
+    ProductByCategoryListComponent,
     ProductDetailComponent,
     ManufacturerDetailComponent,
     ManufacturerListComponent,
     ManufacturerFormComponent,
-    ProductFormComponent
+    ProductDetailComponent,
+    ProductFormComponent,
+    HomeComponent
   ],
   imports: [
     MatButtonModule,
@@ -66,11 +76,14 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'products', pathMatch: 'full' },
+      //{ path: '', redirectTo: 'products', pathMatch: 'full' },
+      //{ path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', component: HomeComponent },
 
       { path: 'products', component: ProductListComponent },
 
-      { path: 'products/manufacturer/:id', component: ProductByManufacturerListComponent },
+      { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
+      { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
      
@@ -78,7 +91,6 @@ import { MatMenuModule } from '@angular/material/menu';
       { path: 'manufacturers/new', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/edit', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/detail', component: ManufacturerDetailComponent },
-     
      
 
       { path: 'products/:id/edit', component: ProductFormComponent },

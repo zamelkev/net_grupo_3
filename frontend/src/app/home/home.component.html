@@ -1,0 +1,15 @@
+<h3>Home</h3>
+<ul *ngIf="manufacturers">
+  <li *ngFor="let manuf of manufacturers">
+    <ul>
+      <li routerLink="/products/manufacturer/{{manuf.slug}}">{{manuf.id}} {{manuf.name}}</li>
+    </ul>
+  </li>
+</ul>
+<ul *ngIf="categories">
+  <li *ngFor="let cat of categories">
+    <ul>
+      <li routerLink="/products/category/{{cat.slug}}">{{cat.id}} {{cat.name}}</li>
+    </ul>
+  </li>
+</ul>
