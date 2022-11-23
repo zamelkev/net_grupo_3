@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+//import { MatPaginator } from '@angular/material/paginator';
 
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
