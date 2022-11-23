@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 
 
 import { ProductListComponent } from './product-list/product-list.component';
@@ -19,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { CategoriesDetailComponent } from './categories-detail/categories-detail.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
+import { BackOfficeComponent } from './back-office/back-office.component';
+import { ProductListCrudComponent } from './product-list-crud/product-list-crud.component';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -37,6 +40,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker'
+
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
 
@@ -56,7 +61,10 @@ import { MatMenuModule } from '@angular/material/menu';
     HomeComponent,
     CategoriesDetailComponent,
     CategoriesFormComponent,
-    CategoriesListComponent
+    CategoriesListComponent,
+
+    BackOfficeComponent,
+    ProductListCrudComponent
   ],
   imports: [
     MatButtonModule,
@@ -76,6 +84,9 @@ import { MatMenuModule } from '@angular/material/menu';
     /*MatPaginatorModule,
     MatPaginator,*/
 
+    MatDatepickerModule,
+    MatNativeDateModule,
+
     FontAwesomeModule,
 
     BrowserModule,
@@ -84,7 +95,6 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-
       { path: 'products', component: ProductListComponent },
 
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
@@ -100,12 +110,16 @@ import { MatMenuModule } from '@angular/material/menu';
       { path: 'categories', component: CategoriesListComponent },
       { path: 'categories/new', component: CategoriesFormComponent },
       { path: 'categories/:id/edit', component: CategoriesFormComponent },
-      { path: 'categories/:id/detail', component: CategoriesDetailComponent }
-      
+      { path: 'categories/:id/detail', component: CategoriesDetailComponent },
+
+      { path: 'back_office', component: BackOfficeComponent },
+      { path: 'back_office/products', component: ProductListCrudComponent },
 
     ])
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

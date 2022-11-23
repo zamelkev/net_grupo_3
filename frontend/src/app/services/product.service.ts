@@ -31,6 +31,10 @@ export class ProductService {
     return this.http.post<Product>(`${this.url}`, product);
   }
 
+  deleteById(id: string | number | null) {
+    return this.http.delete<string | number | null>(`${this.url}/${id}` );
+  }
+
   // home
   findByManufacturerSlug(slug: string | null) {
     return this.http.get<Product[]>(`${this.url}/manufactuer/slug/${slug}`);

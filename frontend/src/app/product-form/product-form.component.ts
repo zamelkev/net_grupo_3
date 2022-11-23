@@ -114,7 +114,7 @@ export class ProductFormComponent implements OnInit
       this.error = true;
     }
     navigateToList(): void {
-      this.router.navigate(["/products"]);
+      this.router.navigate(["/back_office/products"]);
     }
 }
 
