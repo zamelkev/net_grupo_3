@@ -1,0 +1,30 @@
+<h2>Crear nueva categoria</h2>
+
+<mat-card class="example-card" *ngIf="error">
+  Se ha producido un error, Inténtalo de nuevo más tarde.
+</mat-card>
+
+
+<form class="example-form" [formGroup]="editForm" (ngSubmit)="save()">
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Id</mat-label>
+    <input matInput type="number" formControlName="id">
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Nombre completo</mat-label>
+    <input matInput formControlName="fullName">
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Slug</mat-label>
+    <input matInput formControlName="slug">
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Img url</mat-label>
+    <input matInput formControlName="imgUrl">
+  </mat-form-field>  
+
+  <button mat-raised-button color="primary" type="submit">Guardar</button>
+  <button mat-raised-button color="warn" routerLink="/categories">Cancelar</button>
+  <!--<button mat-raised-button color="warn" routerLink="/manufacturers">Borrar</button>-->
+</form>

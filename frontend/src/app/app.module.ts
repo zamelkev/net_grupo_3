@@ -16,6 +16,9 @@ import { ManufacturerDetailComponent } from './manufacturer-detail/manufacturer-
 import { ManufacturerListComponent } from './manufacturer-list/manufacturer-list.component';
 import { ManufacturerFormComponent } from './manufacturer-form/manufacturer-form.component';
 import { HomeComponent } from './home/home.component';
+import { CategoriesDetailComponent } from './categories-detail/categories-detail.component';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { CategoriesFormComponent } from './categories-form/categories-form.component';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -51,6 +54,9 @@ import { MatMenuModule } from '@angular/material/menu';
     ProductDetailComponent,
     ProductFormComponent,
     HomeComponent
+    CategoriesDetailComponent,
+    CategoriesFormComponent,
+    CategoriesListComponent
   ],
   imports: [
     MatButtonModule,
@@ -77,8 +83,6 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      //{ path: '', redirectTo: 'products', pathMatch: 'full' },
-      //{ path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomeComponent },
 
       { path: 'products', component: ProductListComponent },
@@ -87,15 +91,17 @@ import { MatMenuModule } from '@angular/material/menu';
       { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
-     
+      { path: 'products/:id/edit', component: ProductFormComponent },
+      { path: 'products/new', component: ProductFormComponent },
       { path: 'manufacturers', component: ManufacturerListComponent },
       { path: 'manufacturers/new', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/edit', component: ManufacturerFormComponent },
       { path: 'manufacturers/:id/detail', component: ManufacturerDetailComponent },
-     
-
-      { path: 'products/:id/edit', component: ProductFormComponent },
-      { path: 'products/new', component: ProductFormComponent }, 
+      { path: 'categories', component: CategoriesListComponent },
+      { path: 'categories/new', component: CategoriesFormComponent },
+      { path: 'categories/:id/edit', component: CategoriesFormComponent },
+      { path: 'categories/:id/detail', component: CategoriesDetailComponent }
+      
 
     ])
   ],
