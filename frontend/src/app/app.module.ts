@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 
 
 import { MatButtonModule } from '@angular/material/button';
+//import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -33,6 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+/*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
+
 
 
 @NgModule({
@@ -63,6 +66,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatSidenavModule,
     MatMenuModule,
+    //MatTableDataSource,
+    /*MatPaginatorModule,
+    MatPaginator,*/
 
     FontAwesomeModule,
 

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
+
 
 
 @Component({
@@ -16,6 +19,9 @@ export class ProductByManufacturerListComponent implements OnInit {
   products: Product[] = [];
 
   columnNames: string[] = ['id', 'name', 'cost', 'price', 'stock', 'tax', 'releaseDate'];
+
+  dataSource = new MatTableDataSource(this.products);
+  dataSourceWithPageSize = new MatTableDataSource(this.products);
 
   constructor(
     private service: ProductService,
