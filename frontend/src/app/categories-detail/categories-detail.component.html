@@ -1,5 +1,5 @@
 <h1>Detalle de una categoria</h1>
-<mat-card class="example-card" *ngIf="manufacturer">
+<mat-card class="example-card" *ngIf="categories">
 
   <mat-card-title>{{categories.id}}: {{categories.name}} / {{categories.slug}} / {{categories.img_url}}</mat-card-title>
 
@@ -22,7 +22,7 @@
 
 </mat-card>
 
-<mat-card class="example-card" *ngIf="!manufacturer">
+<mat-card class="example-card" *ngIf="!categories">
   <mat-card-content>
     <p>Cargando producto....</p>
   </mat-card-content>
