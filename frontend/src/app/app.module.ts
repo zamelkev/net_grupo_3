@@ -53,7 +53,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ManufacturerFormComponent,
     ProductDetailComponent,
     ProductFormComponent,
-    HomeComponent
+    HomeComponent,
     CategoriesDetailComponent,
     CategoriesFormComponent,
     CategoriesListComponent
