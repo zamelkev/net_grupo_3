@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 
 
@@ -41,6 +42,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker'
+import { LayoutModule } from '@angular/cdk/layout';
 
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
@@ -83,7 +85,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
     //MatTableDataSource,
     /*MatPaginatorModule,
     MatPaginator,*/
-
+    LayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
 
