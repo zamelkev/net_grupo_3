@@ -7,7 +7,7 @@ table {
   align-content: center;
 }
 
-.container {
+.container1 {
   /*display: flex;*/
   padding-top: 100px;
   width: 100%;
@@ -24,8 +24,8 @@ h1 {
 }
 
 
-/*html, body { height: 100%; }
+html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-*/
+
 
 
