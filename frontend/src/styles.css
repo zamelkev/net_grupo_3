@@ -9,7 +9,7 @@ table {
 
 .container {
   /*display: flex;*/
-  padding-top: 20px;
+  padding-top: 100px;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -17,6 +17,10 @@ table {
 
 h1 {
   text-align: center;
+}
+
+.mat-toolbar {
+  position: absolute;
 }
 
 
