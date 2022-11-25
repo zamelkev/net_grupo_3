@@ -38,7 +38,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker'
@@ -46,7 +45,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -89,7 +88,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatDatepickerModule,
     MatNativeDateModule,
 
-    FontAwesomeModule,
+    MDBBootstrapModule,
 
     BrowserModule,
     BrowserAnimationsModule,
