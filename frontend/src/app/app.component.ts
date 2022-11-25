@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faHome, faEnvelope, faPhone, faPrint } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
