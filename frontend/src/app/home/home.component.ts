@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   categories: Category[] = [];
 
 
+
   constructor(
     private manufacturerService: ManufacturerService,
     private categoryService: CategoryService
@@ -24,6 +25,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.fetchFromDb();
   }
+
+
 
   private fetchFromDb() {
     this.manufacturerService.findAll().subscribe(
@@ -39,5 +42,7 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+
 
 }

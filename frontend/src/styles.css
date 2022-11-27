@@ -3,8 +3,6 @@
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 .fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-     Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
 
@@ -38,6 +36,16 @@ table {
   margin-top: 50px;
   margin-right: 40px;
   margin-left: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container3 {
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 0px;
+  margin-right: 20px;
+  margin-left: 20px;
   align-items: center;
   justify-content: center;
 }
@@ -79,3 +87,13 @@ body {
   top: -30px;
   left: -10px;
 }
+
+.card1 {
+  max-width: 400px;
+}
+
+.card-image {
+  background-size: cover;
+}
+
+
