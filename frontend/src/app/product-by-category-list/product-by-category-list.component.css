@@ -1,21 +1,4 @@
 .card-shadow {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-.price {
-    font-size: 3.5rem;
-}
-h2.price span.decimals {
-  font-size: 1.5rem;
-  transform: translateY(-1.35rem);
-  display: inline-block;
-}
-h2.price span.currency {
-  font-size: 1.5rem;
-  transform: translateY(-1.35rem);
-  display: inline-block;
-}
-.negative_margin {
-    margin-top: -0.3rem;
-}
-
 

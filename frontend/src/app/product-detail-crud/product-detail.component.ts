@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,8 +15,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private service: ProductService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +30,7 @@ export class ProductDetailComponent implements OnInit {
 
   private fetchProduct(id: string | number | null) {
 
-    this.service.fingByIdWithInclude(Number(id)).subscribe(
+    this.service.findById(Number(id)).subscribe(
       {
         next: productFromBackend => this.product = productFromBackend,
         error: err => console.log(err)
@@ -44,14 +42,6 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(["/products"]);
   }
 
-  public back(): void {
-    this.location.back()
-  }
 
-  public buy(): void {
-  }
 
-  public formatInt(myNumber: number | undefined): string {
-    return Number(String(myNumber).split(".")[0]).toLocaleString('en-US').replace(/,/g, ".")
-  }
 }

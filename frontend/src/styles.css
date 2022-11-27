@@ -95,3 +95,26 @@ body {
 .gray-text {
   color: var(--my_gray);
 }
+.small-text {
+    font-size: 0.8rem;
+}
+/* price styles */
+.price {
+  font-size: 3.5rem !important;
+}
+
+h2.price span.decimals {
+  font-size: 1.5rem !important;
+  transform: translateY(-1.35rem) !important;
+  display: inline-block !important;
+}
+
+h2.price span.currency {
+  font-size: 1.5rem;
+  transform: translateY(-1.35rem) !important;
+  display: inline-block !important;
+}
+
+.negative_margin {
+  margin-top: -0.3rem !important;
+}
