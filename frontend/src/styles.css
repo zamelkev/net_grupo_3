@@ -79,3 +79,19 @@ body {
   top: -30px;
   left: -10px;
 }
+
+/* GLOBAL CUSTOM STYLES */
+:root {
+  --my_primary: #673ab7;
+  --my_accent: #ffd740;
+  --my_danger: #f44336;
+  --my_gray: rgb(102, 102, 102);
+}
+.my_primary_text{
+  color: var(--my_primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+.gray-text {
+  color: var(--my_gray);
+}

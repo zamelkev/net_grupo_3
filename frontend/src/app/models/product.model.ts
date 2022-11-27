@@ -16,7 +16,10 @@ export interface Product {
   slug: string;
 
   // Associations
-  productComments?: any;
-  orders?: any;
+  category?: any;
+  categoryId?: number;
+  manufacturer?: any;
+  manufacturerId?: number;
+  // FKs
 
 }
