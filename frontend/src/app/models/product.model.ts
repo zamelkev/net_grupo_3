@@ -12,6 +12,9 @@ export interface Product {
   ram?: number;
   graphicCard?: string;
 
+  imgUrl: string;
+  slug: string;
+
   // Associations
   productComments?: any;
   orders?: any;
