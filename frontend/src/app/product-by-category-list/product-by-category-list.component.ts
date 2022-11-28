@@ -15,7 +15,6 @@ export class ProductByCategoryListComponent implements OnInit {
 
   products: Product[] = [];
 
-  columnNames: string[] = ['name', 'cost', 'price', 'stock', 'tax', 'releaseDate'];
 
   constructor(
     private service: ProductService,
