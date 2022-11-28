@@ -52,6 +52,7 @@ public class CategoryDbRepository : ICategoryRepository
 
         Context.Entry(category).Property(b => b.Name).IsModified = true;
         Context.Entry(category).Property(b => b.ImgUrl).IsModified = true;
+        Context.Entry(category).Property(b => b.Slug).IsModified = true;
 
         Context.SaveChanges();
 

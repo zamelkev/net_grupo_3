@@ -5,21 +5,23 @@ namespace net_grupo_3.Repositories
 {
     public class ManufacturerDbRepository : IManufacturerRepository
     {
-        private AppDbContext Context;
+        private readonly AppDbContext _context;
+        private readonly IProductRepository _productRepository;
 
-        public ManufacturerDbRepository(AppDbContext context)
+        public ManufacturerDbRepository(AppDbContext context, IProductRepository productRepository)
         {
-            Context = context;
+            _context = context;
+            _productRepository = productRepository;
         }
 
         public Manufacturer FindById(int id)
         {
-            return Context.Manufacturers.Find(id);
+            return _context.Manufacturers.Find(id);
         }
 
         public Manufacturer FindByIdWithInclude(int id)
         {
-            return Context.Manufacturers
+            return _context.Manufacturers
                 .Include(manufacturer => manufacturer.Products)
                 .Where(manufacturer => manufacturer.Id == id)
                 .FirstOrDefault();
@@ -28,21 +30,21 @@ namespace net_grupo_3.Repositories
         public List<Manufacturer> FindByNameContains(string name)
         {
 
-            return Context.Manufacturers
+            return _context.Manufacturers
                 .Where(manufacturer => manufacturer.Name.ToLower().Contains(name.ToLower()))
             .ToList();
         }
 
         public Manufacturer FindBySlug(string slug)
         {
-            return Context.Manufacturers
+            return _context.Manufacturers
                 .Where(manufacturer => manufacturer.Slug.ToLower().Equals(slug.ToLower()))
             .FirstOrDefault();
         }
 
         public List<Manufacturer> FindAll()
         {
-            return Context.Manufacturers.ToList();
+            return _context.Manufacturers.ToList();
         }
 
         public Manufacturer Create(Manufacturer manufacturer)
@@ -50,8 +52,8 @@ namespace net_grupo_3.Repositories
             if (manufacturer.Id > 0)
                 return Update(manufacturer);
 
-            Context.Manufacturers.Add(manufacturer);
-            Context.SaveChanges();
+            _context.Manufacturers.Add(manufacturer);
+            _context.SaveChanges();
             return manufacturer;
         }
 
@@ -61,12 +63,12 @@ namespace net_grupo_3.Repositories
             if (manufacturer.Id == 0)
                 return Create(manufacturer);
 
-            Context.Manufacturers.Attach(manufacturer);
+            _context.Manufacturers.Attach(manufacturer);
 
-            Context.Entry(manufacturer).Property(b => b.Name).IsModified = true;
-            Context.Entry(manufacturer).Property(b => b.FoundationDate).IsModified = true;
+            _context.Entry(manufacturer).Property(b => b.Name).IsModified = true;
+            _context.Entry(manufacturer).Property(b => b.FoundationDate).IsModified = true;
 
-            Context.SaveChanges();
+            _context.SaveChanges();
 
             return FindById(manufacturer.Id);
         }
@@ -77,9 +79,15 @@ namespace net_grupo_3.Repositories
             if (manufacturer == null)
                 return false;
 
-            Context.Manufacturers.Remove(manufacturer);
+            // unlink FKs from product before deleting manufacturer
+            IList<Product> ProductsFromManufacturer =  _productRepository.FindProductsByManufacturerId(id);
+            foreach (Product product in ProductsFromManufacturer)
+                if (product.ManufacturerId == id)
+                    product.ManufacturerId = null;
+            // finally remove
+            _context.Manufacturers.Remove(manufacturer);
 
-            Context.SaveChanges();
+            _context.SaveChanges();
             return true;
         }
     }
