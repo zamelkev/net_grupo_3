@@ -2,6 +2,8 @@
 
 namespace net_grupo_3.Models;
 
+[Index(nameof(Email), IsUnique = true)]
+[Index(nameof(UserName), IsUnique = true)]
 [Table("user")]
 public class User
 {

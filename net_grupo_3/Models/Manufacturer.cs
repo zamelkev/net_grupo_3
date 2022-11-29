@@ -1,6 +1,6 @@
 ﻿namespace net_grupo_3.Models;
 
-
+[Index(nameof(Slug), IsUnique = true)]
 [Table("manufacturer")]
 public class Manufacturer
 {
