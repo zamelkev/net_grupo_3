@@ -2,6 +2,7 @@
 
 namespace net_grupo_3.Models;
 
+[Index(nameof(Slug), IsUnique = true)]
 [Table("categories")]
 public class Category
 {
