@@ -27,7 +27,7 @@ builder.Services.AddSwaggerGen();
 // MYSQL connection
 // create MySQL DB setting
 
-string url = "server=localhost;port=3306;user=root;password=admin;database=ecomerce";
+string url = builder.Configuration.GetConnectionString("DbContext");
 builder.Services.AddDbContext<AppDbContext>
     (
         options => options.UseMySql(url, ServerVersion.AutoDetect(url))
