@@ -1,19 +1,34 @@
-<h3>Home</h3>
-<ul *ngIf="manufacturers">
-  <li *ngFor="let manuf of manufacturers">
-    <ul>
-      <li routerLink="/products/manufacturer/{{manuf.slug}}">{{manuf.id}} {{manuf.name}}</li>
-    </ul>
-  </li>
-</ul>
-<ul *ngIf="categories">
-  <li *ngFor="let cat of categories">
-    <ul>
-      <li routerLink="/products/category/{{cat.slug}}">{{cat.id}} {{cat.name}}</li>
-    </ul>
-  </li>
-</ul>
-
-<!--
-    
--->
+<div class="container3">
+    <div class="row justify-content-center position-relative">
+      <mat-card class="card1 col-3 mx-3" *ngFor="let category of categories">
+        <mat-card-header>
+          <mat-card-title routerLink="/products/manufacturer/{{category.slug}}">{{category.name}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{category.imgUrl}}">
+        <div mat-card-avatar class="card-image"></div>
+        <mat-card-actions>
+          <button mat-raised-button class="position-absolute bottom-0 end-0 mb-3 me-3" color="primary" routerLink="/products/category/{{category.slug}}">
+            Ver productos
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</div>
+<div class="container3">
+  <div class="row justify-content-center position-relative">
+    <mat-card class="card1 col-3 mx-3" *ngFor="let manufacturer of manufacturers">
+      <mat-card-header>
+        <mat-card-title routerLink="/products/manufacturer/{{manufacturer.slug}}">{{manufacturer.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{manufacturer.imgUrl}}">
+      <div mat-card-avatar class="card-image"></div>
+      <mat-card-actions>
+        <button mat-raised-button class="position-absolute bottom-0 end-0 mb-3 me-3" color="primary" routerLink="/products/manufacturer/{{manufacturer.slug}}">
+          Ver productos
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
