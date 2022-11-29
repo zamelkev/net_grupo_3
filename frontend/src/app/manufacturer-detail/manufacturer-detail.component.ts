@@ -53,6 +53,6 @@ export class ManufacturerDetailComponent implements OnInit {
 
 
   private navigateToList() {
-    this.router.navigate(["/manufacturers"])
+    this.router.navigate(["/back_office/manufacturers"])
   }
 }

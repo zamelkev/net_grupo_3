@@ -11,7 +11,7 @@ export class ManufacturerListComponent implements OnInit {
 
   manufacturers: Manufacturer[] = [];
 
-  columnNames: string[] = ['id', 'name', 'foundationDate'];
+  columnNames: string[] = ['id', 'name','slug', 'imgUrl', 'foundationDate', 'actions'];
 
   constructor(private service: ManufacturerService) { }
 
@@ -27,5 +27,12 @@ export class ManufacturerListComponent implements OnInit {
       }
     );
   }
-
+  onDelete(id: number) {
+    this.service.deleteById(id).subscribe(
+      {
+        next: response => this.findAll(),
+        error: err => console.log(err)
+      }
+    )
+  }
 }

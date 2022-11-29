@@ -1,49 +1,59 @@
-<h1>Listado de categorias</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Listado de categorias</h1>
 
-
-<table mat-table [dataSource]="categories" class="mat-elevation-z8">
-
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Identificador (Id) </th>
-    <td mat-cell *matCellDef="let categories"> {{categories.id}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    <td mat-cell *matCellDef="let categories"> {{categories.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="slug">
-    <th mat-header-cell *matHeaderCellDef> Slug </th>
-    <td mat-cell *matCellDef="let categories"> {{categories.slug}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="imgUrl">
-    <th mat-header-cell *matHeaderCellDef> Año creación </th>
-    <td mat-cell *matCellDef="let categories"> {{categories.imgUrl}} </td>
-  </ng-container>
-
-  <!--<ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> Acciones </th>
-    <td mat-cell *matCellDef="let book">
-
-      <button mat-raised-button color="primary" [routerLink]="['/books', book.id, 'detail']">
-        Ver
-        <mat-icon>visibility</mat-icon>
+      <button mat-raised-button color="primary" routerLink="/back_office/categories/new">
+        Nueva categoria
+        <mat-icon>add</mat-icon>
       </button>
 
-      <button mat-raised-button color="accent" [routerLink]="['/books', book.id, 'edit']">
-        Editar
-        <mat-icon>edit</mat-icon>
-      </button>
+      <table mat-table [dataSource]="categories" class="mat-elevation-z8">
 
-      <button mat-raised-button color="warn" (click)="onDelete(book.id)">
-        Borrar
-        <mat-icon>delete_forever</mat-icon>
-      </button>
-    </td>
-  </ng-container>-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Identificador (Id) </th>
+          <td mat-cell *matCellDef="let categories"> {{categories.id}} </td>
+        </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
-</table>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let categories"> {{categories.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="slug">
+          <th mat-header-cell *matHeaderCellDef> Slug </th>
+          <td mat-cell *matCellDef="let categories"> {{categories.slug}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imgUrl">
+          <th mat-header-cell *matHeaderCellDef> Imagen </th>
+          <td mat-cell *matCellDef="let categories"> {{categories.imgUrl}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let categories">
+
+            <button mat-raised-button color="primary" [routerLink]="['/back_office/categories', categories.id, 'detail']">
+              Ver
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-raised-button color="accent" [routerLink]="['/back_office/categories', categories.id, 'edit']">
+              Editar
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-raised-button color="warn" (click)="onDelete(categories.id)">
+              Borrar
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+      </table>
+    </div>
+  </div>
+</div>

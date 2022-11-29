@@ -53,6 +53,6 @@ export class CategoriesDetailComponent implements OnInit {
 
 
   private navigateToList() {
-    this.router.navigate(["/categories"])
+    this.router.navigate(["/back_office/categories"])
   }
 }

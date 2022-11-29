@@ -23,6 +23,7 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { ProductListCrudComponent } from './product-list-crud/product-list-crud.component';
+import { ProductDetailCrudComponent } from './product-detail-crud/product-detail-crud.component';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -65,7 +66,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     CategoriesListComponent,
 
     BackOfficeComponent,
-    ProductListCrudComponent
+    ProductListCrudComponent,
+    ProductDetailCrudComponent
   ],
   imports: [
     MatButtonModule,
@@ -97,24 +99,30 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductListComponent },
-
+      // products filtered by manufacturer/category
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
       { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
-      { path: 'products/:id/edit', component: ProductFormComponent },
-      { path: 'products/new', component: ProductFormComponent },
-      { path: 'manufacturers', component: ManufacturerListComponent },
-      { path: 'manufacturers/new', component: ManufacturerFormComponent },
-      { path: 'manufacturers/:id/edit', component: ManufacturerFormComponent },
-      { path: 'manufacturers/:id/detail', component: ManufacturerDetailComponent },
-      { path: 'categories', component: CategoriesListComponent },
-      { path: 'categories/new', component: CategoriesFormComponent },
-      { path: 'categories/:id/edit', component: CategoriesFormComponent },
-      { path: 'categories/:id/detail', component: CategoriesDetailComponent },
-
+      { path: 'back_office/products/:id/edit', component: ProductFormComponent },
+      { path: 'back_office/products/new', component: ProductFormComponent },
+      
+      //{ path: 'categories', component: CategoriesListComponent },
+     
+      // back-office routes
       { path: 'back_office', component: BackOfficeComponent },
       { path: 'back_office/products', component: ProductListCrudComponent },
+      { path: 'back_office/products/:id/detail', component: ProductDetailCrudComponent },
+
+      { path: 'back_office/categories', component: CategoriesListComponent },
+      { path: 'back_office/categories/new', component: CategoriesFormComponent },
+      { path: 'back_office/categories/:id/edit', component: CategoriesFormComponent },
+      { path: 'back_office/categories/:id/detail', component: CategoriesDetailComponent },
+
+      { path: 'back_office/manufacturers', component: ManufacturerListComponent },
+      { path: 'back_office/manufacturers/new', component: ManufacturerFormComponent },
+      { path: 'back_office/manufacturers/:id/edit', component: ManufacturerFormComponent },
+      { path: 'back_office/manufacturers/:id/detail', component: ManufacturerDetailComponent },
 
     ])
   ],

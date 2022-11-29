@@ -4,11 +4,11 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  selector: 'app-product-detail-crud',
+  templateUrl: './product-detail-crud.component.html',
+  styleUrls: ['./product-detail-crud.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailCrudComponent implements OnInit {
 
   product: Product | undefined;
 
@@ -30,7 +30,7 @@ export class ProductDetailComponent implements OnInit {
 
   private fetchProduct(id: string | number | null) {
 
-    this.service.findById(Number(id)).subscribe(
+    this.service.fingByIdWithInclude(Number(id)).subscribe(
       {
         next: productFromBackend => this.product = productFromBackend,
         error: err => console.log(err)
@@ -39,9 +39,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   private navigateToList() {
-    this.router.navigate(["/products"]);
+    this.router.navigate(["/back_office/products"]);
   }
 
+  public onDelete(id: number | string | undefined): void {
+    this.service.deleteById(Number(id)).subscribe(
+      {
+        next: res => this.navigateToList(),
+        error: err => console.log(err)
+      }
+    )
+  }
 
 
 }

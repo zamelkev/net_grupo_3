@@ -1,29 +1,39 @@
-<h1>Detalle de una categoria</h1>
-<mat-card class="example-card" *ngIf="categories">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Detalle de una categoria</h1>
+      <mat-card class="example-card" *ngIf="categories">
 
-  <mat-card-title>{{categories.id}}: {{categories.name}} / {{categories.slug}} / {{categories.img_url}}</mat-card-title>
+        <!--<mat-card-title>{{categories.id}}: {{categories.name}} / {{categories.slug}} / {{categories.imgUrl}}</mat-card-title>-->
+
+        <mat-card-content>
+          <p><strong>Id:</strong> {{categories.id}} </p>
+        </mat-card-content>
+        <mat-card-title class="mb-5">Nombre: {{categories.name}}</mat-card-title>
+        <mat-card-title class="mb-5">Slug: {{categories.slug}}</mat-card-title>
+
+        <mat-card-content class="d-flex justify-content-center" *ngIf="categories.imgUrl">
+          <img _ngcontent-qvg-c162="" mat-card-image="" src="{{categories.imgUrl}}" alt="{{categories.name}}" class="mat-mdc-card-image mdc-card__media">
+        </mat-card-content>
 
 
-  
 
-  
+        <mat-divider inset></mat-divider>
 
-  <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/back_office/categories/{{categories.id}}/edit" color="primary">Editar</button>
+          <button mat-raised-button color="warn" (click)="onDelete(categories.id)">Borrar</button>
+          <button mat-raised-button routerLink="/back_office/categories">Volver</button>
+        </mat-card-actions>
 
-  <mat-card-actions>
-    <button mat-raised-button routerLink="/categories/{{categories.id}}/edit" color="primary">Editar</button>
-    <button mat-raised-button color="warn" (click)="onDelete(categories.id)">Borrar</button>
-    <button mat-raised-button routerLink="/categories">Volver</button>
-  </mat-card-actions>
 
-  <mat-card-footer>
-    <small></small>
-  </mat-card-footer>
+      </mat-card>
 
-</mat-card>
-
-<mat-card class="example-card" *ngIf="!categories">
-  <mat-card-content>
-    <p>Cargando producto....</p>
-  </mat-card-content>
-</mat-card>
+      <mat-card class="example-card" *ngIf="!categories">
+        <mat-card-content>
+          <p>Cargando producto....</p>
+        </mat-card-content>
+      </mat-card>
+</div>
+</div>
+</div>

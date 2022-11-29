@@ -17,9 +17,8 @@ export interface Product {
 
   // Associations
   category?: any;
-  categoryId?: number;
   manufacturer?: any;
-  manufacturerId?: number;
   // FKs
-
+  categoryId?: number;
+  manufacturerId?: number;
 }

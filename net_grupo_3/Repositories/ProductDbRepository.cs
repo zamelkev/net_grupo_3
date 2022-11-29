@@ -118,4 +118,15 @@ public class ProductDbRepository : IProductRepository
 
     }
 
+    public IList<Product> FindProductsByCategoryId(int categoryId)
+    {
+
+        return Context.Products
+                .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
+                .Where(p => p.CategoryId == categoryId)
+                .ToList();
+
+    }
+
 }

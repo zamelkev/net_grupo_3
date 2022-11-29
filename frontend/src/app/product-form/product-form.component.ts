@@ -3,6 +3,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
+import { Category } from '../models/category.model';
+import { CategoryService } from '../services/category.service';
+import { Manufacturer } from '../models/manufacturer.model';
+import { ManufacturerService } from '../services/manufacturer.service';
 
 @Component({
   selector: 'app-product-form',
@@ -12,12 +16,17 @@ import { ProductService } from '../services/product.service';
 export class ProductFormComponent implements OnInit
 {
   product: Product | undefined;
+  categories: Category[] | undefined;
+  manufacturers: Manufacturer[] | undefined;
+  id: number | undefined;
   editForm = this.createFormGroup(); // formulario
   error: boolean = false;
 
   constructor
     (
     private productService: ProductService,
+    private categoryService: CategoryService,
+    private manufacturerService: ManufacturerService,
     private router: Router,
     private activatedRoute: ActivatedRoute
     ) { }
@@ -31,8 +40,11 @@ export class ProductFormComponent implements OnInit
         // fetch the book with this id
         if (id)
           this.fetchProductWithInc(Number(id))
+        
       }
-    }) 
+    })
+    this.fetchCategories()
+    this.fetchManufacturers()
   }
 
   createFormGroup() {
@@ -47,14 +59,30 @@ export class ProductFormComponent implements OnInit
       cpu: new FormControl(),
       ram: new FormControl(),
       graphicCard: new FormControl(),
+      categoryId: new FormControl(),
+      manufacturerId: new FormControl(),
     });
   }
   fetchProductWithInc(id: number | string | undefined) {
+    this.id = Number(id);
     this.productService.findById(Number(id)).subscribe({
       next: productFromBackend => this.steUpProductUpdate(productFromBackend),
       error: err => console.log(err)
     })
   }
+
+  fetchCategories() {
+    this.categoryService.findAll().subscribe({
+      next: categoryFromBackend => this.categories = categoryFromBackend,
+      error: err => console.log(err)
+    })
+  }
+  fetchManufacturers() {
+    this.manufacturerService.findAll().subscribe({
+      next: manufacturerFromBackend => this.manufacturers = manufacturerFromBackend,
+      error: err => console.log(err)
+    })  }
+
   steUpProductUpdate(productFromBackend: Product): void {
     this.product = productFromBackend
     this.editForm.reset(
@@ -68,7 +96,9 @@ export class ProductFormComponent implements OnInit
         releaseDate: productFromBackend.releaseDate,
         cpu: productFromBackend.cpu,
         ram: productFromBackend.ram,
-        graphicCard: productFromBackend.graphicCard
+        graphicCard: productFromBackend.graphicCard,
+        categoryId: productFromBackend.categoryId,
+        manufacturerId: productFromBackend.manufacturerId
       } as any);
 
   }
@@ -87,7 +117,9 @@ export class ProductFormComponent implements OnInit
       releaseDate: this.editForm.get("releaseDate")?.value,
       cpu: this.editForm.get("cpu")?.value,
       ram: this.editForm.get("ram")?.value,
-      graphicCard: this.editForm.get("graphicCard")?.value
+      graphicCard: this.editForm.get("graphicCard")?.value,
+      categoryId: this.editForm.get("categoryId")?.value,
+      manufacturerId: this.editForm.get("manufacturerId")?.value
 
     } as any;
 
@@ -115,6 +147,15 @@ export class ProductFormComponent implements OnInit
     }
     navigateToList(): void {
       this.router.navigate(["/back_office/products"]);
-    }
+  }
+
+  public onDelete(): void {
+    this.productService.deleteById(Number(this.id)).subscribe(
+      {
+        next: res => this.navigateToList(),
+        error: err => console.log(err)
+      }
+    )
+  }
 }
 

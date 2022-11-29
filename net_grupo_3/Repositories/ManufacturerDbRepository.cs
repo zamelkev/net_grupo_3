@@ -66,6 +66,8 @@ namespace net_grupo_3.Repositories
             _context.Manufacturers.Attach(manufacturer);
 
             _context.Entry(manufacturer).Property(b => b.Name).IsModified = true;
+            _context.Entry(manufacturer).Property(b => b.Slug).IsModified = true;
+            _context.Entry(manufacturer).Property(b => b.ImgUrl).IsModified = true;
             _context.Entry(manufacturer).Property(b => b.FoundationDate).IsModified = true;
 
             _context.SaveChanges();
@@ -82,8 +84,12 @@ namespace net_grupo_3.Repositories
             // unlink FKs from product before deleting manufacturer
             IList<Product> ProductsFromManufacturer =  _productRepository.FindProductsByManufacturerId(id);
             foreach (Product product in ProductsFromManufacturer)
-                if (product.ManufacturerId == id)
+                if (product.ManufacturerId == id) 
+                {
                     product.ManufacturerId = null;
+                    _productRepository.Update(product);
+                }
+                    
             // finally remove
             _context.Manufacturers.Remove(manufacturer);
 

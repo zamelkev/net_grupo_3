@@ -11,7 +11,7 @@ export class CategoriesListComponent implements OnInit {
 
   categories: Categories[] = [];
 
-  columnNames: string[] = ['id', 'name', 'slug', 'imgUrl'];
+  columnNames: string[] = ['id', 'name', 'slug', 'imgUrl', 'actions'];
 
   constructor(private service: CategoriesService) { }
 
@@ -28,4 +28,12 @@ export class CategoriesListComponent implements OnInit {
     );
   }
 
+  onDelete(id: number) {
+    this.service.deleteById(id).subscribe(
+      {
+        next: response => this.findAll(),
+        error: err => console.log(err)
+      }
+    )
+  }
 }

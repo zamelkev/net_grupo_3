@@ -11,6 +11,7 @@ import { ManufacturerService } from '../services/manufacturer.service';
 })
 export class ManufacturerFormComponent implements OnInit {
 
+  id: number | string | undefined;
   editForm = this.createFormGroup(); // formulario
   error: boolean = false;
 
@@ -24,6 +25,8 @@ export class ManufacturerFormComponent implements OnInit {
     return new FormGroup({
       id: new FormControl({ value: null, disabled: true }),
       fullName: new FormControl(),
+      slug: new FormControl(),
+      imgUrl: new FormControl(),
       foundationDate: new FormControl()
     })
   }
@@ -50,10 +53,12 @@ export class ManufacturerFormComponent implements OnInit {
             {
               id: { value: manufacturerFromBackend.id, disabled: true},
               fullName: manufacturerFromBackend.name,
+              slug: manufacturerFromBackend.slug,
+              imgUrl: manufacturerFromBackend.imgUrl,
               foundationDate: manufacturerFromBackend.foundationDate             
 
             } as any);
-
+          this.id = manufacturerFromBackend.id;
         },
         error: err => console.log(err)
       }
@@ -64,12 +69,14 @@ export class ManufacturerFormComponent implements OnInit {
 
     let manufacturer = {
       name: this.editForm.get("fullName")?.value,
+      slug: this.editForm.get("slug")?.value,
+      imgUrl: this.editForm.get("imgUrl")?.value, 
       foundationDate: this.editForm.get("foundationDate")?.value, 
     } as any;
 
     let id = this.editForm.get("id")?.value;
 
-    console.log("id: " + id + " fullName: " + manufacturer.name + " foundationDate: " + manufacturer.foundationDate);
+    console.log(manufacturer);
     if (id) { // actualización
       manufacturer.id = id;
       this.manufacturerService.update(manufacturer).subscribe({
@@ -92,7 +99,14 @@ export class ManufacturerFormComponent implements OnInit {
 
 
   private navigateToList() {
-    this.router.navigate(["/manufacturers"]);
+    this.router.navigate(["/back_office/manufacturers"]);
   }
-
+  onDelete() {
+    this.manufacturerService.deleteById(Number(this.id)).subscribe(
+      {
+        next: response => this.navigateToList(),
+        error: err => console.log(err)
+      }
+    );
+  }
 }
