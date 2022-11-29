@@ -1,3 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 
+.nav-gradient {
+  background-image: linear-gradient(to right, #1b0749, #591f83);
+}
+
+.nav-radial-gradient {
+  background: radial-gradient(#1b0749, #591f83);
+}
