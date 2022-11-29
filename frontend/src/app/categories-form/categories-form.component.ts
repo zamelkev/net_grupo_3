@@ -13,6 +13,7 @@ export class CategoriesFormComponent implements OnInit {
 
   editForm = this.createFormGroup(); // formulario
   error: boolean = false;
+  id: string | undefined;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -44,6 +45,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   private getCategoriesAndLoadInForm(id: string) {
+    this.id = id;
     this.categoriesService.findById(Number(id)).subscribe(
       {
         next: categoriesFromBackend => {
@@ -53,7 +55,7 @@ export class CategoriesFormComponent implements OnInit {
               id: { value: categoriesFromBackend.id, disabled: true},
               fullName: categoriesFromBackend.name,
               slug: categoriesFromBackend.slug,
-              imgUrl: categoriesFromBackend.img_url
+              imgUrl: categoriesFromBackend.imgUrl
 
             } as any);
 
@@ -96,7 +98,16 @@ export class CategoriesFormComponent implements OnInit {
 
 
   private navigateToList() {
-    this.router.navigate(["/categories"]);
+    this.router.navigate(["/back_office/categories"]);
+  }
+
+  public onDelete(): void {
+    this.categoriesService.deleteById(Number(this.id)).subscribe(
+      {
+        next: res => this.navigateToList(),
+        error: err => console.log(err)
+      }
+    )
   }
 
 }

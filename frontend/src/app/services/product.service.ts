@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get<Product>(`${this.url}/${id}`);
   }
 
+  fingByIdWithInclude(id: number) {
+  return this.http.get<Product>(`${this.url}/include/${id}`);
+}
+
   findByManufacturerId(id: number) {
     return this.http.get<Product[]>(`${this.url}/manufacturer/${id}`);
   }

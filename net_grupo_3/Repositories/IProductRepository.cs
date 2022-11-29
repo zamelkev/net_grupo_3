@@ -16,7 +16,7 @@ public interface IProductRepository {
     IList<Product> FindByContainerId(int id);
 
     public IList<Product> FindProductsByManufacturerId(int manufacturerId);
-
+    public IList<Product> FindProductsByCategoryId(int categoryId);
     Product Create(Product product);
 
     Product Update(Product product);

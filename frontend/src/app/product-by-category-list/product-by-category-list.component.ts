@@ -15,7 +15,6 @@ export class ProductByCategoryListComponent implements OnInit {
 
   products: Product[] = [];
 
-  columnNames: string[] = ['id', 'name', 'cost', 'price', 'stock', 'tax', 'releaseDate'];
 
   constructor(
     private service: ProductService,
@@ -41,5 +40,7 @@ export class ProductByCategoryListComponent implements OnInit {
       }
     );
   }
-
+  public formatInt(myNumber: number | undefined) : string {
+    return Number(String(myNumber).split(".")[0]).toLocaleString('en-US').replace(/,/g, ".")
+  }
 }

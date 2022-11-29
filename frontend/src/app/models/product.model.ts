@@ -12,8 +12,13 @@ export interface Product {
   ram?: number;
   graphicCard?: string;
 
-  // Associations
-  productComments?: any;
-  orders?: any;
+  imgUrl: string;
+  slug: string;
 
+  // Associations
+  category?: any;
+  manufacturer?: any;
+  // FKs
+  categoryId?: number;
+  manufacturerId?: number;
 }

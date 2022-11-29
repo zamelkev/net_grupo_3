@@ -1,4 +1,5 @@
-﻿using net_grupo_3.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using net_grupo_3.Models;
 
 namespace net_grupo_3.Repositories;
 public class CategoryDbRepository : ICategoryRepository
@@ -6,13 +7,13 @@ public class CategoryDbRepository : ICategoryRepository
 
 
     private AppDbContext Context;
-   
+    private readonly IProductRepository _productRepository;
 
 
-    public CategoryDbRepository(AppDbContext context)
+    public CategoryDbRepository(AppDbContext context, IProductRepository productRepository)
     {
         Context = context;
-
+        _productRepository = productRepository;
     }
 
     // métodos
@@ -52,6 +53,7 @@ public class CategoryDbRepository : ICategoryRepository
 
         Context.Entry(category).Property(b => b.Name).IsModified = true;
         Context.Entry(category).Property(b => b.ImgUrl).IsModified = true;
+        Context.Entry(category).Property(b => b.Slug).IsModified = true;
 
         Context.SaveChanges();
 
@@ -63,6 +65,15 @@ public class CategoryDbRepository : ICategoryRepository
         Category category = FindById(id);
         if (category == null)
             return false;
+
+        // unlink FKs from product before deleting manufacturer
+        IList<Product> ProductsFromCategory = _productRepository.FindProductsByCategoryId(id);
+        foreach (Product product in ProductsFromCategory)
+            if (product.CategoryId == id)
+            {
+                product.CategoryId = null;
+                _productRepository.Update(product);
+            }
 
         Context.Categories.Remove(category);
 

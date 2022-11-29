@@ -88,12 +88,41 @@ body {
   left: -10px;
 }
 
-.card1 {
-  max-width: 400px;
+/* GLOBAL CUSTOM STYLES */
+:root {
+  --my_primary: #673ab7;
+  --my_accent: #ffd740;
+  --my_danger: #f44336;
+  --my_gray: rgb(102, 102, 102);
+}
+.my_primary_text{
+  color: var(--my_primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+.gray-text {
+  color: var(--my_gray);
+}
+.small-text {
+    font-size: 0.8rem;
+}
+/* price styles */
+.price {
+  font-size: 3.5rem !important;
 }
 
-.card-image {
-  background-size: cover;
+h2.price span.decimals {
+  font-size: 1.5rem !important;
+  transform: translateY(-1.35rem) !important;
+  display: inline-block !important;
 }
 
+h2.price span.currency {
+  font-size: 1.5rem;
+  transform: translateY(-1.35rem) !important;
+  display: inline-block !important;
+}
 
+.negative_margin {
+  margin-top: -0.3rem !important;
+}

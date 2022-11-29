@@ -74,7 +74,8 @@ public class ProductDbRepository : IProductRepository
         Context.Entry(product).Property(b => b.Stock).IsModified = true;
         Context.Entry(product).Property(b => b.Tax).IsModified = true;
         Context.Entry(product).Property(b => b.ReleaseDate).IsModified = true;
-        Context.Entry(product).Collection(b => b.ProductComments).IsModified = true;
+        Context.Entry(product).Property(b => b.ManufacturerId).IsModified = true;
+        Context.Entry(product).Property(b => b.CategoryId).IsModified = true;
         Context.SaveChanges();
 
         return product;
@@ -113,6 +114,17 @@ public class ProductDbRepository : IProductRepository
                 .Include(p => p.Manufacturer)
                 .Include(p => p.Category)
                 .Where(p => p.Manufacturer.Id == manufacturerId)
+                .ToList();
+
+    }
+
+    public IList<Product> FindProductsByCategoryId(int categoryId)
+    {
+
+        return Context.Products
+                .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
+                .Where(p => p.CategoryId == categoryId)
                 .ToList();
 
     }

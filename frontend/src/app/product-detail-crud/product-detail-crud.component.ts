@@ -2,22 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
-import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  selector: 'app-product-detail-crud',
+  templateUrl: './product-detail-crud.component.html',
+  styleUrls: ['./product-detail-crud.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailCrudComponent implements OnInit {
 
   product: Product | undefined;
 
   constructor(
     private service: ProductService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,17 +39,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   private navigateToList() {
-    this.router.navigate(["/products"]);
+    this.router.navigate(["/back_office/products"]);
   }
 
-  public back(): void {
-    this.location.back()
+  public onDelete(id: number | string | undefined): void {
+    this.service.deleteById(Number(id)).subscribe(
+      {
+        next: res => this.navigateToList(),
+        error: err => console.log(err)
+      }
+    )
   }
 
-  public buy(): void {
-  }
 
-  public formatInt(myNumber: number | undefined): string {
-    return Number(String(myNumber).split(".")[0]).toLocaleString('en-US').replace(/,/g, ".")
-  }
 }
