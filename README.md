@@ -11,3 +11,5 @@ Con este proyecto hemos puesto en práctica todos los conocimientos técnicos, q
 - Entity Framework Core 6
 - MySQL 8 (vía MySQL Workbench 8)
 
+### Presentación del proyecto
+https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8QF4/
