@@ -1,5 +1,5 @@
 # Computer-Box (e-commerce)
-#### (Proyecto final del curso .NET, realizado por el grupo 3)
+### (Proyecto final del curso .NET, realizado por el grupo 3)
 
 Con este proyecto hemos puesto en práctica todos los conocimientos técnicos, que hemos aprendido a lo largo del curso, y los hemos utilizado para construir una tienda 'online', la cuál vende ordenadores.
 
