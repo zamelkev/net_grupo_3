@@ -100,8 +100,11 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+.my_accent_text {
+  color: var(--my_accent);
+}
 .gray-text {
-  color: var(--my_gray);
+  color: var(--my_accent);
 }
 .small-text {
     font-size: 0.8rem;
@@ -136,4 +139,9 @@ footer {
 }
 .container1 {
     min-height: calc(100vh - 20rem);
+}
+
+/* buttons */
+button {
+    margin: 0.3rem 0.3rem !important;
 }
