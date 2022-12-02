@@ -90,8 +90,8 @@ body {
 
 /* GLOBAL CUSTOM STYLES */
 :root {
-  --my_primary: #673ab7;
-  --my_accent: #ffd740;
+  --my_primary: #591f83;
+  --my_accent: #f8a300;
   --my_danger: #f44336;
   --my_gray: rgb(102, 102, 102);
 }

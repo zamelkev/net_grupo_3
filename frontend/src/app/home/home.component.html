@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="row justify-content-center position-relative mb-5">
-      <mat-card class="card1 col mx-3" *ngFor="let category of categories">
+    <div class="row justify-content-center position-relative">
+      <mat-card class="card1 col mx-3 mb-5" *ngFor="let category of categories">
         <mat-card-header>
           <mat-card-title routerLink="/products/manufacturer/{{category.slug}}">{{category.name}}</mat-card-title>
         </mat-card-header>
@@ -19,7 +19,7 @@
 </div>
 <div class="container">
   <div class="row justify-content-center position-relative">
-    <mat-card class="card1 col mx-3" *ngFor="let manufacturer of manufacturers">
+    <mat-card class="card1 col mx-3 mb-5" *ngFor="let manufacturer of manufacturers">
       <mat-card-header>
         <mat-card-title routerLink="/products/manufacturer/{{manufacturer.slug}}">{{manufacturer.name}}</mat-card-title>
       </mat-card-header>
