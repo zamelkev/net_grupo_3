@@ -11,9 +11,9 @@ public class Category
     [Key, Column("id", Order = 0)]
     public int Id { get; set; }
 
-    [Column("name", Order = 2)]
+    [Required, Column("name", Order = 2)]
     public string? Name { get; set; }
-    [Column("slug")]
+    [Required, Column("slug")]
     public string? Slug { get; set; }
     [Column("img_url")]
     public string? ImgUrl { get; set; }

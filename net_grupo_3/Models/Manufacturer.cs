@@ -7,9 +7,9 @@ public class Manufacturer
     [Key, Column("id")]
     public int Id { get; set; }
 
-    [Column("name")]
+    [Required, Column("name")]
     public string? Name { get; set; }
-    [Column("slug")]
+    [Required, Column("slug")]
     public string? Slug { get; set; }
 
     [Column("foundation_date")]

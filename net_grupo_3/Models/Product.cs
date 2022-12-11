@@ -8,10 +8,10 @@ public class Product {
     Column("id")]
     public int Id { get; set; }
 
-    [Column("name")]
+    [Required, Column("name")]
     public string? Name { get; set; }
 
-    [Column("slug")]
+    [Required, Column("slug")]
     public string? Slug { get; set; }
 
     [Column("Cost"),
