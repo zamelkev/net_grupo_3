@@ -47,6 +47,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AccessComponent } from './access/access.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
     BackOfficeComponent,
     ProductListCrudComponent,
-    ProductDetailCrudComponent
+    ProductDetailCrudComponent,
+    AccessComponent
   ],
   imports: [
     MatButtonModule,
@@ -98,6 +100,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'products', component: ProductListComponent },
       // products filtered by manufacturer/category
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
