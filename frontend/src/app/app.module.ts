@@ -101,6 +101,7 @@ import { AccessComponent } from './access/access.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'access', component: AccessComponent },
       { path: 'products', component: ProductListComponent },
       // products filtered by manufacturer/category
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
