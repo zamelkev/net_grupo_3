@@ -35,6 +35,7 @@ Visual Studio Community
 Paso 1: Necesitas que "Node.js" y "npm package manager" estén instalados.
 
 Paso 2: Instalar Angular CLI
+
 Run `npm install -g @angular/cli` en tu terminal.
 
 
