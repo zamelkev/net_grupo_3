@@ -56,7 +56,7 @@ public class OrderDbRepository : IOrderRepository
 
         Context.Orders.Attach(order);
 
-        Context.Entry(order).Property(o => o.OrderDate).IsModified = true;
+        Context.Entry(order).Property(o => o.OrderTime).IsModified = true;
         Context.Entry(order).Property(o => o.User).IsModified = true;
         Context.Entry(order).Property(o => o.UserId).IsModified = true;
         Context.SaveChanges();
@@ -96,13 +96,13 @@ public class OrderDbRepository : IOrderRepository
             switch (of.DateOptions)
             {
                 case 1:
-                    query = query.Where(o => o.OrderDate == of.Date);
+                    query = query.Where(o => o.OrderTime == of.Date);
                     break;
                 case 2:
-                    query = query.Where(o => o.OrderDate <= of.Date);
+                    query = query.Where(o => o.OrderTime <= of.Date);
                     break;
                 case 3:
-                    query = query.Where(o => o.OrderDate >= of.Date);
+                    query = query.Where(o => o.OrderTime >= of.Date);
                     break;
                 default:
                     break;
@@ -119,4 +119,12 @@ public class OrderDbRepository : IOrderRepository
         //query = (DbSet<Order>)query.Where(o => o.ClientId == of.ClientId);
     }
 
+    public List<Order> FindOrdersByClient(int id)
+    {
+        return Context.Orders
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .Where(order => order.UserId == id)
+            .ToList();
+    }
 }

@@ -37,9 +37,9 @@ public class OrderController
         return OrderRepo.FindAll();
     }
     [HttpPost]
-    public Order Create(Order author)
+    public Order Create(Order order)
     {
-        return OrderRepo.Create(author);
+        return OrderRepo.Create(order);
     }
 
     [HttpPut]
@@ -59,5 +59,10 @@ public class OrderController
     public IList<Order> FilterOrder(OrderFilter of)
     {
         return OrderRepo.Filter(of);
+    }
+    [HttpGet("client_id/{id}")]
+    public List<Order> FindByClientId(int id)
+    {
+        return OrderRepo.FindOrdersByClient(id);
     }
 }

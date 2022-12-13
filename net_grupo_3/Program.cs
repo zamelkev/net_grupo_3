@@ -41,6 +41,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
 builder.Services.AddScoped<IUserRepository, UserDbRepository>();
 builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailDbRepository>();
 builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
 builder.Services.AddScoped<IManufacturerRepository, ManufacturerDbRepository>();

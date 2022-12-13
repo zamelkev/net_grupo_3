@@ -12,4 +12,6 @@ public interface IOrderRepository
     Order Update(Order order);
     bool Delete(int id);
     IList<Order> Filter(OrderFilter of);
+
+    List<Order> FindOrdersByClient(int id);
 }

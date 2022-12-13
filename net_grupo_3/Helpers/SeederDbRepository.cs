@@ -13,17 +13,26 @@ public class SeederDbRepository : ISeederRepository
     // métodos
     public void SeedHardcodedUser()
     {
+        User existingUser = null;
         // get user
-        User existingUser = Context.Users.Where(user => user.UserName == "jjohond").FirstOrDefault();
-        // check if user exists
-        if (existingUser != null)
+        try
         {
-            // abort operation, user already exists
-            return;
-        }   
-        // insert
-        User MasterUser = new User() { FullName = "John Johnson Davidson", Email = "jjohnsond@mail.com", UserName = "jjohond", Password = "123", Role = 1 };
-        Context.Users.Add(MasterUser);
-        Context.SaveChanges();
+            existingUser = Context.Users.Where(user => user.UserName == "jjohond").FirstOrDefault();
+            // check if user exists
+            
+        }
+        catch (Exception)
+        {
+
+        }
+
+        if (existingUser == null)
+        {
+            // insert
+            User MasterUser = new User() { FullName = "John Johnson Davidson", Email = "jjohnsond@mail.com", UserName = "jjohond", Password = "123", Role = 1 };
+            Context.Users.Add(MasterUser);
+            Context.SaveChanges();
+        }
+        
     }
 }
