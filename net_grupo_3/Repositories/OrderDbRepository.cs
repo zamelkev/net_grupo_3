@@ -127,4 +127,13 @@ public class OrderDbRepository : IOrderRepository
             .Where(order => order.UserId == id)
             .ToList();
     }
+
+    public Order FindOrderByIdInclude(int id)
+    {
+        return Context.Orders
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .Where(order => order.Id == id)
+            .FirstOrDefault();
+    }
 }

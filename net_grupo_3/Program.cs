@@ -45,6 +45,8 @@ builder.Services.AddScoped<IOrderDetailRepository, OrderDetailDbRepository>();
 builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
 builder.Services.AddScoped<IManufacturerRepository, ManufacturerDbRepository>();
+// Services
+builder.Services.AddScoped<IStockService, StockService>();
 // Seeder
 builder.Services.AddScoped<ISeederRepository, SeederDbRepository>();
 
