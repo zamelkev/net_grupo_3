@@ -24,18 +24,7 @@
           <mat-icon>shopping_cart</mat-icon>
         </button>
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          <div *ngIf="selectedProduct">
-            <button mat-menu-item *ngFor="let product of products">
-              <span>Has seleccionado {{ product.name }}</span>
-            </button>
-          </div>
           
-          <!--<button mat-menu-item routerLink="/home">
-            <span>Inicio</span>
-          </button>
-          <button mat-menu-item routerLink="/back_office">
-            <span>Back-Office</span>
-          </button>-->
         </mat-menu>
       </span>
     </mat-toolbar>

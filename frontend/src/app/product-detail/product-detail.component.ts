@@ -62,8 +62,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   nextCount() {
-    //this.shoppingService.nextCount();
-    this.shoppingService.setCount(4)
+    this.shoppingService.nextCount();
+    //this.shoppingService.setCount(4)
   }
 }
 
