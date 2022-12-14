@@ -5,15 +5,19 @@ namespace net_grupo_3.Controllers;
 
 [ApiController]
 [Route("api/orders")]
-public class OrderController
+public class OrderController : ControllerBase
 {
     // attrs
     private IOrderRepository OrderRepo;
+    private readonly IStockService _stockService;
+    private readonly ILogger<OrderController> _logger;
 
     // constructor
-    public OrderController(IOrderRepository orderRepository)
+    public OrderController(IOrderRepository orderRepository, IStockService stockService, ILogger<OrderController> logger)
     {
         OrderRepo = orderRepository;
+        _stockService = stockService;
+        _logger = logger;
     }
 
     // methods
@@ -37,9 +41,25 @@ public class OrderController
         return OrderRepo.FindAll();
     }
     [HttpPost]
-    public Order Create(Order author)
+    public IActionResult Create(Order order)
     {
-        return OrderRepo.Create(author);
+        //return OrderRepo.Create(order);
+        _logger.LogInformation("Executing order.");
+
+        try
+        {
+
+            return Ok(_stockService.Create(order));
+        }
+        catch (OutOfStockException e)
+        {
+            _logger.LogWarning("Error: {message}", e);
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+        catch (Exception)
+        {
+            return Problem("Error executing the order");
+        }
     }
 
     [HttpPut]
@@ -59,5 +79,15 @@ public class OrderController
     public IList<Order> FilterOrder(OrderFilter of)
     {
         return OrderRepo.Filter(of);
+    }
+    [HttpGet("client_id/{id}")]
+    public List<Order> FindByClientId(int id)
+    {
+        return OrderRepo.FindOrdersByClient(id);
+    }
+    [HttpGet("include/{id}")]
+    public Order FindByIdInclude(int id)
+    {
+        return OrderRepo.FindOrderByIdInclude(id);
     }
 }

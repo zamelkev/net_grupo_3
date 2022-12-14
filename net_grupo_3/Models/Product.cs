@@ -14,7 +14,7 @@ public class Product {
     [Required, Column("slug")]
     public string? Slug { get; set; }
 
-    [Column("Cost"),
+    [Column("cost"),
     Precision(14, 2)]
     public decimal? Cost { get; set; }
 
@@ -53,9 +53,6 @@ public class Product {
     // associations
 
     public ICollection<ProductComment>? ProductComments { get; set; }
-    public Container? Container { get; set; }
-    public IList<Order>? Orders { get; set; }
-
 
     public Manufacturer? Manufacturer { get; set; }
     
@@ -66,7 +63,6 @@ public class Product {
 
     public int? CategoryId { get; set; }
 
-    public int? ContainerId { get; set; }
 
 
 

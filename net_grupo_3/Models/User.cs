@@ -12,12 +12,18 @@ public class User
     public int Id { get; set; }
     [Column("full_name", TypeName = "varchar(75)", Order = 2)]
     public string? FullName { get; set; }
-    [Column("username")]
+    [Required, Column("username")]
     public string? UserName { get; set; }
-    [Column("email")]
+    [Required, Column("email")]
     public string? Email { get; set; }
-    [Column("password")]
+    [Required, Column("password")]
     public string? Password { get; set; }
     [Column("role")]
     public int? Role { get; set; }
+    [Column("address")]
+    public string? Address { get; set; }
+    [Column("country")]
+    public string? Country { get; set; }
+    [Column("locality")]
+    public string? Locality { get; set; }
 }

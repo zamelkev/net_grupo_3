@@ -73,14 +73,6 @@ public class ContainerDbRepository : IContainerRepository
         Container container = FindById(id);
         if (container == null)
             return false;
-        // DESASOCIAR los books primero antes de borrar el autor
-        IList<Product> products = ProductRepo.FindByContainerId(id);
-        foreach (Product product in products)
-        {
-            product.ContainerId = null; // desasociar
-            ProductRepo.Update(product); // actualizar en base de datos
-        }
-
         Context.Containers.Remove(container); // Un libro puede tener: author y categories
 
         Context.SaveChanges();

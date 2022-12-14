@@ -92,22 +92,14 @@ public class ProductDbRepository : IProductRepository
         return true;
     }
 
-    public Product FindByIdWithInclude(int id) {
+    public Product FindByIdWithInclude(int id)
+    {
         return Context.Products
             .Include(product => product.Category)
             .Include(product => product.Manufacturer)
             .Where(product => product.Id == id)
             .FirstOrDefault();
     }
-
-    public IList<Product> FindByContainerId(int containerId)
-    {
-        return Context.Products
-            .Include(product => product.Container)
-            .Where(product => product.ContainerId == containerId)
-            .ToList();
-    }
-
     public IList<Product> FindProductsByManufacturerId(int manufacturerId) {
 
         return Context.Products

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+using net_grupo_3.Controllers;
 using net_grupo_3.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,9 +41,15 @@ builder.Services.AddScoped<ICategoryRepository, CategoryDbRepository>();
 builder.Services.AddScoped<IUserRepository, UserDbRepository>();
 builder.Services.AddScoped<IProductCommentReporitory, ProductCommentDbRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderDbRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailDbRepository>();
 builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
 builder.Services.AddScoped<IManufacturerRepository, ManufacturerDbRepository>();
+// Services
+builder.Services.AddScoped<IStockService, StockService>();
+// Seeder
+builder.Services.AddScoped<ISeederRepository, SeederDbRepository>();
+
 
 
 var app = builder.Build();
@@ -60,6 +68,12 @@ app.UseCors("frontend");
 app.UseAuthorization();
 
 app.MapControllers();
+
+// seeding
+AppDbContext context = new AppDbContextFactory().CreateDbContext(null);
+ISeederRepository authorRepo = new SeederDbRepository(context);
+authorRepo.SeedHardcodedUser();
+
 
 app.Run();
 

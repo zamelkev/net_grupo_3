@@ -51,10 +51,7 @@ public class ProductController {
     }
     // https://localhost:7230/api/products/find_by_container
     [HttpGet("container/{id}")]
-    public IList<Product> FindByContainer(int id)
-    {
-        return ProductRepo.FindByContainerId(id);
-    }
+
 
     // https://localhost:7230/api/products/find_by_manufacturer
     [HttpGet("manufacturer/{manufacturer_id}")]
