@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { ShoppingService } from './services/shopping.service';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { distinctUntilChanged, tap } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'frontend';
+  count: number | undefined;
 
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
@@ -21,12 +23,18 @@ export class AppComponent {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private shoppingService: ShoppingService
+  ) { }
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    this.shoppingService.count.subscribe(c => {
+      this.count = c;
+    });
   }
 
 

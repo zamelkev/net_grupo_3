@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Location } from '@angular/common';
+import { ShoppingService } from '../services/shopping.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,12 +13,14 @@ import { Location } from '@angular/common';
 export class ProductDetailComponent implements OnInit {
 
   product: Product | undefined;
+  count: number | undefined;
 
   constructor(
     private service: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private shoppingService: ShoppingService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +31,9 @@ export class ProductDetailComponent implements OnInit {
         error: err => console.log(err)
       }
     );
+    this.shoppingService.count.subscribe(c => {
+      this.count = c;
+    });
   }
 
   private fetchProduct(id: string | number | null) {
@@ -54,4 +60,10 @@ export class ProductDetailComponent implements OnInit {
   public formatInt(myNumber: number | undefined): string {
     return Number(String(myNumber).split(".")[0]).toLocaleString('en-US').replace(/,/g, ".")
   }
+
+  nextCount() {
+    //this.shoppingService.nextCount();
+    this.shoppingService.setCount(4)
+  }
 }
+
