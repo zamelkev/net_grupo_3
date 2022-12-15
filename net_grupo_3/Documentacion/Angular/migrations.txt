@@ -1,0 +1,19 @@
+﻿# Problema de compilación con Angular  
+  
+## Problema 
+```
+PS D:\jacint_clases\.net\fp\frontend> npm install
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR!
+npm ERR! While resolving: frontend@0.0.0
+npm ERR! Found: @angular/animations@14.2.12
+npm ERR! node_modules/@angular/animations
+npm ERR!   @angular/animations@"^14.2.0" from the root project
+```
+
+## Solución
+```
+npm install --legacy-peer-deps
+```
+
