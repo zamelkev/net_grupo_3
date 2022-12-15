@@ -14,7 +14,10 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="button-flex-container">
-        <button mat-raised-button color="primary">Entrar</button>
+        <button mat-raised-button color="primary" (click)="onEnter()" >Entrar</button>
+      </div>
+      <div class="button-flex-container">
+        <button mat-raised-button color="primary" (click)="onExit()">Salir</button>
       </div>
     </mat-card-actions>
   </mat-card>
