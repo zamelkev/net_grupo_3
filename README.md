@@ -40,4 +40,6 @@ Run `npm install -g @angular/cli` en tu terminal.
 
 
 # Presentación del proyecto
-https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8QF4/
+https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8QF4/  
+  
+[reuniones](Documentacion/Reuniones.md)
