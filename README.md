@@ -90,13 +90,13 @@ https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8
 ## En proceso  
   
 **Hecho desde la ultima presentación**:  
-- Seeder de User (para usar en compra, hardcoded) [Enlace](frontend/net_grupo_3/Program.cs)
-- Business Logic de Back End para compra [Enlace](frontend/net_grupo_3/Controllers/OrderController.cs)
-- Maquetación vista Back Office [Enlace](frontend/frontend/src/app/back-office)
+- Seeder de User (para usar en compra, hardcoded) [Enlace](net_grupo_3/Program.cs)
+- Business Logic de Back End para compra [Enlace](net_grupo_3/Controllers/OrderController.cs)
+- Maquetación vista Back Office [Enlace](frontend/src/app/back-office)
   
 **En proceso**:  
-- UI y lógica de compra en Angular [Enlace](https://github.com/zamelkev/net_grupo_3/blob/frontend/frontend/src/app/services/shopping.service.ts)
-- Vistas Login y Signup [Enlace](https://github.com/zamelkev/net_grupo_3/tree/frontend/frontend/src/app/login)  
-- Comunicación entre 2 componentes no relacionados para desarrollar el `shopping cart` [Enlace](https://github.com/zamelkev/net_grupo_3/tree/frontend/frontend/src/app/product-detail)  
+- UI y lógica de compra en Angular [Enlace](frontend/src/app/services/shopping.service.ts)
+- Vistas Login y Signup [Enlace](frontend/src/app/login)  
+- Comunicación entre 2 componentes no relacionados para desarrollar el `shopping cart` [Enlace](frontend/src/app/product-detail)  
   
 ## Por razones técnicas los commits de este proyecto estan solo disponibles en la rama `frontend` del repositiorio Github
