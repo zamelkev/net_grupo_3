@@ -81,3 +81,8 @@ ng serve
 
 # Presentación del proyecto
 https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8QF4/  
+  
+  
+## Otros documentos de interés  
+[Enlace](Documentacion)
+
