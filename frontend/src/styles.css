@@ -1,0 +1,156 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.logo {
+  width: 2rem;
+}
+
+.logo-footer-eslogan {
+  width: 3rem;
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+  align-content: center;
+}
+
+.container1 {
+  padding-top: 50px;
+  width: 100%;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container2 {
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  margin-right: 40px;
+  margin-left: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container3 {
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 0px;
+  margin-right: 20px;
+  margin-left: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.header.mat-toolbar {
+  position: absolute;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fafafaff;
+}
+
+#footer {
+  width: 100%;
+  height: 250px;
+/*  z-index: 2;
+  position: fixed;
+  bottom: 0;*/
+}
+
+#footer-right {
+  float: right;
+  position: relative;
+  bottom: -120px;
+  left: 0;
+}
+
+#footer-left {
+  float: left;
+  position: relative;
+  top: -30px;
+  left: -10px;
+}
+
+/* GLOBAL CUSTOM STYLES */
+:root {
+  --my_primary: #591f83;
+  --my_accent: #f8a300;
+  --my_danger: #f44336;
+  --my_gray: rgb(102, 102, 102);
+}
+.my_primary_text{
+  color: var(--my_primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+.my_accent_text {
+  color: var(--my_accent);
+}
+.gray-text {
+  color: var(--my_accent);
+}
+.small-text {
+    font-size: 0.8rem;
+}
+/* price styles */
+.price {
+  font-size: 3.5rem !important;
+}
+
+h2.price span.decimals {
+  font-size: 1.5rem !important;
+  transform: translateY(-1.35rem) !important;
+  display: inline-block !important;
+}
+
+h2.price span.currency {
+  font-size: 1.5rem;
+  transform: translateY(-1.35rem) !important;
+  display: inline-block !important;
+}
+
+.negative_margin {
+  margin-top: -0.3rem !important;
+}
+
+.header {
+    height: 3rem;
+}
+
+footer {
+    height: 17rem;
+}
+.container1 {
+    min-height: calc(100vh - 20rem);
+}
+
+/* buttons */
+button {
+    margin: 0.3rem 0.3rem !important;
+}
+
+.align-center {
+    justify-content: center;
+}
+
+.backoffice-button {
+    width: 15rem;
+    height: auto;
+}
