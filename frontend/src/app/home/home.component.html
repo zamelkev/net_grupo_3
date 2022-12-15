@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row justify-content-center position-relative">
+      <mat-card class="card1 col mx-3 mb-5" *ngFor="let category of categories">
+        <mat-card-header>
+          <mat-card-title routerLink="/products/manufacturer/{{category.slug}}">{{category.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="d-flex justify-content-center">
+          <img mat-card-image src="{{category.imgUrl}}">
+        </mat-card-content>
+        <div mat-card-avatar class="card-image"></div>
+        <mat-card-actions>
+          <button mat-raised-button class="position-absolute bottom-0 end-0 mb-3 me-3" color="primary" routerLink="/products/category/{{category.slug}}">
+            Ver productos
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center position-relative">
+    <mat-card class="card1 col mx-3 mb-5" *ngFor="let manufacturer of manufacturers">
+      <mat-card-header>
+        <mat-card-title routerLink="/products/manufacturer/{{manufacturer.slug}}">{{manufacturer.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="d-flex justify-content-center">
+        <img mat-card-image src="{{manufacturer.imgUrl}}">
+        </mat-card-content>
+        <div mat-card-avatar class="card-image"></div>
+        <mat-card-actions>
+          <button mat-raised-button class="position-absolute bottom-0 end-0 mb-3 me-3" color="primary" routerLink="/products/manufacturer/{{manufacturer.slug}}">
+            Ver productos
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

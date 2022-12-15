@@ -1,0 +1,114 @@
+<h1>Detalle de un producto</h1>
+
+<!--<mat-card class="example-card" *ngIf="product">
+
+  <mat-card-title>{{product.name}}</mat-card-title>
+
+  <img mat-card-image src="../assets/img{{product.imgUrl}}" alt="product.slug">
+
+  <mat-card-content>
+    <p><strong>Fecha de publicación:</strong> {{product.releaseDate}}</p>
+  </mat-card-content>
+  <mat-card-content>
+    <p><strong>Precio: </strong> {{product.price}}€</p>
+  </mat-card-content>
+  <mat-card-content>
+    <p><strong>Stock en tienda: </strong> {{product.stock}}</p>
+  </mat-card-content>
+  <mat-card-content>
+    <strong>Características: </strong>
+    <p>
+      <strong>CPU</strong>: {{product.cpu}}
+    </p>
+    <p *ngIf="product.ram">
+      <strong>RAM</strong>: {{product.ram}}
+    </p>
+    <p *ngIf="product.graphicCard">
+      <strong>GPU</strong>: {{product.graphicCard}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="back()">Volver</button> <button mat-raised-button color="primary" (click)="buy()">Comprar</button>
+  </mat-card-actions>-->
+
+
+<div class="container" *ngIf="product">
+  <div class="row my-5">
+    <div class="col-3 p-3">
+      <img src="../assets/img{{product.imgUrl}}" />
+    </div>
+    <div class="col ms-5">
+      <div class="container h-100 position-relative">
+
+        <div class="row">
+          <div class="col">
+            <div>
+              <h2 class=" fw-bold mb-0">{{product.name}}</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="col">
+            <div>
+              <span class="me-2 mb-3 my_primary_text fw-bold">
+                <span [routerLink]="['/products/category', product.category.slug]">{{product.category.name}}</span> | <span [routerLink]="['/products/manufacturer', product.manufacturer.slug]">{{product.manufacturer.name}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col">
+            <div>
+              <h2 class="price mb-0">{{formatInt(product.price)}}<span class="decimals" *ngIf='$any(product.price).toString().split(".")[1]'>, {{$any(product.price).toString().split(".")[1]}}</span><span class="currency">€</span></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="row negative_margin">
+          <div class="col">
+            <div>
+              <span class="gray-text small-text fw-bold">{{product.stock}} en stock | disponible desde {{product.releaseDate | date}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row negative_margin">
+          <div class="col">
+            <strong>Características: </strong>
+            <p>
+              <strong>CPU</strong>: {{product.cpu}}
+            </p>
+            <p *ngIf="product.ram">
+              <strong>RAM</strong>: {{product.ram}}
+            </p>
+            <p *ngIf="product.graphicCard">
+              <strong>GPU</strong>: {{product.graphicCard}}
+            </p>
+          </div>
+        </div>
+
+        <div class="row position-absolute bottom-0 end-0 mb-3">
+          <div class="col">
+            <button mat-raised-button color="accent" (click)="back()" class="me-3">
+              Volver <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" (click)="nextCount()">
+              Comprar <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<mat-card class="example-card" *ngIf="!product">
+  <mat-card-content>
+    <p>Cargando producto....</p>
+  </mat-card-content>
+</mat-card>
