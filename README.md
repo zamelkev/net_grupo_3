@@ -98,5 +98,3 @@ https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8
 - UI y lógica de compra en Angular [Enlace](frontend/src/app/services/shopping.service.ts)
 - Vistas Login y Signup [Enlace](frontend/src/app/login)  
 - Comunicación entre 2 componentes no relacionados para desarrollar el `shopping cart` [Enlace](frontend/src/app/product-detail)  
-  
-## Por razones técnicas los commits de este proyecto estan solo disponibles en la rama `frontend` del repositiorio Github
