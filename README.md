@@ -36,9 +36,11 @@ Paso 1: Necesitas que "Node.js" (versión 16) y "npm package manager" estén ins
 
 Paso 2: Instalar Angular CLI (versión 14)
 
-Run `npm install -g @angular/cli` en tu terminal.  
+Run `npm install -g @angular/cli` en tu terminal. 
+
+Paso 3: `npm install ngx-cookie-service --force`  
   
-Paso 3: Forzar dependencias `npm install --legacy-peer-deps`  
+Paso 4: Forzar dependencias `npm install --legacy-peer-deps`  
   
   
 ## Instruciones Back End  
@@ -98,3 +100,23 @@ https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8
 - UI y lógica de compra en Angular [Enlace](frontend/src/app/services/shopping.service.ts)
 - Vistas Login y Signup [Enlace](frontend/src/app/login)  
 - Comunicación entre 2 componentes no relacionados para desarrollar el `shopping cart` [Enlace](frontend/src/app/product-detail)  
+  
+___  
+### Restringir acceso al backoffice 
+
+Hemos restringido el acceso al backoffice mediante el uso de `guards` y `cookies`.
+
+Para poder probarlo hay que ir a la pantalla de login:
+
+-Si le das click a entrar generara una **cookie** con valor `"User"`
+-Si le das click a salir generara una **cookie con** valor `"NoUser"`
+
+En el `guard` según el valor de esta `cookie` nos dejara entrar o no a la ruta del backoffice.
+
+Si no estamos autorizados a entrar en backoffice nos devolverá a la pagina del login.
+
+Si estamos autorizados, nos llevara a la pagina del backoffice.
+
+Actualmente el proceso de login no esta implementado completamente, por eso solamente simulamos el login con los botones "Entrar" y "Salir" respectivamente.
+
+Esperamos para la presentación del día 12 tener el login implementado.

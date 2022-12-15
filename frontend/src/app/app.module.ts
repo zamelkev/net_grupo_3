@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
-
+import { CookieService } from 'ngx-cookie-service'
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';
@@ -49,6 +49,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AccessComponent } from './access/access.component';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -110,31 +112,33 @@ import { SignupComponent } from './signup/signup.component';
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
       { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
-      { path: 'products/:id/detail', component: ProductDetailComponent },
-      { path: 'back_office/products/:id/edit', component: ProductFormComponent },
-      { path: 'back_office/products/new', component: ProductFormComponent },
+      { path: 'products/:id/detail', component: ProductDetailComponent},
+      { path: 'back_office/products/:id/edit', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/products/new', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       
       //{ path: 'categories', component: CategoriesListComponent },
      
       // back-office routes
-      { path: 'back_office', component: BackOfficeComponent },
-      { path: 'back_office/products', component: ProductListCrudComponent },
-      { path: 'back_office/products/:id/detail', component: ProductDetailCrudComponent },
+      { path: 'back_office', component: BackOfficeComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/products', component: ProductListCrudComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/products/:id/detail', component: ProductDetailCrudComponent, canActivate: [AuthGuardGuard] },
 
-      { path: 'back_office/categories', component: CategoriesListComponent },
-      { path: 'back_office/categories/new', component: CategoriesFormComponent },
-      { path: 'back_office/categories/:id/edit', component: CategoriesFormComponent },
-      { path: 'back_office/categories/:id/detail', component: CategoriesDetailComponent },
+      { path: 'back_office/categories', component: CategoriesListComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/categories/new', component: CategoriesFormComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/categories/:id/edit', component: CategoriesFormComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/categories/:id/detail', component: CategoriesDetailComponent, canActivate: [AuthGuardGuard] },
 
-      { path: 'back_office/manufacturers', component: ManufacturerListComponent },
-      { path: 'back_office/manufacturers/new', component: ManufacturerFormComponent },
-      { path: 'back_office/manufacturers/:id/edit', component: ManufacturerFormComponent },
-      { path: 'back_office/manufacturers/:id/detail', component: ManufacturerDetailComponent },
+      { path: 'back_office/manufacturers', component: ManufacturerListComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/manufacturers/new', component: ManufacturerFormComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/manufacturers/:id/edit', component: ManufacturerFormComponent, canActivate: [AuthGuardGuard] },
+      { path: 'back_office/manufacturers/:id/detail', component: ManufacturerDetailComponent, canActivate: [AuthGuardGuard] },
 
     ])
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: CookieService}
+   
   ],
   bootstrap: [AppComponent]
 })
