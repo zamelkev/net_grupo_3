@@ -10,3 +10,6 @@
 .nav-radial-gradient {
   background: radial-gradient(at 79% 78%,#591f83 2%,#1b0749)
 }
+.contador {
+    display: none;
+}
