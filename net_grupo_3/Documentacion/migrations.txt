@@ -1,5 +1,0 @@
-﻿cd net_grupo_3
-
-dotnet ef migrations add Initial -o Db/Migrations -c net_grupo_3.Db.AppDbContext -v
-
-dotnet ef database update Initial -c net_grupo_3.Db.AppDbContext
