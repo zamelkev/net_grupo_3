@@ -49,7 +49,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { AccessComponent } from './access/access.component';
 import { AuthGuardGuard } from './auth-guard.guard';
 
 @NgModule({

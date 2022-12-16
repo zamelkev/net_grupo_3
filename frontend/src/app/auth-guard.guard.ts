@@ -19,7 +19,7 @@ export class AuthGuardGuard implements CanActivate, CanActivateChild {
     if (cookie == "User") {     
       return true;
     } else {
-      this.router.navigate(['/access']);
+      this.router.navigate(['/login']);
       return false;
     }
     
@@ -31,7 +31,7 @@ export class AuthGuardGuard implements CanActivate, CanActivateChild {
     if (cookie == "User") {
       return true;
     } else {
-      this.router.navigate(['/access']);
+      this.router.navigate(['/login']);
       return false;
     }
   }
