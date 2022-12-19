@@ -21,13 +21,15 @@
       </button>
       <span>
         <button mat-icon-button [matMenuTriggerFor]="cartList">
-          <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
+
+          <mat-icon *ngIf="cartTracking.length > 0" matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
+          <mat-icon *ngIf="cartTracking.length == 0">shopping_cart</mat-icon>
         </button>
         <mat-menu #cartList="matMenu" [overlapTrigger]="false">
           <button mat-menu-item routerLink="/home">
             <span>Proceder con la compra</span>
           </button>
-          <button mat-menu-item (click)="emptyCart()">
+          <button mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
             <span>Vaciar Cesta</span>
           </button>
         </mat-menu>
