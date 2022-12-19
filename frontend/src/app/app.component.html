@@ -20,16 +20,24 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>shopping_cart</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="cartList">
+          <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
         </button>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          
+        <mat-menu #cartList="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item routerLink="/home">
+            <span>Proceder con la compra</span>
+          </button>
+          <button mat-menu-item>
+            <span>Vaciar Cesta</span>
+          </button>
         </mat-menu>
       </span>
     </mat-toolbar>
     <div class="contador">
       Contador {{count}}
+    </div>
+    <div class="contador" *ngFor="let product of cartTracking">
+      Productos {{product.name}}
     </div>
   </header>
   <!-- END NAVBAR -->

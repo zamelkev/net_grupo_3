@@ -17,7 +17,4 @@ public class ProductComment {
     [JsonIgnore]
     public Product? Product { get; set; }
     public int ProductId { get; set; }
-    // testing
 }
-
-//test

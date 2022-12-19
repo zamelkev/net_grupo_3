@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { ShoppingService } from './services/shopping.service';
+import { Product } from './models/product.model';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @Component({
@@ -12,6 +15,7 @@ import { ShoppingService } from './services/shopping.service';
 export class AppComponent {
   title = 'frontend';
   count: number | undefined;
+  cartTracking: Product[] = [];
 
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
@@ -25,7 +29,8 @@ export class AppComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private shoppingService: ShoppingService
+    private shoppingService: ShoppingService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
@@ -35,8 +40,12 @@ export class AppComponent {
     this.shoppingService.count.subscribe(c => {
       this.count = c;
     });
+    this.shoppingService.cartTracking.subscribe(p => {
+      this.cartTracking = JSON.parse(this.cookieService.get('cart'));
+    })
   }
 
+  
 
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Large)) {

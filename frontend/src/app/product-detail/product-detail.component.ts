@@ -14,6 +14,7 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product | undefined;
   count: number | undefined;
+  cartTracking: Product[] = [];
 
   constructor(
     private service: ProductService,
@@ -34,6 +35,9 @@ export class ProductDetailComponent implements OnInit {
     this.shoppingService.count.subscribe(c => {
       this.count = c;
     });
+    this.shoppingService.cartTracking.subscribe(p => {
+      this.cartTracking.push(...p);
+    })
   }
 
   private fetchProduct(id: string | number | null) {
@@ -65,5 +69,10 @@ export class ProductDetailComponent implements OnInit {
     this.shoppingService.nextCount();
     //this.shoppingService.setCount(4)
   }
+
+  addProduct(product: Product) {
+    this.shoppingService.addProduct(product)
+  }
+
 }
 

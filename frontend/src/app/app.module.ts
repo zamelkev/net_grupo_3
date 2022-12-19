@@ -43,6 +43,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatBadgeModule } from '@angular/material/badge'; 
 
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
@@ -94,6 +95,7 @@ import { AuthGuardGuard } from './auth-guard.guard';
     LayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatBadgeModule,
 
     MDBBootstrapModule,
 
