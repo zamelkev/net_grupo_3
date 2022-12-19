@@ -45,7 +45,9 @@ export class AppComponent {
     })
   }
 
-  
+  emptyCart() {
+    this.shoppingService.emptyCart();
+  }
 
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Large)) {

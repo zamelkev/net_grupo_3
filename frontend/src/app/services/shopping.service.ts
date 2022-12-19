@@ -27,11 +27,17 @@ export class ShoppingService {
     this.count.next(this.counter = num);
   }
   addProduct(product: Product) {
-    const myCart: Product[] | any[] = JSON.parse(this.cookieService.get('cart'));
-    if (myCart.indexOf(product) == -1) {
-      myCart.push(product)
+    const myCart: any[] = JSON.parse(this.cookieService.get('cart'));
+    if (!myCart.some(el => el.name == product.name)) {
+      myCart.push({
+        name: product.name
+      })
       this.cookieService.set('cart', JSON.stringify(myCart), 4, '/');
       this.cartTracking.next([...myCart])
     }
+  }
+  emptyCart() {
+    this.cookieService.set('cart', "[]", 4, '/');
+    this.cartTracking.next([])
   }
 }
