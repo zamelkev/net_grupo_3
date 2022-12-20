@@ -31,7 +31,7 @@
 
         <ng-container matColumnDef="foundationDate">
           <th mat-header-cell *matHeaderCellDef> Año creación </th>
-          <td mat-cell *matCellDef="let manufacturer"> {{manufacturer.foundationDate}} </td>
+          <td mat-cell *matCellDef="let manufacturer"> {{manufacturer.foundationDate | date}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
