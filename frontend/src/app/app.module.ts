@@ -24,6 +24,7 @@ import { CategoriesFormComponent } from './categories-form/categories-form.compo
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { ProductListCrudComponent } from './product-list-crud/product-list-crud.component';
 import { ProductDetailCrudComponent } from './product-detail-crud/product-detail-crud.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -34,7 +35,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
@@ -68,12 +69,14 @@ import { AuthGuardGuard } from './auth-guard.guard';
     CategoriesDetailComponent,
     CategoriesFormComponent,
     CategoriesListComponent,
+    CheckoutComponent,
 
     BackOfficeComponent,
     ProductListCrudComponent,
     ProductDetailCrudComponent,
     LoginComponent,
     SignupComponent
+    
   ],
   imports: [
     MatButtonModule,
@@ -102,6 +105,7 @@ import { AuthGuardGuard } from './auth-guard.guard';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
@@ -113,7 +117,9 @@ import { AuthGuardGuard } from './auth-guard.guard';
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
       { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
-      { path: 'products/:id/detail', component: ProductDetailComponent},
+      { path: 'products/:id/detail', component: ProductDetailComponent },
+      { path: 'checkout', component: CheckoutComponent },
+
       { path: 'back_office/products/:id/edit', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       { path: 'back_office/products/new', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       

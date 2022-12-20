@@ -23,6 +23,15 @@ public class ProductDbRepository : IProductRepository
             .Where(p => p.Slug == slug)
             .FirstOrDefault();
     }
+
+    public List<Product> FindByIdsWithInclude(List<int> ids)
+    {
+        return Context.Products
+            .Include(p => p.Manufacturer)
+            .Include(p => p.Category)
+            .Where(p => ids.Contains(p.Id))
+            .ToList();
+    }
     public IList<Product> FindByManufactuerSlug(string slug)
     {
         return Context.Products

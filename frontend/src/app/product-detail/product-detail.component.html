@@ -61,8 +61,11 @@
             <button mat-raised-button color="accent" (click)="back()" class="me-3">
               Volver <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
-            <button mat-raised-button color="primary" (click)="addProduct(product)">
+            <button *ngIf="product.stock && product.stock > 0" mat-raised-button color="primary" (click)="addProduct(product)">
               Comprar <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button *ngIf="product.stock == 0" mat-raised-button color="warn">
+              Sin stock <mat-icon>block</mat-icon>
             </button>
           </div>
         </div>

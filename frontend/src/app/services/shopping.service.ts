@@ -29,9 +29,9 @@ export class ShoppingService {
   addProduct(product: Product) {
 
     const myCart: any[] = this.cookieService.get('cart') == "" ? [] : JSON.parse(this.cookieService.get('cart'));
-    if (!myCart.some(el => el.name == product.name)) {
+    if (!myCart.some(el => el.id == product.id)) {
       myCart.push({
-        name: product.name
+        id: product.id
       })
       this.cookieService.set('cart', JSON.stringify(myCart), 4, '/');
       this.cartTracking.next([...myCart])

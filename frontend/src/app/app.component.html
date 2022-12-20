@@ -26,11 +26,11 @@
           <mat-icon *ngIf="cartTracking.length == 0">shopping_cart</mat-icon>
         </button>
         <mat-menu #cartList="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item routerLink="/home">
+          <button mat-menu-item routerLink="/checkout">
             <span>Proceder con la compra</span>
           </button>
           <button mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
-            <span>Vaciar Cesta</span>
+            <span>Vaciar Carrito</span>
           </button>
         </mat-menu>
       </span>
@@ -39,7 +39,7 @@
       Contador {{count}}
     </div>
     <div class="contador" *ngFor="let product of cartTracking">
-      Productos {{product.name}}
+      Productos {{product.id}}
     </div>
   </header>
   <!-- END NAVBAR -->

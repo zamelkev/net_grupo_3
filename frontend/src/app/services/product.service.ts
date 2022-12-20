@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get<Product>(`${this.url}/${id}`);
   }
 
+  findProductsById(ids: number[]) {
+    return this.http.post<Product[]>(`${this.url}/ids`, ids);
+  }
+
   fingByIdWithInclude(id: number) {
   return this.http.get<Product>(`${this.url}/include/${id}`);
 }
