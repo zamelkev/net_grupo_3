@@ -16,4 +16,11 @@ public class UserDbRepository : IUserRepository
     {
         return Context.Users.ToList();
     }
+
+    public User Login(User user) {
+        return Context.Users
+            .Where(u => u.Email == user.Email)
+            .Where(u => u.Password == user.Password)
+            .First();
+    }
 }

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';

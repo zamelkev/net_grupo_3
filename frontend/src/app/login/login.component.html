@@ -1,24 +1,39 @@
 <div class="login-form-flex">
   <mat-card>
     <mat-card-title>
-      Login/Logup
+      Login
     </mat-card-title>
     <mat-card-content>
-      <mat-form-field>
-        <input matInput placeholder="User Name">
-      </mat-form-field>
-      <br />
-      <mat-form-field>
-        <input type="password" matInput placeholder="Password" />
-      </mat-form-field>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Username" formControlName="username">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+        </p>
+
+        <!--<p *ngIf="error" class="error">
+          {{ error }}
+        </p>-->
+
+        <div class="button">
+          <button mat-raised-button color="primary" type="submit">Entrar</button>
+        </div>
+
+      </form>
     </mat-card-content>
-    <mat-card-actions>
+    <!--<mat-card-actions>
       <div class="button-flex-container">
         <button mat-raised-button color="primary" (click)="onEnter()" >Entrar</button>
       </div>
       <div class="button-flex-container">
         <button mat-raised-button color="primary" (click)="onExit()">Salir</button>
       </div>
-    </mat-card-actions>
+    </mat-card-actions>-->
   </mat-card>
 </div>
