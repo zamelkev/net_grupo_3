@@ -29,7 +29,7 @@ export class CheckoutComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.skillsForm = this.fb.group({
-      name: '',
+      //name: '',
       skills: this.fb.array([]),
     });
   }
@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.skillsForm.value);
+    console.log(this.skillsForm.value.skills);
   }
 
   // end form
