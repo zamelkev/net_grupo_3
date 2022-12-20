@@ -1,6 +1,6 @@
-<div class="container">
+<!--<div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col">-->
       <h1>Listado de fabricantes</h1>
 
       <button mat-raised-button color="primary" routerLink="/back_office/manufacturers/new">
@@ -26,7 +26,7 @@
 
         <ng-container matColumnDef="imgUrl">
           <th mat-header-cell *matHeaderCellDef>Img Url</th>
-          <td mat-cell *matCellDef="let manufacturer"> {{manufacturer.imgUrl}} </td>
+          <td mat-cell *matCellDef="let manufacturer" class="imgUrl"> {{manufacturer.imgUrl}} </td>
         </ng-container>
 
         <ng-container matColumnDef="foundationDate">
@@ -58,6 +58,6 @@
         <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
         <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
       </table>
-    </div>
+    <!--</div>
   </div>
-</div>
+</div>-->
