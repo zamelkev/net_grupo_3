@@ -41,7 +41,7 @@ export class AppComponent {
       this.count = c;
     });
     this.shoppingService.cartTracking.subscribe(p => {
-      this.cartTracking = JSON.parse(this.cookieService.get('cart'));
+      this.cartTracking = this.cookieService.get('cart') == "" ? [] : JSON.parse(this.cookieService.get('cart'));
     })
   }
 

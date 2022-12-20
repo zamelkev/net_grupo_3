@@ -27,7 +27,8 @@ export class ShoppingService {
     this.count.next(this.counter = num);
   }
   addProduct(product: Product) {
-    const myCart: any[] = JSON.parse(this.cookieService.get('cart'));
+
+    const myCart: any[] = this.cookieService.get('cart') == "" ? [] : JSON.parse(this.cookieService.get('cart'));
     if (!myCart.some(el => el.name == product.name)) {
       myCart.push({
         name: product.name
