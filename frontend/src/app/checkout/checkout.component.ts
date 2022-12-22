@@ -94,6 +94,7 @@ export class CheckoutComponent implements OnInit {
     this.addSkills();
   }
 
+  // this detects changes in the quantity of the products
   handleQuantityPersistence(skill:any):void {
     console.log(skill.value.name)
     this.calcTotal()
