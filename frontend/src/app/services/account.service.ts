@@ -17,9 +17,14 @@ export class AccountService {
 
   private tokenKey = 'token';
 
+  url = 'https://localhost:7028/api/account';
+
   constructor(
-    private authService: AccountService,
+    private http: HttpClient,
+    //private authService: AccountService,
+    private authService: any,
     private router: Router
+    
   ) { }
 
   canActivate(
@@ -47,10 +52,11 @@ export class AccountService {
     return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
   }
 
+
+  
   //url = 'https://localhost:7028/api/account';
 
   //constructor(private http: HttpClient) { }
-
 
   //login(login: Login) {
   //  return this.http.post<Login>(`${this.url}/login`, login);

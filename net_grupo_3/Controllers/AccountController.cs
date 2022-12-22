@@ -22,25 +22,12 @@ public class AccountController : ControllerBase {
         {
             return Ok(UserRepository.Login(user));
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             Logger.LogWarning("Usuario no encontrado", ex);
             return BadRequest();
         }
     }
-
-    /*
-     [HttpGet("email/{email}")]
-    public IActionResult FindByEmail(string email) {
-        try {
-            return Ok(AuthorService.FindByEmail(email));
-        }
-        catch (ModelNotFoundException e) {
-            Logger.LogWarning("Author not found {}", e);
-        }
-        return NotFound();
-    }
-     */
-
 
 
 }
