@@ -46,17 +46,24 @@ export class CheckoutComponent implements OnInit {
   //  })
   //}
 
-  newSkill(id:any, name:any): FormGroup {
+  newSkill(id:any, name:any, quantity:any, category:any, manufacturer:any, img:any, price:any, stock:any): FormGroup {
     return this.fb.group({
       skill: id,
       exp: name,
+      quantity: quantity,
+      category: category,
+      manufacturer: manufacturer,
+      img: img,
+      price: price,
+      stock: stock,
+
     })
   }
 
   addSkills() {
     //this.skills.push(this.newSkill());
     this.products.forEach(el => {
-      this.skills.push(this.newSkill(el.id,el.name))
+      this.skills.push(this.newSkill(el.id,el.name,el.quantity, el.category, el.manufacturer, el.imgUrl, el.price, el.stock))
     })
   }
 

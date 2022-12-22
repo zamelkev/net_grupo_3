@@ -13,10 +13,17 @@
     <div *ngFor="let skill of skills.controls; let i=index">
       <div [formGroupName]="i">
         {{i}}
+        <img src="../assets/img{{skill.value.img}}" />
         skill name :
         <input type="text" formControlName="skill">
         exp:
         <input type="text" formControlName="exp">
+        quantity:
+        <mat-form-field appearance="fill">
+          <mat-label>Cantidad</mat-label>
+          <input matInput formControlName="quantity" type="number" min="1" max="{{skill.value.stock}}">
+        </mat-form-field>
+
 
         <button (click)="removeSkill(i)">Remove</button>
       </div>
