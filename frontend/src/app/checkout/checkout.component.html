@@ -8,28 +8,51 @@
   </p>-->
 
 
-  Skills:
-  <div formArrayName="skills">
-    <div *ngFor="let skill of skills.controls; let i=index">
-      <div [formGroupName]="i">
-        {{i}}
-        <img src="../assets/img{{skill.value.img}}" />
-        skill name :
-        <input type="text" formControlName="skill">
-        exp:
-        <input type="text" formControlName="exp">
-        quantity:
-        <mat-form-field appearance="fill">
-          <mat-label>Cantidad</mat-label>
-          <input matInput formControlName="quantity" type="number" min="1" max="{{skill.value.stock}}">
-        </mat-form-field>
+  <div formArrayName="skills" class="container">
+    <mat-card *ngFor="let skill of skills.controls; let i=index" class="row mb-3">
+      <div [formGroupName]="i" class="col">
+        <div class="conatiner">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="../assets/img{{skill.value.img}}" class="img" />
+            </div>
+            <div class="col">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h4>
+                      {{skill.value.name}}
+                    </h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-9">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Cantidad</mat-label>
+                      <input matInput formControlName="quantity" type="number" min="1" max="{{skill.value.stock}}" (change)="handleQuantityPersistence(skill)">
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <h5>Precio: {{skill.value.quantity * skill.value.price}}€</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-
-        <button (click)="removeSkill(i)">Remove</button>
-      </div>
-    </div>
+            <button (click)="removeSkill(i)">Remove</button>
+          </div>
+        </div><!--end row-->
+      </div><!--end conteiner within-->
+    </mat-card>
   </div>
 
+  <div class="row">
+    <div class="col">
+      <h3>
+        Total: {{totalPrice}}
+      </h3>
+    </div>
+  </div>
   <p>
     <button type="submit">Submit</button>
   </p>

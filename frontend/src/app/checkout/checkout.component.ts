@@ -15,6 +15,7 @@ export class CheckoutComponent implements OnInit {
   products: ProductsCart[] = [];
   cart: any[] = [];
   skillsForm: FormGroup;
+  totalPrice:number = 0;
   // form
 
 
@@ -39,17 +40,10 @@ export class CheckoutComponent implements OnInit {
     return this.skillsForm.get("skills") as FormArray
   }
 
-  //newSkill(): FormGroup {
-  //  return this.fb.group({
-  //    skill: '',
-  //    exp: '',
-  //  })
-  //}
-
   newSkill(id:any, name:any, quantity:any, category:any, manufacturer:any, img:any, price:any, stock:any): FormGroup {
     return this.fb.group({
-      skill: id,
-      exp: name,
+      id: id,
+      name: name,
       quantity: quantity,
       category: category,
       manufacturer: manufacturer,
@@ -65,10 +59,13 @@ export class CheckoutComponent implements OnInit {
     this.products.forEach(el => {
       this.skills.push(this.newSkill(el.id,el.name,el.quantity, el.category, el.manufacturer, el.imgUrl, el.price, el.stock))
     })
+    // then sum (initialize)
+    this.calcTotal()
   }
 
   removeSkill(i: number) {
     this.skills.removeAt(i);
+    this.calcTotal()
   }
 
   onSubmit() {
@@ -95,6 +92,22 @@ export class CheckoutComponent implements OnInit {
     console.log(this.products)
     //this.cart = products.map(el => { return { id: el.id, qty: 1 } });
     this.addSkills();
+  }
+
+  handleQuantityPersistence(skill:any):void {
+    console.log(skill.value.name)
+    this.calcTotal()
+  }
+
+  // calculate total
+  calcTotal(): void {
+    //this.totalPrice += carrier.value.price * carrier.value.quantity
+    console.log(this.skills.controls[0].value.quantity)
+    let counter:number = 0 
+    this.skills.controls.forEach(el => {
+      counter += el.value.quantity * el.value.price
+    })
+    this.totalPrice = counter;
   }
 
 }
