@@ -6,7 +6,8 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Product } from '../models/product.model';
 import { Login } from '../models/login.model';
 

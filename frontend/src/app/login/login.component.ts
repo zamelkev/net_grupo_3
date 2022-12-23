@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '../services/account.service';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -12,22 +12,37 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
-  private tokenKey = 'token';
+  //private tokenKey = 'token';
 
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+  loginForm: FormGroup;
 
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-    }
+  //loginForm = new FormGroup({
+  //  username: new FormControl(''),
+  //  password: new FormControl(''),
+  //});
+
+  constructor(
+    public fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      email: [''],
+      password: [''],
+    });
   }
+
+  //submit() {
+  //  if (this.form.valid) {
+  //    this.submitEM.emit(this.form.value);
+  //  }
+  //}
   
-  @Output() submitEM = new EventEmitter();
+  //@Output() submitEM = new EventEmitter();
   
-  constructor(private accountService: AccountService, private cookieService: CookieService, private router: Router) { }
+  //constructor(private accountService: AccountService, private cookieService: CookieService, private router: Router) { }
+
+
 
   createFormGroup() {
     return new FormGroup({
@@ -48,14 +63,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public isLoggedIn(): boolean {
-    let token = localStorage.getItem(this.tokenKey);
-    return token != null && token.length > 0;
+  loginUser() {
+    this.authService.signIn(this.loginForm.value);
   }
 
-  public getToken(): string | null {
-    return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
-  }
+  //public isLoggedIn(): boolean {
+  //  let token = localStorage.getItem(this.tokenKey);
+  //  return token != null && token.length > 0;
+  //}
+
+  //public getToken(): string | null {
+  //  return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
+  //}
 
   //editForm = this.createFormGroup(); // formulario
 

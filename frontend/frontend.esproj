@@ -15,5 +15,6 @@
     <Folder Include="src\app\categories-list\" />
     <Folder Include="src\app\categories-form\" />
     <Folder Include="src\app\categories-detail\" />
+    <Folder Include="src\app\shared\" />
   </ItemGroup>
 </Project>

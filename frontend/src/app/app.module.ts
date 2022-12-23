@@ -4,10 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 import { CookieService } from 'ngx-cookie-service';
+import { AuthInterceptor } from './shared/authconfig.interceptor';
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';
@@ -34,7 +35,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
@@ -43,6 +44,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { LayoutModule } from '@angular/cdk/layout';
+import { AuthGuard } from "./shared/auth.guard";
 
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
@@ -101,11 +103,13 @@ import { AuthGuardGuard } from './auth-guard.guard';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+
       { path: 'products', component: ProductListComponent },
       // products filtered by manufacturer/category
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
@@ -136,7 +140,12 @@ import { AuthGuardGuard } from './auth-guard.guard';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
-    { provide: CookieService}
+    { provide: CookieService },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
    
   ],
   bootstrap: [AppComponent]
