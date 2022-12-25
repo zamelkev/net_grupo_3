@@ -14,7 +14,7 @@ import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms'
 export class CheckoutComponent implements OnInit {
   products: ProductsCart[] = [];
   cart: any[] = [];
-  skillsForm: FormGroup;
+  itemsForm: FormGroup;
   totalPrice:number = 0;
   // form
 
@@ -29,18 +29,18 @@ export class CheckoutComponent implements OnInit {
     private productService: ProductService,
     private fb: FormBuilder
   ) {
-    this.skillsForm = this.fb.group({
+    this.itemsForm = this.fb.group({
       //name: '',
-      skills: this.fb.array([]),
+      items: this.fb.array([]),
     });
   }
 
   // form
-  get skills(): FormArray {
-    return this.skillsForm.get("skills") as FormArray
+  get items(): FormArray {
+    return this.itemsForm.get("items") as FormArray
   }
 
-  newSkill(id:any, name:any, quantity:any, category:any, manufacturer:any, img:any, price:any, stock:any): FormGroup {
+  newItem(id:any, name:any, quantity:any, category:any, manufacturer:any, img:any, price:any, stock:any): FormGroup {
     return this.fb.group({
       id: id,
       name: name,
@@ -54,22 +54,22 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  addSkills() {
+  addItems() {
     //this.skills.push(this.newSkill());
     this.products.forEach(el => {
-      this.skills.push(this.newSkill(el.id,el.name,el.quantity, el.category, el.manufacturer, el.imgUrl, el.price, el.stock))
+      this.items.push(this.newItem(el.id,el.name,el.quantity, el.category, el.manufacturer, el.imgUrl, el.price, el.stock))
     })
     // then sum (initialize)
     this.calcTotal()
   }
 
-  removeSkill(i: number) {
-    this.skills.removeAt(i);
+  removeItem(i: number) {
+    this.items.removeAt(i);
     this.calcTotal()
   }
 
   onSubmit() {
-    console.log(this.skillsForm.value.skills);
+    console.log(this.itemsForm.value.items);
   }
 
   // end form
@@ -91,21 +91,21 @@ export class CheckoutComponent implements OnInit {
     console.log("this is the cart")
     console.log(this.products)
     //this.cart = products.map(el => { return { id: el.id, qty: 1 } });
-    this.addSkills();
+    this.addItems();
   }
 
   // this detects changes in the quantity of the products
-  handleQuantityPersistence(skill:any):void {
-    console.log(skill.value.name)
+  handleQuantityPersistence(item:any):void {
+    console.log(item.value.name)
     this.calcTotal()
   }
 
   // calculate total
   calcTotal(): void {
     //this.totalPrice += carrier.value.price * carrier.value.quantity
-    console.log(this.skills.controls[0].value.quantity)
+    console.log(this.items.controls[0].value.quantity)
     let counter:number = 0 
-    this.skills.controls.forEach(el => {
+    this.items.controls.forEach(el => {
       counter += el.value.quantity * el.value.price
     })
     this.totalPrice = counter;
