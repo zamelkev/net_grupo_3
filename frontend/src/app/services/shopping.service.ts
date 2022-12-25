@@ -41,4 +41,10 @@ export class ShoppingService {
     this.cookieService.set('cart', "[]", 4, '/');
     this.cartTracking.next([])
   }
+  removeItemFromCart(position:number) {
+    let myCart: any[] = this.cookieService.get('cart') == "" ? [] : JSON.parse(this.cookieService.get('cart'));
+    myCart = myCart.slice(0, position).concat(myCart.slice(position + 1))
+    this.cookieService.set('cart', JSON.stringify(myCart), 4, '/');
+    this.cartTracking.next([...myCart])
+  }
 }

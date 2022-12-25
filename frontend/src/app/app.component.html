@@ -20,19 +20,26 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <span>
-        <button mat-icon-button [matMenuTriggerFor]="cartList">
+        <div *ngIf="cartTracking.length == 0">
+          <button mat-icon-button >
 
-          <mat-icon *ngIf="cartTracking.length > 0" matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
-          <mat-icon *ngIf="cartTracking.length == 0">shopping_cart</mat-icon>
-        </button>
-        <mat-menu #cartList="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item routerLink="/checkout">
-            <span>Proceder con la compra</span>
+            <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
           </button>
-          <button mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
-            <span>Vaciar Carrito</span>
+        </div>
+        <div *ngIf="cartTracking.length">
+          <button mat-icon-button [matMenuTriggerFor]="cartList">
+
+            <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
           </button>
-        </mat-menu>
+          <mat-menu #cartList="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="/checkout">
+              <span>Proceder con la compra</span>
+            </button>
+            <button mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
+              <span>Vaciar Carrito</span>
+            </button>
+          </mat-menu>
+        </div>
       </span>
     </mat-toolbar>
     <div class="contador">

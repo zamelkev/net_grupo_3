@@ -49,6 +49,7 @@ export class AppComponent {
     this.shoppingService.emptyCart();
   }
 
+
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
       this.currentBreakpoint = Breakpoints.Large;
