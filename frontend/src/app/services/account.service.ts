@@ -6,61 +6,89 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { Product } from '../models/product.model';
 import { Login } from '../models/login.model';
+import { environment } from '../../environments/environment';
+import { User } from '../models/user.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private tokenKey = 'token';
-
-  url = 'https://localhost:7028/api/account';
+  private userSubject: BehaviorSubject<User | null>;
+  public user: Observable<User | null>;
 
   constructor(
-    private http: HttpClient,
-    //private authService: AccountService,
-    private authService: any,
-    private router: Router
-    
-  ) { }
-
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']);
-    }
-
-    return true;
+    private router: Router,
+    private http: HttpClient
+  ) {
+    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+    this.user = this.userSubject.asObservable();
   }
 
-  public logout() {
-    localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/login']);
+  public get userValue() {
+    return this.userSubject.value;
   }
 
-  public isLoggedIn(): boolean {
-    let token = localStorage.getItem(this.tokenKey);
-    return token != null && token.length > 0;
+  login(username: string, password: string) {
+    return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
+      .pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
+      }));
   }
 
-  public getToken(): string | null {
-    return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate(['/account/login']);
   }
 
+  register(user: User) {
+    return this.http.post(`${environment.apiUrl}/users/register`, user);
+  }
 
-  
-  //url = 'https://localhost:7028/api/account';
+  getAll() {
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+  }
 
-  //constructor(private http: HttpClient) { }
+  getById(id: string) {
+    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+  }
 
-  //login(login: Login) {
-  //  return this.http.post<Login>(`${this.url}/login`, login);
-  //}
+  update(id: string, params: any) {
+    return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id == this.userValue?.id) {
+          // update local storage
+          const user = { ...this.userValue, ...params };
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // publish updated user to subscribers
+          this.userSubject.next(user);
+        }
+        return x;
+      }));
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.apiUrl}/users/${id}`)
+      .pipe(map(x => {
+        // auto logout if the logged in user deleted their own record
+        if (id == this.userValue?.id) {
+          this.logout();
+        }
+        return x;
+      }));
+  }
 
 }

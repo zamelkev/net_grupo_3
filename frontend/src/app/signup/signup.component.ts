@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   constructor(
     public fb: FormBuilder,
-    public authService: AuthService,
+    public authService: AccountService,
     public router: Router
   ) {
     this.signupForm = this.fb.group({

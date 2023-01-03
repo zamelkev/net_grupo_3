@@ -52,6 +52,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuardGuard } from './auth-guard.guard';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { AccountService } from './services/account.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,9 @@ import { AuthGuardGuard } from './auth-guard.guard';
     ProductListCrudComponent,
     ProductDetailCrudComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AccountService,
+    environment
   ],
   imports: [
     MatButtonModule,
@@ -141,6 +146,8 @@ import { AuthGuardGuard } from './auth-guard.guard';
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
     { provide: CookieService },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

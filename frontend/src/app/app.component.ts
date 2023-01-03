@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { ShoppingService } from './services/shopping.service';
-import { AuthService } from './services/auth.service';
+import { AccountService } from './services/account.service';
+import { User } from './models/user.model';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'frontend';
   count: number | undefined;
-  //user?: User | null;
+  user?: User | null;
 
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
@@ -28,7 +29,7 @@ export class AppComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private shoppingService: ShoppingService,
-    private authenticationService: AuthService
+    private authenticationService: AccountService
   ) {
     this.authenticationService.user.subscribe(x => this.user = x);
   }

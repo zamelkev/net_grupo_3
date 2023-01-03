@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AccountService } from '../services/account.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     private router: Router,
 
-    private authService: AuthService
+    private authService: AccountService
 
   ) {
 
