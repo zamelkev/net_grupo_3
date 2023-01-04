@@ -26,14 +26,6 @@ export class CheckoutComponent implements OnInit {
     text: ''
   }
 
-  // form
-
-
-
-    
-
-  // end form
-
   constructor(
     private cookieService: CookieService,
     private productService: ProductService,

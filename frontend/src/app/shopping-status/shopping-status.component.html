@@ -1,8 +1,22 @@
-<!-- bootstrap structure to show a centered column-->
+
 <div class="container">
   <div class="row">
-      <div class="alert alert-success col" role="success">
+      <div class="alert alert-success col" role="alert">
         <strong>Tu pedido ha sido registrado correctemente!</strong>
       </div>
+  </div>
+  <div class="row">
+    <div class="col ps-0">
+        <button mat-raised-button color="accent" (click)="backToHome()">
+          <mat-icon _ngcontent-krx-c109="" role="img"
+                    class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">keyboard_arrow_left
+            </mat-icon> Volver
+        </button>
+        <button mat-raised-button color="primary" (click)="viewOrders()">
+          <mat-icon _ngcontent-krx-c164="" role="img"
+                    class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">visibility
+            </mat-icon> Ver pedidos
+        </button>
+    </div>
   </div>
 </div>

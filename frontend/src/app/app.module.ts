@@ -44,7 +44,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatBadgeModule } from '@angular/material/badge'; 
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatExpansionModule } from '@angular/material/expansion'; 
 
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
@@ -53,6 +54,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuardGuard } from './auth-guard.guard';
 import { ShoppingStatusComponent } from './shopping-status/shopping-status.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { ShoppingStatusComponent } from './shopping-status/shopping-status.compo
     ProductDetailCrudComponent,
     LoginComponent,
     SignupComponent,
-    ShoppingStatusComponent
+    ShoppingStatusComponent,
+    OrdersListComponent
     
   ],
   imports: [
@@ -94,6 +97,7 @@ import { ShoppingStatusComponent } from './shopping-status/shopping-status.compo
     MatToolbarModule,
     MatSidenavModule,
     MatMenuModule,
+    MatExpansionModule,
     //MatTableDataSource,
     /*MatPaginatorModule,
     MatPaginator,*/
@@ -120,8 +124,10 @@ import { ShoppingStatusComponent } from './shopping-status/shopping-status.compo
       { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
+      // shopping routes
       { path: 'checkout', component: CheckoutComponent },
       { path: 'shopping_report', component: ShoppingStatusComponent },
+      { path: 'orders_list', component: OrdersListComponent },
 
       { path: 'back_office/products/:id/edit', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       { path: 'back_office/products/new', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
