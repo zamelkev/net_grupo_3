@@ -52,6 +52,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuardGuard } from './auth-guard.guard';
+import { ShoppingStatusComponent } from './shopping-status/shopping-status.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { AuthGuardGuard } from './auth-guard.guard';
     ProductListCrudComponent,
     ProductDetailCrudComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ShoppingStatusComponent
     
   ],
   imports: [
@@ -119,11 +121,14 @@ import { AuthGuardGuard } from './auth-guard.guard';
 
       { path: 'products/:id/detail', component: ProductDetailComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'shopping_report', component: ShoppingStatusComponent },
 
       { path: 'back_office/products/:id/edit', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       { path: 'back_office/products/new', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       
       //{ path: 'categories', component: CategoriesListComponent },
+
+
      
       // back-office routes
       { path: 'back_office', component: BackOfficeComponent, canActivate: [AuthGuardGuard] },

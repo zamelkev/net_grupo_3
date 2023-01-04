@@ -6,6 +6,7 @@ import { ShoppingService } from '../services/shopping.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
+import { Order } from '../models/order.model';
 
 
 @Component({
@@ -20,6 +21,10 @@ export class CheckoutComponent implements OnInit {
   totalPrice: number = 0;
   // global cart component
   cartTracking: Product[] = [];
+  errorReport: any = {
+    isError : false,
+    text: ''
+  }
 
   // form
 
@@ -76,8 +81,48 @@ export class CheckoutComponent implements OnInit {
     this.calcTotal()
     this.handleRemoveItemFromCartIcon(i)
   }
+  // posting the order
   onSubmit() {
-    console.log(this.itemsForm.value.items);
+    //console.log(this.itemsForm.value.items);
+    const formattedArray = this.itemsForm.value.items.map((el:any )=> { return { productId: el.id, quantity: el.quantity } })
+    //console.log(formattedArray)
+    //const orderDate: string = new Date().toISOString().slice(0, 19)
+    const tzoffset:number = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    const orderDate: string = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+    const order: Order = {
+      "orderTime": orderDate,
+      "orderDetails": formattedArray,
+      "userId": 1
+    }
+    // post order to shopping service
+    this.shoppingService.create(order).subscribe(
+      {
+        next: response => this.handleResponse(response),
+        error: err => this.handleResponse(err)
+      }
+    );
+  }
+
+  handleResponse(response: any) {
+    //console.log(response)
+    if (response.status == 200)
+      // redirect to success page here
+      this.handleSuccessfulOrder();
+      
+    else if (response.status == 500) {
+      this.errorReport.isError = true
+      this.errorReport.text = response.error
+      console.log(response.error);
+    }
+      
+
+    //console.log("the what?", response.error);
+    //else
+      //console.log(response.status)
+  }
+  handleSuccessfulOrder() {
+    this.shoppingService.emptyCart();
+    this.router.navigate(["/shopping_report"]);
   }
 
   // end form
@@ -112,11 +157,18 @@ export class CheckoutComponent implements OnInit {
 
   // calculate total
   calcTotal(): void {
-    this.totalPrice = this.items.controls.reduce(
+    this.totalPrice = Math.round(this.items.controls.reduce(
       (total, currEl) =>
         total += currEl.value.price * currEl.value.quantity, 0
-    )
+    ) * 100) / 100
   }
+
+  // calc single item * quantity price (handles decimal rounding)
+  calcSingleItemPrice(quantity:number, price:number): number {
+    return Math.round(quantity * price * 100) / 100
+  }
+
+
 
   // removes item from global cart icon handler
   // handles async event

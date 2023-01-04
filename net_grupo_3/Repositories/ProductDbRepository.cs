@@ -13,7 +13,7 @@ public class ProductDbRepository : IProductRepository
     // methods
     public Product FindById(int id)
     {
-        return Context.Products.Find(id);
+        return Context.Products.Find(id) ?? null;
     }
     public Product FindBySlug(string slug)
     {

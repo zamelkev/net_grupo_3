@@ -1,6 +1,9 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
+import { Order } from '../models/order.model';
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -8,13 +11,21 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class ShoppingService {
+
+  url = 'https://localhost:7064/api/orders';
+  
   counter  = 1;
   count: BehaviorSubject<number>;
   cart: Product[] = [];
   cartTracking: BehaviorSubject<Product[]>;
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService, private http: HttpClient) {
     this.count = new BehaviorSubject(this.counter);
-    this.cartTracking = new BehaviorSubject(this.cart)
+    this.cartTracking = new BehaviorSubject(this.cart); 
+  }
+  
+  // API Orders
+  create(order: Order) {
+    return this.http.post<Order>(this.url, order, { observe: 'response' } );
   }
 
   nextCount() {
@@ -47,4 +58,5 @@ export class ShoppingService {
     this.cookieService.set('cart', JSON.stringify(myCart), 4, '/');
     this.cartTracking.next([...myCart])
   }
+  
 }

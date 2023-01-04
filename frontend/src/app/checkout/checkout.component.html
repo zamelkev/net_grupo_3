@@ -2,11 +2,6 @@
 
 <form [formGroup]="itemsForm" (ngSubmit)="onSubmit()">
 
-  <!--<p>
-    <label for="name">Name </label>
-    <input type="text" id="name" name="name" formControlName="name">
-  </p>-->
-
 
   <div formArrayName="items" class="container">
     <mat-card *ngFor="let item of items.controls; let i=index" class="row mb-3">
@@ -34,7 +29,7 @@
                     </mat-form-field>
                   </div>
                   <div class="col">
-                    <h5>Precio: {{item.value.quantity * item.value.price}}€</h5>
+                    <h5>Precio: {{calcSingleItemPrice(item.value.quantity, item.value.price)}}€</h5>
                   </div>
                 </div>
               </div>
@@ -54,12 +49,19 @@
         </h3>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="errorReport.isError">
       <div class="col">
-        <button type="submit">Submit</button>
+        <div class="alert alert-danger" role="alert">
+          <strong>Uno o varios productos no tienen suficiente stock para llevar a cavo esta orden</strong>: {{errorReport.text}}
+        </div>
       </div>
-    </div>
-  </div>
+      </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
 
 </form>
 
