@@ -8,7 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 import { CookieService } from 'ngx-cookie-service';
-import { AuthInterceptor } from './shared/authconfig.interceptor';
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';
@@ -44,7 +43,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { LayoutModule } from '@angular/cdk/layout';
-import { AuthGuard } from "./shared/auth.guard";
 
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
@@ -77,9 +75,8 @@ import { environment } from '../environments/environment';
     ProductListCrudComponent,
     ProductDetailCrudComponent,
     LoginComponent,
-    SignupComponent,
-    AccountService,
-    environment
+    SignupComponent
+    
   ],
   imports: [
     MatButtonModule,
@@ -148,11 +145,7 @@ import { environment } from '../environments/environment';
     { provide: CookieService },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    
    
   ],
   bootstrap: [AppComponent]
