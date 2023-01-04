@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import { LayoutComponent } from './layout.component';
 import { LoginComponent } from './login.component';
-import { RegisterComponent } from './register.component';
+import { RegisterComponent } from './signup.component';
 
 @NgModule({
     imports: [

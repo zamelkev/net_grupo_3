@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { AccountService } from '../services/account.service';
 import { AlertService } from '../services/alert.service';
 
-@Component({ templateUrl: 'register.component.html' })
+@Component({ templateUrl: 'signup.component.html' })
 export class RegisterComponent implements OnInit {
     form!: FormGroup;
     loading = false;
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-                    this.router.navigate(['../login'], { relativeTo: this.route });
+                    this.router.navigate(['./login'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);

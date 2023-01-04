@@ -47,8 +47,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './account/login.component';
+import { RegisterComponent } from './account/signup.component';
 import { AuthGuardGuard } from './auth-guard.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AccountService } from './services/account.service';
@@ -75,7 +75,7 @@ import { environment } from '../environments/environment';
     ProductListCrudComponent,
     ProductDetailCrudComponent,
     LoginComponent,
-    SignupComponent
+    RegisterComponent
     
   ],
   imports: [
@@ -110,7 +110,7 @@ import { environment } from '../environments/environment';
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
+      { path: 'signup', component: RegisterComponent },
 
       { path: 'products', component: ProductListComponent },
       // products filtered by manufacturer/category
