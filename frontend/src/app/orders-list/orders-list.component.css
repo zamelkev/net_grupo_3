@@ -1,0 +1,9 @@
+.mat-expansion-panel-header {
+    height: auto;
+}
+.mat-accordion:nth-child(odd) .mat-expansion-panel-header {
+  background: rgba(202, 192, 211, 0.3);
+}
+.product-item:nth-child(odd) {
+  background-color: rgba(237, 188, 135, 0.37);
+}

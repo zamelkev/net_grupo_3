@@ -35,7 +35,7 @@ export class OrdersListComponent implements OnInit {
   calcTotalPrice(order: Order): number {
     return order.orderDetails!.reduce((accumulator: number, el: any) => accumulator += el.quantity * el.product.price, 0);
   }
-  calcTotalPricePerProduct(price: number | undefined, quantity: number | undefined): number {
-    return Number(price) * Number(quantity)
+  calcTotalPricePerProduct(price: number = 0, quantity: number = 0): number {
+    return price * quantity
   }
 }

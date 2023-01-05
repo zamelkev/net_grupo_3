@@ -1,40 +1,44 @@
-<mat-accordion *ngFor="let order of orders; let i = index;">
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Order# {{i + 1}}
-      </mat-panel-title>
-      <mat-panel-description>
+<div class="even-odd">
+  <mat-accordion *ngFor="let order of orders; let i = index;">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="container">
+            <div class="row">
+              <mat-panel-title class="col">
+                <strong>Pedido# {{i + 1}}</strong>
+              </mat-panel-title>
+              <div class="col">
+                Fecha de pedido: {{order.orderTime | date}}
+              </div>
+              <div class="col">
+                Cantidad de productos: {{calcTotalItems(order)}}
+              </div>
+              <div class="col">
+                Precio producto/s: {{calcTotalPrice(order)}}€
+              </div>
+              <div class="col">
+                Entrega: {{order.deliveryTime ?? 'pendiente'}}
+              </div>
+            </div>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let od of order.orderDetails" class="product-item">
         <div class="container">
           <div class="row">
             <div class="col">
-              Order Date: {{order.orderTime | date}}
+              {{od.product?.name}}
             </div>
             <div class="col">
-              Total items: {{calcTotalItems(order)}}
+              Cantidad: {{od.quantity}}
             </div>
             <div class="col">
-              Total Price: {{calcTotalPrice(order)}}€
+              Precio total: {{calcTotalPricePerProduct(od.product?.price, od.quantity)}}€
             </div>
-          </div>
-        </div>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div *ngFor="let od of order.orderDetails">
-      {{od.product?.name}}
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            Nombre: {{od.product?.name}}
-          </div>
-          <div class="col">
-            Cantidad: {{od.quantity}}
-          </div>
-          <div class="col">
-            Precio total: {{calcTotalPricePerProduct(od.product?.price, od.quantity)}}
           </div>
         </div>
       </div>
-    </div>
-  </mat-expansion-panel>
+    </mat-expansion-panel>
   </mat-accordion>
+</div>
