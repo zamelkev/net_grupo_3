@@ -35,8 +35,8 @@ export class AccountService {
     return this.userSubject.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
+  login(email: string, password: string) {
+    return this.http.post<User>(`${environment.apiUrl}api/account`, { email, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));

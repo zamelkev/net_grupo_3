@@ -12,7 +12,7 @@ public class User
     public int Id { get; set; }
     [Column("full_name", TypeName = "varchar(75)", Order = 2)]
     public string? FullName { get; set; }
-    [Required, Column("username")]
+    [Column("username")]
     public string? UserName { get; set; }
     [Required, Column("email")]
     public string? Email { get; set; }
