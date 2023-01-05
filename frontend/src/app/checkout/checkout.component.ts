@@ -100,17 +100,17 @@ export class CheckoutComponent implements OnInit {
     if (response.status == 200)
       // redirect to success page here
       this.handleSuccessfulOrder();
-      
+
     else if (response.status == 500) {
       this.errorReport.isError = true
       this.errorReport.text = response.error
       console.log(response.error);
     }
-      
-
-    //console.log("the what?", response.error);
-    //else
-      //console.log(response.status)
+    else {
+      this.errorReport.isError = true
+      this.errorReport.text = response.error
+      console.log(response.error);
+    }
   }
   handleSuccessfulOrder() {
     this.shoppingService.emptyCart();
