@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 import { ShoppingService } from './services/shopping.service';
 import { AccountService } from './services/account.service';
 import { User } from './models/user.model';
@@ -29,7 +30,8 @@ export class AppComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private shoppingService: ShoppingService,
-    private authenticationService: AccountService
+    private authenticationService: AccountService,
+    private cookieService: CookieService
   ) {
     this.authenticationService.user.subscribe(x => this.user = x);
   }
@@ -58,8 +60,13 @@ export class AppComponent {
 
   logout() {
 
-    this.authenticationService.logout();
+    //this.authenticationService.logout();
+    this.cookieService.set('token_access', "", 4, '/');
 
+  }
+
+  userIsLoggedIn() : boolean{
+    return this.cookieService.get('token_access') == "User";
   }
 
 }
