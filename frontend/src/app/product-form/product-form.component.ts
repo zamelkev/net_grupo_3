@@ -54,6 +54,10 @@ export class ProductFormComponent implements OnInit
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100)]
       }),
+      slug: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
+      }),
       cost: new FormControl(),
       price: new FormControl('', {
         nonNullable: true,
@@ -107,6 +111,7 @@ export class ProductFormComponent implements OnInit
       {
         id: { value: productFromBackend.id, disabled: true },
         name: productFromBackend.name,
+        slug: productFromBackend.slug,
         cost: productFromBackend.cost,
         price: productFromBackend.price,
         stock: productFromBackend.stock,
@@ -123,11 +128,10 @@ export class ProductFormComponent implements OnInit
 
 
   save() {
-    // extraer los datos del formulario y enviar al backend con BookService.create POST
-    // console.log(this.editForm.get("title")?.value);
-
+    if (!this.editForm.valid) return
     let product = {
       name: this.editForm.get("name")?.value,
+      slug: this.editForm.get("slug")?.value,
       price: Number(this.editForm.get("price")?.value),
       cost: Number(this.editForm.get("cost")?.value),
       stock: Number(this.editForm.get("stock")?.value),

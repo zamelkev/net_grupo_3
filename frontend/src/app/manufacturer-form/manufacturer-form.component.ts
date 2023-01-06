@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Manufacturer } from '../models/manufacturer.model';
 import { ManufacturerService } from '../services/manufacturer.service';
@@ -24,10 +24,22 @@ export class ManufacturerFormComponent implements OnInit {
   createFormGroup() {
     return new FormGroup({
       id: new FormControl({ value: null, disabled: true }),
-      fullName: new FormControl(),
-      slug: new FormControl(),
-      imgUrl: new FormControl(),
-      foundationDate: new FormControl()
+      fullName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(2), Validators.maxLength(100)]
+      }),
+      slug: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
+      }),
+      imgUrl: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
+      foundationDate: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      })
     })
   }
 
@@ -66,7 +78,7 @@ export class ManufacturerFormComponent implements OnInit {
   }
 
   save() {
-
+    if (!this.editForm.valid) return
     let manufacturer = {
       name: this.editForm.get("fullName")?.value,
       slug: this.editForm.get("slug")?.value,

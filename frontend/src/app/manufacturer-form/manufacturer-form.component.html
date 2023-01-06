@@ -14,24 +14,48 @@
           <mat-label>Id</mat-label>
           <input matInput type="number" formControlName="id">
         </mat-form-field>
+
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Nombre completo</mat-label>
           <input matInput formControlName="fullName">
+
+          <mat-error *ngIf="editForm.get('fullName')!.invalid && (editForm.get('fullName')!.dirty || editForm.get('fullName')!.touched)">
+            <span *ngIf="editForm.get('fullName')!.getError('required')">Nombre obligatorio</span>
+            <span *ngIf="editForm.get('fullName')!.getError('minlength') || editForm.get('fullName')!.getError('maxlength')">Longitud debe estar entre 2 y 100 caracteres</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Slug</mat-label>
           <input matInput formControlName="slug">
+
+          <mat-error *ngIf="editForm.get('slug')!.invalid && (editForm.get('slug')!.dirty || editForm.get('slug')!.touched)">
+            <span *ngIf="editForm.get('slug')!.getError('required')">Slug obligatorio</span>
+            <span *ngIf="editForm.get('slug')!.getError('minlength') || editForm.get('slug')!.getError('maxlength')">Longitud debe estar entre 5 y 100</span>
+            <span *ngIf="editForm.get('slug')!.getError('pattern')">Introducir un slug valido, solo minusculas, numeros, y snake_case</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Url de Imagen</mat-label>
           <input matInput formControlName="imgUrl">
+
+          <mat-error *ngIf="editForm.get('imgUrl')!.invalid && (editForm.get('imgUrl')!.dirty || editForm.get('imgUrl')!.touched)">
+            <span *ngIf="editForm.get('imgUrl')!.getError('required')">Url de la imagen obligatoria</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Fecha: </mat-label>
           <input matInput formControlName="foundationDate">
+
+          <mat-error *ngIf="editForm.get('foundationDate')!.invalid && (editForm.get('foundationDate')!.dirty || editForm.get('foundationDate')!.touched)">
+            <span *ngIf="editForm.get('foundationDate')!.getError('required')">Fecha obligatoria</span>
+          </mat-error>
+
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit">Guardar</button>
