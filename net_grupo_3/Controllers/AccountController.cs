@@ -29,5 +29,18 @@ public class AccountController : ControllerBase {
         }
     }
 
+    [HttpPost("signup")]
+    public IActionResult Signup(User user) {
+        try
+        {
+            return Ok(UserRepository.Signup(user));
+        }
+        catch (Exception ex)
+        {
+            Logger.LogWarning("No se ha podido crear el Usuario", ex);
+            return BadRequest();
+        }
+    }
+
 
 }

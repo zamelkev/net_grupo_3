@@ -23,4 +23,10 @@ public class UserDbRepository : IUserRepository
             .Where(u => u.Password == user.Password)
             .First();
     }
+
+    public User Signup(User user) {
+        Context.Users.Add(user);
+        Context.SaveChanges();
+        return user;
+    }
 }

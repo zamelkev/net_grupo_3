@@ -7,4 +7,5 @@ public interface IUserRepository
     User FindById(int id);
     IList<User> FindAll();
     User Login(User user);
+    User Signup(User user);
 }
