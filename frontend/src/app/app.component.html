@@ -17,34 +17,46 @@
       </span>
       <span routerLink="/home" class="fill-remaining-space pointer"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</span>
       <!--<button mat-icon-button routerLink="/login">
-        <mat-icon>account_circle</mat-icon>
-      </button>-->
-
-
-      <div *ngIf="userIsLoggedIn()">
-        <button mat-icon-button [matMenuTriggerFor]="user">
+    <mat-icon>account_circle</mat-icon>
+  </button>-->
+      <div *ngIf="!userIsLoggedIn()">
+        <button mat-icon-button [matMenuTriggerFor]="userNotLoggedIn">
           <mat-icon>account_circle</mat-icon>
         </button>
-        <mat-menu #user="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item (click)="logout()" routerLink="/">
-            <span>Logout</span>
+        <mat-menu #userNotLoggedIn="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item routerLink="/login">
+            <span>Entrar</span>
+          </button>
+          <button mat-menu-item routerLink="/signup">
+            <span>Registrarse</span>
           </button>
         </mat-menu>
       </div>
 
+        <div *ngIf="userIsLoggedIn()">
+          <button mat-icon-button [matMenuTriggerFor]="user">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #user="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item (click)="logout()" routerLink="/">
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
 
 
 
 
 
-      <span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>shopping_cart</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
 
-        </mat-menu>
-      </span>
+        <span>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+
+          </mat-menu>
+        </span>
     </mat-toolbar>
     <div class="contador">
       Contador {{count}}
