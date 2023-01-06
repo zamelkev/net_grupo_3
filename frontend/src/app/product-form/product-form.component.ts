@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
@@ -50,17 +50,35 @@ export class ProductFormComponent implements OnInit
   createFormGroup() {
     return new FormGroup({
       id: new FormControl({ value: null, disabled: true }),
-      name: new FormControl(),
+      name: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100)]
+      }),
       cost: new FormControl(),
-      price: new FormControl(),
-      stock: new FormControl(),
+      price: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(250), Validators.max(100000)]
+      }),
+      stock: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(0), Validators.max(100000)]
+      }),
       tax: new FormControl(),
-      releaseDate: new FormControl(),
+      releaseDate: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
       cpu: new FormControl(),
       ram: new FormControl(),
       graphicCard: new FormControl(),
-      categoryId: new FormControl(),
-      manufacturerId: new FormControl(),
+      categoryId: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
+      manufacturerId: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
     });
   }
   fetchProductWithInc(id: number | string | undefined) {
