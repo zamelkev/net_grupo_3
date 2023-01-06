@@ -34,9 +34,14 @@
       </div>
 
         <div *ngIf="userIsLoggedIn()">
-          <button mat-icon-button [matMenuTriggerFor]="user">
-            <mat-icon>account_circle</mat-icon>
-          </button>
+          <div class="username">
+            <button mat-icon-button [matMenuTriggerFor]="user">
+              <mat-icon>account_circle</mat-icon>
+            </button>
+            <p>
+              {{getUserName()}}
+            </p>
+          </div>
           <mat-menu #user="matMenu" [overlapTrigger]="false">
             <button mat-menu-item (click)="logout()" routerLink="/">
               <span>Salir</span>

@@ -70,6 +70,10 @@ export class AppComponent {
     return this.cookieService.get('token_access') == "User";
   }
 
+  getUserName(): string {
+    return this.cookieService.get('token_user');
+  }
+
 }
 
 
