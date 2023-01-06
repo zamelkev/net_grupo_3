@@ -1,9 +1,9 @@
 <div class="card">
-    <h4 class="card-header">Register</h4>
+    <h4 class="card-header">Registrarse</h4>
     <div class="card-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-                <label class="form-label">First Name</label>
+                <label class="form-label">Nombre</label>
                 <input type="text" formControlName="firstName" class="form-control" />
                 <!--<input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />-->
                 <!--<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
@@ -11,7 +11,7 @@
                 </div>-->
             </div>
             <div class="mb-3">
-              <label class="form-label">Last Name</label>
+              <label class="form-label">Apellidos</label>
               <input type="text" formControlName="lastName" class="form-control" />
               <!--<input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />-->
               <!--<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
@@ -19,7 +19,7 @@
   </div>-->
             </div>
             <div class="mb-3">
-              <label class="form-label">Username</label>
+              <label class="form-label">Nombre de Usuario</label>
               <input type="text" formControlName="username" class="form-control" />
               <!--<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
               <!--<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
@@ -27,7 +27,15 @@
   </div>-->
             </div>
             <div class="mb-3">
-                <label class="form-label">Password</label>
+              <label class="form-label">Correo</label>
+              <input type="text" formControlName="email" class="form-control" />
+              <!--<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
+              <!--<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div *ngIf="f.username.errors.required">Username is required</div>
+  </div>-->
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
                 <input type="password" formControlName="password" class="form-control" />
                 <!--<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
                 <!--<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
@@ -36,12 +44,13 @@
                 </div>-->
             </div>
             <div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-                    Register
+              <!--<button [disabled]="loading" class="btn btn-primary">-->
+                <button type="submit" class="btn btn-primary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                  Registrarse
                 </button>
-                <a routerLink="../login" class="btn btn-link">Cancel</a>
-            </div>
+                <a routerLink="../login" class="btn btn-link">Cancelar</a>
+</div>
         </form>
     </div>
 </div>
