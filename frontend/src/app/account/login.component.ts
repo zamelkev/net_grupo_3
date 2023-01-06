@@ -47,14 +47,16 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.f['email'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: userFromDB => {
           // get return url from query parameters or default to home page
           //
           //const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           //this.router.navigateByUrl(returnUrl);
           this.cookieService.set('token_access', "User", 4, '/');
           console.log("entrar cookie: " + this.cookieService.get('token_access'));
-          this.router.navigate(['/']);
+          this.cookieService.set('token_user', userFromDB!.username + '', 4, '/');
+          //this.router.navigate(['/']);
+          console.log(userFromDB)
         },
         error: error => {
           this.alertService.error(error);
