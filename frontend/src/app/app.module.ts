@@ -133,7 +133,7 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
       { path: 'products/category/:slug', component: ProductByCategoryListComponent },
 
-      { path: 'products/:id/detail', component: ProductDetailComponent },
+      { path: 'products/:slug/detail', component: ProductDetailComponent },
       // shopping routes
       { path: 'checkout', component: CheckoutComponent },
       { path: 'shopping_report', component: ShoppingStatusComponent },
