@@ -172,13 +172,9 @@ button {
     font-weight: bold;
   }
 
-
-
   .mat-header-row {
     display: none;
   }
-
-
 
   .mat-row {
     flex-direction: column;
@@ -186,5 +182,4 @@ button {
     padding: 8px 24px;
   }
 
-  
 }

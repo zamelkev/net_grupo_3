@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { ShoppingService } from './services/shopping.service';
-import { Product } from './models/product.model';
 import { CookieService } from 'ngx-cookie-service';
+import { ShoppingService } from './services/shopping.service';
+import { AccountService } from './services/account.service';
+import { User } from './models/user.model';
+import { Product } from './models/product.model';
+
 
 
 
@@ -15,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent {
   title = 'frontend';
   count: number | undefined;
+  user?: User | null;
   cartTracking: Product[] = [];
 
   Breakpoints = Breakpoints;
@@ -30,8 +34,11 @@ export class AppComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private shoppingService: ShoppingService,
+    private authenticationService: AccountService,
     private cookieService: CookieService
-  ) { }
+  ) {
+    this.authenticationService.user.subscribe(x => this.user = x);
+  }
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
@@ -61,6 +68,23 @@ export class AppComponent {
       this.currentBreakpoint = '(min-width: 500px)';
     }
   }
+
+  logout() {
+
+    //this.authenticationService.logout();
+    this.cookieService.set('token_access', "", 4, '/');
+    this.cookieService.set('token_user',"", 4, '/');
+
+  }
+
+  userIsLoggedIn() : boolean{
+    return this.cookieService.get('token_access') == "User";
+  }
+
+  getUserName(): string {
+    return this.cookieService.get('token_user');
+  }
+
 }
 
 

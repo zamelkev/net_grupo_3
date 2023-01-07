@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';
@@ -50,9 +50,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 /*import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';*/
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './account/login.component';
+import { RegisterComponent } from './account/signup.component';
 import { AuthGuardGuard } from './auth-guard.guard';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { AccountService } from './services/account.service';
+import { environment } from '../environments/environment';
 import { ShoppingStatusComponent } from './shopping-status/shopping-status.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 
@@ -78,7 +81,8 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     ProductListCrudComponent,
     ProductDetailCrudComponent,
     LoginComponent,
-    SignupComponent,
+    RegisterComponent,
+    
     ShoppingStatusComponent,
     OrdersListComponent
     
@@ -113,11 +117,13 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
+      { path: 'signup', component: RegisterComponent },
+
       { path: 'products', component: ProductListComponent },
       // products filtered by manufacturer/category
       { path: 'products/manufacturer/:slug', component: ProductByManufacturerListComponent },
@@ -155,7 +161,10 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
-    { provide: CookieService}
+    { provide: CookieService },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    
    
   ],
   bootstrap: [AppComponent]
