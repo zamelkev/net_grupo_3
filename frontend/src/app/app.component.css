@@ -13,3 +13,12 @@
 .contador {
     display: none;
 }
+p.user-name-display {
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+}
+.user-icon {
+  height: 1.9rem;
+}
+

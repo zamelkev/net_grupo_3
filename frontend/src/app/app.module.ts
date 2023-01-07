@@ -8,6 +8,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 import { CookieService } from 'ngx-cookie-service';
+import { LOCALE_ID } from '@angular/core';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
 
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductByManufacturerListComponent } from './product-by-manufacturer-list/product-by-manufacturer-list.component';
@@ -82,10 +86,10 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     ProductDetailCrudComponent,
     LoginComponent,
     RegisterComponent,
-    
+
     ShoppingStatusComponent,
     OrdersListComponent
-    
+
   ],
   imports: [
     MatButtonModule,
@@ -137,11 +141,11 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
 
       { path: 'back_office/products/:id/edit', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
       { path: 'back_office/products/new', component: ProductFormComponent, canActivate: [AuthGuardGuard] },
-      
+
       //{ path: 'categories', component: CategoriesListComponent },
 
 
-     
+
       // back-office routes
       { path: 'back_office', component: BackOfficeComponent, canActivate: [AuthGuardGuard] },
       { path: 'back_office/products', component: ProductListCrudComponent, canActivate: [AuthGuardGuard] },
@@ -161,6 +165,7 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: LOCALE_ID, useValue: 'es' },
     { provide: CookieService },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
