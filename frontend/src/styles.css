@@ -186,6 +186,21 @@ button {
 
   #footer-right {
     display: none;
+    bottom: 0px;
   }
 
+  .mat-table {
+    border: 0;
+    vertical-align: middle
+  }
+
+  .mat-table caption {
+    font-size: 1em;
+  }
+
+  .mat-cell {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
 }
