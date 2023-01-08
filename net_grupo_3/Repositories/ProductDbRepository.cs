@@ -94,7 +94,11 @@ public class ProductDbRepository : IProductRepository
         Product product = FindById(id);
         if (product == null)
             return false;
-
+        // delete related order details
+        Context.OrderDetails.Where(od => od.ProductId == id)
+            .ToList()
+            .ForEach(od => Context.OrderDetails.Remove(od));
+        Context.SaveChanges();
         Context.Products.Remove(product);
 
         Context.SaveChanges();
