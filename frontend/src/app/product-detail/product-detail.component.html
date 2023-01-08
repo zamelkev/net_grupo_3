@@ -36,7 +36,9 @@
         <div class="row negative_margin">
           <div class="col">
             <div>
-              <span class="gray-text small-text fw-bold">{{product.stock}} en stock | disponible desde {{product.releaseDate | date}}</span>
+              <span class="me-2 mb-3 my_accent_text fw-bold">
+                <span>{{product.stock}} en stock</span> | <span>disponible desde {{product.releaseDate | date}}</span>
+              </span>
             </div>
           </div>
         </div>

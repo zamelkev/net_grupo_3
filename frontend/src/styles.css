@@ -221,10 +221,12 @@ button {
   color: #fff;
 }
 
-.my_accent_text {
+.my_accent_text span {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: inline-block;
-  border-radius: 0.6rem;
-  padding: 0 0.3rem;
-  line-height: 1.2rem;
+  border-radius: 5.6rem;
+  padding: 0.3rem 0.5rem;
+  line-height: 1rem;
   color: #000;
 }
