@@ -204,3 +204,11 @@ button {
     word-break: break-word;
   }
 }
+/** Override material palette */
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: #591f83;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-badge-accent .mat-badge-content {
+  background-color: #f8a300;
+}
