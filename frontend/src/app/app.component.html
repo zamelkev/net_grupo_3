@@ -43,6 +43,9 @@
           </p>
         </div>
         <mat-menu #user="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item routerLink="/orders_list">
+            <span>Ver pedidos</span>
+          </button>
           <button mat-menu-item (click)="logout()" routerLink="/">
             <span>Salir</span>
           </button>
