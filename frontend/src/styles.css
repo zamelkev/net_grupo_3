@@ -206,9 +206,25 @@ button {
 }
 /** Override material palette */
 
-.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary, .my_primary_text span{
   background-color: #591f83;
 }
-.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-badge-accent .mat-badge-content {
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-badge-accent .mat-badge-content, .my_accent_text span {
   background-color: #f8a300;
+}
+
+.my_primary_text span {
+  display: inline-block;
+  border-radius: 5.6rem;
+  padding: 0.3rem 0.5rem;
+  line-height: 1rem;
+  color: #fff;
+}
+
+.my_accent_text {
+  display: inline-block;
+  border-radius: 0.6rem;
+  padding: 0 0.3rem;
+  line-height: 1.2rem;
+  color: #000;
 }
