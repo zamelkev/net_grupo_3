@@ -8,43 +8,59 @@
             <div class="mb-3">
               <label class="form-label">Nombre</label>
               <input type="text" formControlName="firstName" class="form-control" />
+              <mat-error *ngIf="form.get('firstName')!.invalid && (form.get('firstName')!.dirty || form.get('firstName')!.touched)">
+                <span *ngIf="form.get('firstName')!.getError('required')">Nombre obligatorio</span>
+              </mat-error>
               <!--<input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />-->
               <!--<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                  <div *ngIf="f.firstName.errors.required">First Name is required</div>
-              </div>-->
+      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+  </div>-->
             </div>
             <div class="mb-3">
               <label class="form-label">Apellidos</label>
               <input type="text" formControlName="lastName" class="form-control" />
+              <mat-error *ngIf="form.get('lastName')!.invalid && (form.get('lastName')!.dirty || form.get('lastName')!.touched)">
+                <span *ngIf="form.get('lastName')!.getError('required')">Apellidos obligatorios</span>
+              </mat-error>
               <!--<input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />-->
               <!--<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                  <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-              </div>-->
+      <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+  </div>-->
             </div>
             <div class="mb-3">
               <label class="form-label">Nombre de Usuario</label>
               <input type="text" formControlName="username" class="form-control" />
+              <mat-error *ngIf="form.get('username')!.invalid && (form.get('username')!.dirty || form.get('username')!.touched)">
+                <span *ngIf="form.get('username')!.getError('required')">Nombre de usuario obligatorio</span>
+              </mat-error>
               <!--<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
               <!--<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                  <div *ngIf="f.username.errors.required">Username is required</div>
-              </div>-->
+      <div *ngIf="f.username.errors.required">Username is required</div>
+  </div>-->
             </div>
             <div class="mb-3">
               <label class="form-label">Correo</label>
               <input type="text" formControlName="email" class="form-control" />
+              <mat-error *ngIf="form.get('email')!.invalid && (form.get('email')!.dirty || form.get('email')!.touched)">
+                <span *ngIf="form.get('email')!.getError('required')">Email obligatorio</span>
+              </mat-error>
               <!--<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
               <!--<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                  <div *ngIf="f.username.errors.required">Username is required</div>
-              </div>-->
+      <div *ngIf="f.username.errors.required">Username is required</div>
+  </div>-->
             </div>
             <div class="mb-3">
               <label class="form-label">Contraseña</label>
               <input type="password" formControlName="password" class="form-control" />
+              <mat-error *ngIf="form.get('password')!.invalid && (form.get('password')!.dirty || form.get('password')!.touched)">
+                <span *ngIf="form.get('password')!.getError('required')">Contraseña obligatorio</span>
+                <span *ngIf="form.get('password')!.getError('minlength')">Longitud debe ser de mínimo 6 carácteres</span>
+              </mat-error>
               <!--<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
               <!--<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                  <div *ngIf="f.password.errors.required">Password is required</div>
-                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-              </div>-->
+      <div *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+  </div>-->
             </div>
             <div>
               <button mat-raised-button class="bottom-0 mb-3 me-3" color="primary" type="submit">
