@@ -22,3 +22,6 @@ p.user-name-display {
   height: 1.9rem;
 }
 
+div.mat-menu-content {
+  overflow-x: hidden !important;
+}

@@ -6,6 +6,7 @@ import { ShoppingService } from './services/shopping.service';
 import { AccountService } from './services/account.service';
 import { User } from './models/user.model';
 import { Product } from './models/product.model';
+import { ViewEncapsulation } from '@angular/core';
 
 
 
@@ -13,7 +14,8 @@ import { Product } from './models/product.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'frontend';
