@@ -25,3 +25,6 @@ p.user-name-display {
 ::ng-deep div.mat-menu-content {
   overflow: hidden !important;
 }
+.footer-fix {
+    max-width: 100%;
+}
