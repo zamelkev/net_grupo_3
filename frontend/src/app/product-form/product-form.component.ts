@@ -70,7 +70,7 @@ export class ProductFormComponent implements OnInit
       tax: new FormControl(),
       releaseDate: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.pattern('([0-9]){4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])')]
       }),
       cpu: new FormControl(),
       ram: new FormControl(),

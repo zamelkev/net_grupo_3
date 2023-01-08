@@ -68,6 +68,7 @@
 
           <mat-error *ngIf="editForm.get('releaseDate')!.invalid && (editForm.get('releaseDate')!.dirty || editForm.get('releaseDate')!.touched)">
             <span *ngIf="editForm.get('releaseDate')!.getError('required')">Año de lanzamiento obligatorio</span>
+            <span *ngIf="editForm.get('releaseDate')!.getError('pattern')">Introducir una fecha valida (yyyy-mm-dd)</span>
           </mat-error>
 
         </mat-form-field>
