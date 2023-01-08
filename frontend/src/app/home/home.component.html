@@ -19,7 +19,7 @@
 </div>
 <div class="container">
   <div class="row justify-content-center position-relative">
-    <mat-card class="card1 col mx-3 mb-5" *ngFor="let manufacturer of manufacturers">
+    <mat-card class="card1 manufacturers-fix col mx-3 mb-5" *ngFor="let manufacturer of manufacturers;let last = last;" [ngClass]="{'me-auto': last}">
       <mat-card-header>
         <mat-card-title routerLink="/products/manufacturer/{{manufacturer.slug}}">{{manufacturer.name}}</mat-card-title>
       </mat-card-header>
