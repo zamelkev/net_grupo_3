@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  error:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,7 +61,8 @@ export class LoginComponent implements OnInit {
           console.log(userFromDB)
         },
         error: error => {
-          this.alertService.error(error);
+          //this.alertService.error(error);
+          this.error = true;
           this.loading = false;
         }
       });

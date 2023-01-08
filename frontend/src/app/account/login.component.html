@@ -22,6 +22,9 @@
               </div>-->
             </div>
             <div>
+              <div *ngIf="error" class="alert alert-danger wrong-credentials" role="alert">
+                Los credenciales no son correctos
+              </div>
               <button mat-raised-button class="bottom-0 mb-3 me-3" color="primary" type="submit">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
                 Entrar
