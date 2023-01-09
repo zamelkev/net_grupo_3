@@ -29,4 +29,8 @@ public class UserDbRepository : IUserRepository
         Context.SaveChanges();
         return user;
     }
+
+    public int FindByUserName(string userName) {
+        return Context.Users.Where(u => u.UserName == userName).First().Id;
+    }
 }

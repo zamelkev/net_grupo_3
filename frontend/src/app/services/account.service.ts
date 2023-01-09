@@ -45,6 +45,10 @@ export class AccountService {
       }));
   }
 
+  findUserIdByUserName(userName: string) {
+    return this.http.get<number>(`${environment.apiUrl}api/account/id/${userName}`)
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');

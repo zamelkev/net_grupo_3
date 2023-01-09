@@ -3,6 +3,8 @@ import { Order } from '../models/order.model';
 import { OrderService } from '../services/order.service';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
+import { AccountService } from '../services/account.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-orders-list',
@@ -11,17 +13,21 @@ import { ProductService } from '../services/product.service';
 })
 export class OrdersListComponent implements OnInit {
   orders: Order[] = [];
+  userId: number = 0;
 
   constructor(
     private orderService: OrderService,
-    private productService: ProductService
+    private productService: ProductService,
+    private accountService: AccountService,
+    private cookieService: CookieService
 ) { }
 
   ngOnInit(): void {
-    this.findOrders()
+    this.handleUserId()
+    //this.findOrders()
   }
-    findOrders() {
-      this.orderService.findAll(1).subscribe(
+    findOrders(userId: number) {
+      this.orderService.findAll(userId).subscribe(
         {
           next: ordersFromBackend => this.orders = ordersFromBackend,
           error: err => console.log(err)
@@ -37,5 +43,18 @@ export class OrdersListComponent implements OnInit {
   }
   calcTotalPricePerProduct(price: number = 0, quantity: number = 0): number {
     return price * quantity
+  }
+
+  handleUserId() {
+    const userName = this.cookieService.get('token_user')
+
+    if (userName != '') {
+      this.accountService.findUserIdByUserName(userName).subscribe(
+        {
+          next: response => this.findOrders(response),
+          error: err => console.log(err)
+        }
+      );
+    }
   }
 }

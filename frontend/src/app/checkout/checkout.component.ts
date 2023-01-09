@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../models/order.model';
+import { AccountService } from '../services/account.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class CheckoutComponent implements OnInit {
     isError : false,
     text: ''
   }
+  userId: number = 0
 
   constructor(
     private cookieService: CookieService,
@@ -32,7 +34,7 @@ export class CheckoutComponent implements OnInit {
     private fb: FormBuilder,
     private shoppingService: ShoppingService,
     private router: Router,
-
+    private accountService: AccountService,
   ) {
     this.itemsForm = this.fb.group({
       //name: '',
@@ -73,18 +75,38 @@ export class CheckoutComponent implements OnInit {
     this.calcTotal()
     this.handleRemoveItemFromCartIcon(i)
   }
+
+  handleUserId() {
+    const userName = this.cookieService.get('token_user')
+
+    if (userName != '') {
+      this.accountService.findUserIdByUserName(userName).subscribe(
+        {
+          next: response => this.userId = response,
+          error: err => this.handleResponse(err)
+        }
+      );
+    }
+  }
+
   // posting the order
   onSubmit() {
-    //console.log(this.itemsForm.value.items);
+    // Control de usuario
+    const userName = this.cookieService.get('token_user')
+    if (userName == '') {
+      this.router.navigate(['/login']);
+      return
+    }
+    
+    
+
     const formattedArray = this.itemsForm.value.items.map((el:any )=> { return { productId: el.id, quantity: el.quantity } })
-    //console.log(formattedArray)
-    //const orderDate: string = new Date().toISOString().slice(0, 19)
     const tzoffset:number = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
     const orderDate: string = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
     const order: Order = {
       "orderTime": orderDate,
       "orderDetails": formattedArray,
-      "userId": 1
+      "userId": this.userId
     }
     // post order to shopping service
     this.shoppingService.create(order).subscribe(
@@ -127,6 +149,7 @@ export class CheckoutComponent implements OnInit {
       if (this.cartTracking.length == 0)
         this.redirectToHome()
     })
+    this.handleUserId()
   }
   fetchCart() {
     const ids: number[] = JSON.parse(this.cookieService.get('cart')).map((el: { id: any; }) => Number(el.id));

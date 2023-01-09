@@ -42,5 +42,10 @@ public class AccountController : ControllerBase {
         }
     }
 
+    [HttpGet("id/{userName}")]
+    public int FindUserIdByUserName(string userName) { 
+        return UserRepository.FindByUserName(userName);
+    }
+
 
 }

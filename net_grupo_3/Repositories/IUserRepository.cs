@@ -8,4 +8,5 @@ public interface IUserRepository
     IList<User> FindAll();
     User Login(User user);
     User Signup(User user);
+    int FindByUserName(string userName);
 }
