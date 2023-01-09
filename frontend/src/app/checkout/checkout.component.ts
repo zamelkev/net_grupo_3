@@ -118,20 +118,22 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleResponse(response: any) {
-    //console.log(response)
-    if (response.status == 200)
+    console.log("response: " + this.cookieService.get('error_http') + " status: " + this.cookieService.get('error_http_status'));
+    var status = this.cookieService.get('error_http_status');
+    var msg = this.cookieService.get('error_http');
+    if (status == '200')
       // redirect to success page here
       this.handleSuccessfulOrder();
 
-    else if (response.status == 500) {
+    else if (status == '500') {
       this.errorReport.isError = true
-      this.errorReport.text = response.error
-      console.log(response.error);
+      this.errorReport.text = msg;
+      console.log(msg);
     }
     else {
       this.errorReport.isError = true
-      this.errorReport.text = response.error
-      console.log(response.error);
+      this.errorReport.text = msg;
+      console.log(msg);
     }
   }
   handleSuccessfulOrder() {
