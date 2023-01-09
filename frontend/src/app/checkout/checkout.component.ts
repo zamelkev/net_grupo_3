@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { ProductsCart } from '../models/products-cart';
-import { ShoppingService } from '../services/shopping.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../models/order.model';
 import { AccountService } from '../services/account.service';
+import { ShoppingService } from '../services/shopping.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 
 
 @Component({
@@ -111,18 +114,18 @@ export class CheckoutComponent implements OnInit {
     // post order to shopping service
     this.shoppingService.create(order).subscribe(
       {
-        next: response => this.handleResponse(response),
-        error: err => this.handleResponse(err)
+        next: response => this.handleResponse(response) ,//this.handleResponse(response),
+        error: (err: Error) => this.handleResponse(err) //this.handleResponse(response)
       }
     );
   }
 
   handleResponse(response: any) {
-    //console.log(response)
-    if (response.status == 200)
+    console.log(response)
+    if (response.status == 200) {
       // redirect to success page here
       this.handleSuccessfulOrder();
-
+    }
     else if (response.status == 500) {
       this.errorReport.isError = true
       this.errorReport.text = response.error
@@ -132,6 +135,7 @@ export class CheckoutComponent implements OnInit {
       this.errorReport.isError = true
       this.errorReport.text = response.error
       console.log(response.error);
+      console.log(response)
     }
   }
   handleSuccessfulOrder() {

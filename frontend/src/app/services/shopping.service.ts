@@ -25,7 +25,7 @@ export class ShoppingService {
   
   // API Orders
   create(order: Order) {
-    return this.http.post<Order>(this.url, order, { observe: 'response' } );
+    return this.http.post<Order | Error>(this.url, order, { observe: 'response' });
   }
 
   nextCount() {
