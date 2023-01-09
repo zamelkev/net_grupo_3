@@ -7,4 +7,14 @@
 .product-item:nth-child(odd) {
   background-color: rgba(237, 188, 135, 0.37);
 }
+.medium {
+  font-weight: 500;
+}
+.subtitule {
+  color: #000;
+}
+.vertical-padding {
+  padding-top:1.5rem;
+  padding-bottom:1.5rem;
+}
 

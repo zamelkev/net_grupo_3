@@ -1,41 +1,45 @@
 <div class="even-odd">
+  <h2 class="fw-bold text-center">Pedidos</h2>
   <mat-accordion *ngFor="let order of orders; let i = index;">
     <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class="vertical-padding">
         <mat-panel-description>
           <div class="container">
             <div class="row">
               <mat-panel-title class="col">
                 <strong>Pedido# {{i + 1}}</strong>
               </mat-panel-title>
-              <div class="col">
-                Fecha de pedido: {{order.orderTime | date}}
+              <div class="col subtitule">
+                Fecha de pedido: <span class="medium">{{order.orderTime | date}}</span>
               </div>
-              <div class="col">
-                Cantidad de productos: {{calcTotalItems(order)}}
-              </div>
-              <div class="col">
-                Precio producto/s: {{calcTotalPrice(order)}}€
-              </div>
-              <div class="col">
-                Entrega: {{order.deliveryTime ?? 'pendiente'}}
-              </div>
+              <div class="col subtitule">
+                Cantidad de productos: <span class="medium">{{calcTotalItems(order)}}</span>
+</div>
+              <div class="col subtitule">
+                Precio total: <span class="medium">{{calcTotalPrice(order)}}€</span>
+</div>
+              <div class="col subtitule">
+                Entrega: <span class="medium">{{order.deliveryTime ?? 'pendiente'}}</span>
+</div>
             </div>
           </div>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div *ngFor="let od of order.orderDetails" class="product-item">
+      <div *ngFor="let od of order.orderDetails" class="product-item vertical-padding">
         <div class="container">
           <div class="row">
             <div class="col">
-              {{od.product?.name}}
+              <strong class="medium">{{od.product?.name}}</strong>
             </div>
             <div class="col">
-              Cantidad: {{od.quantity}}
-            </div>
+              Cantidad: <strong class="medium">{{od.quantity}}</strong>
+</div>
             <div class="col">
-              Precio total: {{calcTotalPricePerProduct(od.product?.price, od.quantity)}}€
-            </div>
+              Precio unidad: <strong class="medium">{{od.product?.price}}€</strong>
+</div>
+            <div class="col">
+              Precio total: <strong class="medium">{{calcTotalPricePerProduct(od.product?.price, od.quantity)}}€</strong>
+</div>
           </div>
         </div>
       </div>
