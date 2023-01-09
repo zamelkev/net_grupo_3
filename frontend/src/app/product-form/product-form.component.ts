@@ -116,7 +116,7 @@ export class ProductFormComponent implements OnInit
         price: productFromBackend.price,
         stock: productFromBackend.stock,
         tax: productFromBackend.tax,
-        releaseDate: productFromBackend.releaseDate,
+        releaseDate: productFromBackend.releaseDate.substring(0,10),
         cpu: productFromBackend.cpu,
         ram: productFromBackend.ram,
         graphicCard: productFromBackend.graphicCard,

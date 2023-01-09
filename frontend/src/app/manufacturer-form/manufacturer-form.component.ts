@@ -67,7 +67,7 @@ export class ManufacturerFormComponent implements OnInit {
               fullName: manufacturerFromBackend.name,
               slug: manufacturerFromBackend.slug,
               imgUrl: manufacturerFromBackend.imgUrl,
-              foundationDate: manufacturerFromBackend.foundationDate             
+              foundationDate: manufacturerFromBackend?.foundationDate?.substring(0, 10)             
 
             } as any);
           this.id = manufacturerFromBackend.id;
