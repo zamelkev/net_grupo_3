@@ -78,11 +78,15 @@ export class AppComponent {
   }
 
   userIsLoggedIn() : boolean{
-    return this.cookieService.get('token_access') == "User";
+    return this.cookieService.get('token_user') != "";
   }
 
   getUserName(): string {
     return this.cookieService.get('token_user');
+  }
+
+  userIsAdmin() {
+    return this.cookieService.get('token_access') == 'Admin';
   }
 
 }

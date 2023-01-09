@@ -53,9 +53,16 @@ export class LoginComponent implements OnInit {
           //
           //const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           //this.router.navigateByUrl(returnUrl);
-          this.cookieService.set('token_access', "User", 4, '/');
-          console.log("entrar cookie: " + this.cookieService.get('token_access'));
+          // Check user permissions
+          if (userFromDB.role == 2) {
+            this.cookieService.set('token_access', "Admin", 4, '/');
+            console.log("entrar cookie: " + this.cookieService.get('token_access'));
+          } else if (userFromDB.role == 1) {
+            this.cookieService.set('token_access', "User", 4, '/');
+            console.log("entrar cookie: " + this.cookieService.get('token_access'));
+          }
           console.log(userFromDB.userName)
+
           this.cookieService.set('token_user', userFromDB.userName + '', 4, '/');
           this.router.navigate(['/']);
           console.log(userFromDB)

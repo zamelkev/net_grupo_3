@@ -16,7 +16,7 @@ export class AuthGuardGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const cookie = this.cookieService.get('token_access');
-    if (cookie == "User") {     
+    if (cookie == "Admin") {     
       return true;
     } else {
       this.router.navigate(['/login']);
@@ -28,7 +28,7 @@ export class AuthGuardGuard implements CanActivate, CanActivateChild {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const cookie = this.cookieService.get('token_access');
-    if (cookie == "User") {
+    if (cookie == "Admin") {
       return true;
     } else {
       this.router.navigate(['/login']);
