@@ -30,7 +30,7 @@ export class ManufacturerFormComponent implements OnInit {
       }),
       slug: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
+        validators: [Validators.required, Validators.minLength(2), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
       }),
       imgUrl: new FormControl('', {
         nonNullable: true,

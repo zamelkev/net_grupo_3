@@ -32,7 +32,7 @@
 
           <mat-error *ngIf="editForm.get('slug')!.invalid && (editForm.get('slug')!.dirty || editForm.get('slug')!.touched)">
             <span *ngIf="editForm.get('slug')!.getError('required')">Slug obligatorio</span>
-            <span *ngIf="editForm.get('slug')!.getError('minlength') || editForm.get('slug')!.getError('maxlength')">Longitud debe estar entre 5 y 100</span>
+            <span *ngIf="editForm.get('slug')!.getError('minlength') || editForm.get('slug')!.getError('maxlength')">Longitud debe estar entre 2 y 100</span>
             <span *ngIf="editForm.get('slug')!.getError('pattern')">Introducir un slug valido, solo minusculas, numeros, y snake_case</span>
           </mat-error>
 
