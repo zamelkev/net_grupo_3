@@ -29,6 +29,7 @@ export class CheckoutComponent implements OnInit {
     isError : false,
     text: ''
   }
+  err: any;
   userId: number = 0
 
   constructor(
@@ -121,22 +122,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleResponse(response: any) {
-    console.log(response)
-    if (response.status == 200) {
+    var status = this.cookieService.get('error_http_status');
+    var msg = this.cookieService.get('error_http');
+    if (response.status == '200') {
       // redirect to success page here
       this.handleSuccessfulOrder();
     }
-    else if (response.status == 500) {
+    else if (status == "500") {
       this.errorReport.isError = true
-      this.errorReport.text = response.error
-      console.log(response.error);
+      this.errorReport.text = msg
+      console.log(msg);
     }
     else {
       this.errorReport.isError = true
-      this.errorReport.text = response.error
-      console.log(response.error);
-      console.log(response)
+      this.errorReport.text = msg;
+      console.log(msg);
     }
+    this.cookieService.set('error_http', '', 4, '/');
+    this.cookieService.set('error_http_status', '', 4, '/');
   }
   handleSuccessfulOrder() {
     this.shoppingService.emptyCart();
