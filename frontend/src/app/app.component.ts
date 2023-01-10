@@ -73,7 +73,9 @@ export class AppComponent {
 
     //this.authenticationService.logout();
     this.cookieService.set('token_access', "", 4, '/');
-    this.cookieService.set('token_user',"", 4, '/');
+    this.cookieService.set('token_user', "", 4, '/');
+    this.cookieService.set('cart', "", 4, '/');
+    this.cartTracking = [];
 
   }
 
