@@ -38,7 +38,32 @@ Accede a la dirección de [descarga del instalador de mysql](https://dev.mysql.c
 Al instalar `Visual Studio Community`, la ultima versión, y seleccionando todos los paquetes referentes a `C#` y `.NET`, exceptuando las versiones especificas para soportar versiones anteriores de .NET (4.?), ya podras clonar y ejecturar el proyecto.  
 [Visual Studio Community](https://visualstudio.microsoft.com/es/vs/community/)
   
-  
+## Para instalar NVM y Node
+
+- **Node Version Management**: herramienta de consola que permite instalar y utilizar diferentes versiones de nodejs.
+
+- **Nodejs** es un engine javascript que permite la ejecución de frameworks frontend por ejemplo angular en el lado servidor.
+
+1. Descargar de https://github.com/coreybutler/nvm-windows/releases el archivo **nvm-setup.zip**
+3. Descomprimir el zip
+4. Ejecutar el archivo **nvm-setup.exe**
+5. Abrir una **CMD con permisos de administrador** y comprobar que se ha instalado
+
+```bash
+
+nvm version
+
+nvm list
+
+# Importante, angular soporta hasta la versión 16
+nvm install 16.18.1
+
+# Necesaria CMD con permisos de administrador:
+nvm use 16.18.1
+
+node -v
+```
+
 ## Para instalar Angular en tu sistema
 Paso 1: Necesitas que "Node.js" (versión 16) y "npm package manager" estén instalados.
 
