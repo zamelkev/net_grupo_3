@@ -28,12 +28,15 @@ Con este proyecto hemos puesto en práctica todos los conocimientos técnicos, q
 - TypeScript
 
 ## IDE utilizado
-
 Visual Studio Community
-  
+
+## Para instalar MySql Server y MySql Workbench en tu sistema
+Accede a la dirección de [descarga del instalador de mysql](https://dev.mysql.com/downloads/mysql/), haz clic sobre la imagen principal, descarga el instalador, ejecútalo y sigue los pasos de este hasta finalizar la instalación.  
+**NOTA:** Usar el usuario `root` y la contraseña `admin` en el apartado donde nos solicita definir unas claves.
   
 ## Para instalar C# y .NET en tu sistema
 Al instalar `Visual Studio Community`, la ultima versión, y seleccionando todos los paquetes referentes a `C#` y `.NET`, exceptuando las versiones especificas para soportar versiones anteriores de .NET (4.?), ya podras clonar y ejecturar el proyecto.  
+[Visual Studio Community](https://visualstudio.microsoft.com/es/vs/community/)
   
   
 ## Para instalar Angular en tu sistema
