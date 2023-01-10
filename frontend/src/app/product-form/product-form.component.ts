@@ -58,6 +58,10 @@ export class ProductFormComponent implements OnInit
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
       }),
+      imgUrl: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100)]
+      }),
       cost: new FormControl(),
       price: new FormControl('', {
         nonNullable: true,
@@ -112,6 +116,7 @@ export class ProductFormComponent implements OnInit
         id: { value: productFromBackend.id, disabled: true },
         name: productFromBackend.name,
         slug: productFromBackend.slug,
+        imgUrl: productFromBackend.imgUrl,
         cost: productFromBackend.cost,
         price: productFromBackend.price,
         stock: productFromBackend.stock,
@@ -132,6 +137,7 @@ export class ProductFormComponent implements OnInit
     let product = {
       name: this.editForm.get("name")?.value,
       slug: this.editForm.get("slug")?.value,
+      imgUrl: this.editForm.get("imgUrl")?.value,
       price: Number(this.editForm.get("price")?.value),
       cost: Number(this.editForm.get("cost")?.value),
       stock: Number(this.editForm.get("stock")?.value),

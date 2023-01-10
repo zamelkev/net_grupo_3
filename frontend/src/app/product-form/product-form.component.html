@@ -36,6 +36,18 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Imagen</mat-label>
+          <input matInput formControlName="imgUrl">
+
+          <mat-error *ngIf="editForm.get('imgUrl')!.invalid && (editForm.get('imgUrl')!.dirty || editForm.get('imgUrl')!.touched)">
+            <span *ngIf="editForm.get('imgUrl')!.getError('required')">Imagen obligatoria</span>
+            <span *ngIf="editForm.get('imgUrl')!.getError('minlength') || editForm.get('imgUrl')!.getError('maxlength')">Longitud debe estar entre 5 y 100</span>
+          </mat-error>
+
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Coste</mat-label>
           <input matInput type="number" formControlName="cost">
         </mat-form-field>
