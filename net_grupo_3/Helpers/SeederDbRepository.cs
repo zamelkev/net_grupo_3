@@ -18,7 +18,7 @@ public class SeederDbRepository : ISeederRepository
         // get user
         try
         {
-            existingUser = Context.Users.Where(user => user.UserName == "jjohond").FirstOrDefault();
+            existingUser = Context.Users.Where(user => user.UserName == "James").FirstOrDefault();
             existingAdmin = Context.Users.Where(user => user.UserName == "admin").Where(user => user.Role == 2).FirstOrDefault();
             // check if user exists
 
@@ -31,7 +31,7 @@ public class SeederDbRepository : ISeederRepository
         if (existingUser == null)
         {
             // insert
-            User MasterUser = new User() { FullName = "John Johnson Davidson", Email = "jjohnsond@mail.com", UserName = "jjohond", Password = "123", Role = 1 };
+            User MasterUser = new User() { FullName = "James Steward", Email = "jsteward@mail.com", UserName = "James", Password = "123", Role = 1 };
             Context.Users.Add(MasterUser);
             Context.SaveChanges();
         }
