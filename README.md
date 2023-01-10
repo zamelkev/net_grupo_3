@@ -30,7 +30,12 @@ Con este proyecto hemos puesto en práctica todos los conocimientos técnicos, q
 ## IDE utilizado
 
 Visual Studio Community
-
+  
+  
+## Para instalar C# y .NET en tu sistema
+Al instalar `Visual Studio Community`, la ultima versión, y seleccionando todos los paquetes referentes a `C#` y `.NET`, exceptuando las versiones especificas para soportar versiones anteriores de .NET (4.?), ya podras clonar y ejecturar el proyecto.  
+  
+  
 ## Para instalar Angular en tu sistema
 Paso 1: Necesitas que "Node.js" (versión 16) y "npm package manager" estén instalados.
 
