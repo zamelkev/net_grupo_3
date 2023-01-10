@@ -46,7 +46,7 @@
       <mat-divider inset></mat-divider>
 
       <mat-card-actions>
-        <button mat-raised-button color="primary" [routerLink]="['/back_office/products', product.id, '/edit']">Editar</button>
+        <button mat-raised-button color="primary" [routerLink]="['/back_office/products', product.id, 'edit']">Editar</button>
         <button mat-raised-button color="accent" routerLink="/back_office/products">Volver</button>
         <button *ngIf="product.id" mat-raised-button color="warn" (click)="onDelete(product.id)">Borrar</button>
       </mat-card-actions>

@@ -14,12 +14,14 @@ public class SeederDbRepository : ISeederRepository
     public void SeedHardcodedUser()
     {
         User existingUser = null;
+        User existingAdmin = null;
         // get user
         try
         {
             existingUser = Context.Users.Where(user => user.UserName == "jjohond").FirstOrDefault();
+            existingAdmin = Context.Users.Where(user => user.UserName == "admin").Where(user => user.Role == 2).FirstOrDefault();
             // check if user exists
-            
+
         }
         catch (Exception)
         {
@@ -33,6 +35,14 @@ public class SeederDbRepository : ISeederRepository
             Context.Users.Add(MasterUser);
             Context.SaveChanges();
         }
-        
+
+        if (existingAdmin == null)
+        {
+            // insert
+            User MasterUser = new User() { FullName = "Admin Adminson", Email = "admin@admin.es", UserName = "admin", Password = "admin123", Role = 2 };
+            Context.Users.Add(MasterUser);
+            Context.SaveChanges();
+        }
+
     }
 }

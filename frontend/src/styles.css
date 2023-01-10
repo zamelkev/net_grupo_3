@@ -81,6 +81,8 @@ body {
   left: 0;
 }
 
+
+
 #footer-left {
   float: left;
   position: relative;
@@ -153,4 +155,87 @@ button {
 .backoffice-button {
     width: 15rem;
     height: auto;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 600px) {
+
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+
+  #footer-right {
+/*    display: none;
+    bottom: 0px;*/
+  }
+
+  .mat-table {
+    border: 0;
+    vertical-align: middle
+  }
+
+  .mat-table caption {
+    font-size: 1em;
+  }
+
+  .mat-cell {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+}
+/** Override material palette */
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary, .my_primary_text span{
+  background-color: #591f83;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-badge-accent .mat-badge-content, .my_accent_text span {
+  background-color: #f8a300;
+}
+
+.my_primary_text span {
+  display: inline-block;
+  border-radius: 5.6rem;
+  padding: 0.3rem 0.5rem;
+  line-height: 1rem;
+  color: #fff;
+}
+
+.my_accent_text span {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  border-radius: 5.6rem;
+  padding: 0.3rem 0.5rem;
+  line-height: 1rem;
+  color: #000;
+}
+/* tables (crud views)  */
+::ng-deep th.mat-header-cell:first-of-type, ::ng-deep td.mat-cell:first-of-type, ::ng-deep td.mat-footer-cell:first-of-type {
+  padding-left: 0.3rem !important;
+  background-color: red;
+}
+::ng-deep th.mat-header-cell:last-of-type, ::ng-deep td.mat-cell:last-of-type, ::ng-deep td.mat-footer-cell:last-of-type {
+  padding-right: 0.3rem !important;
+  background-color: red;
 }

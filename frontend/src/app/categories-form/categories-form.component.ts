@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categories } from '../models/categories.model';
 import { CategoriesService } from '../services/categories.service';
@@ -24,9 +24,18 @@ export class CategoriesFormComponent implements OnInit {
   createFormGroup() {
     return new FormGroup({
       id: new FormControl({ value: null, disabled: true }),
-      fullName: new FormControl(),
-      slug: new FormControl(),
-      imgUrl: new FormControl(),
+      fullName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(2), Validators.maxLength(100)]
+      }),
+      slug: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
+      }),
+      imgUrl: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
      
     })
   }
@@ -66,7 +75,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   save() {
-
+    if (!this.editForm.valid) return
     let categories = {
       name: this.editForm.get("fullName")?.value,
       slug: this.editForm.get("slug")?.value,

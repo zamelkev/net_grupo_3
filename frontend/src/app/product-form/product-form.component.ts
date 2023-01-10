@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
@@ -50,17 +50,43 @@ export class ProductFormComponent implements OnInit
   createFormGroup() {
     return new FormGroup({
       id: new FormControl({ value: null, disabled: true }),
-      name: new FormControl(),
+      name: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100)]
+      }),
+      slug: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('(^[a-z]+)(?![A-Z])([a-z_0-9]*$)')]
+      }),
+      imgUrl: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(100)]
+      }),
       cost: new FormControl(),
-      price: new FormControl(),
-      stock: new FormControl(),
+      price: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(250), Validators.max(100000)]
+      }),
+      stock: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(0), Validators.max(100000)]
+      }),
       tax: new FormControl(),
-      releaseDate: new FormControl(),
+      releaseDate: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern('([0-9]){4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])')]
+      }),
       cpu: new FormControl(),
       ram: new FormControl(),
       graphicCard: new FormControl(),
-      categoryId: new FormControl(),
-      manufacturerId: new FormControl(),
+      categoryId: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
+      manufacturerId: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
     });
   }
   fetchProductWithInc(id: number | string | undefined) {
@@ -89,11 +115,13 @@ export class ProductFormComponent implements OnInit
       {
         id: { value: productFromBackend.id, disabled: true },
         name: productFromBackend.name,
+        slug: productFromBackend.slug,
+        imgUrl: productFromBackend.imgUrl,
         cost: productFromBackend.cost,
         price: productFromBackend.price,
         stock: productFromBackend.stock,
         tax: productFromBackend.tax,
-        releaseDate: productFromBackend.releaseDate,
+        releaseDate: productFromBackend.releaseDate.substring(0,10),
         cpu: productFromBackend.cpu,
         ram: productFromBackend.ram,
         graphicCard: productFromBackend.graphicCard,
@@ -105,11 +133,11 @@ export class ProductFormComponent implements OnInit
 
 
   save() {
-    // extraer los datos del formulario y enviar al backend con BookService.create POST
-    // console.log(this.editForm.get("title")?.value);
-
+    if (!this.editForm.valid) return
     let product = {
       name: this.editForm.get("name")?.value,
+      slug: this.editForm.get("slug")?.value,
+      imgUrl: this.editForm.get("imgUrl")?.value,
       price: Number(this.editForm.get("price")?.value),
       cost: Number(this.editForm.get("cost")?.value),
       stock: Number(this.editForm.get("stock")?.value),

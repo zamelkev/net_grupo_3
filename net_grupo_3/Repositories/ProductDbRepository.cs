@@ -13,7 +13,7 @@ public class ProductDbRepository : IProductRepository
     // methods
     public Product FindById(int id)
     {
-        return Context.Products.Find(id);
+        return Context.Products.Find(id) ?? null;
     }
     public Product FindBySlug(string slug)
     {
@@ -22,6 +22,15 @@ public class ProductDbRepository : IProductRepository
             .Include(p => p.Category)
             .Where(p => p.Slug == slug)
             .FirstOrDefault();
+    }
+
+    public List<Product> FindByIdsWithInclude(List<int> ids)
+    {
+        return Context.Products
+            .Include(p => p.Manufacturer)
+            .Include(p => p.Category)
+            .Where(p => ids.Contains(p.Id))
+            .ToList();
     }
     public IList<Product> FindByManufactuerSlug(string slug)
     {
@@ -85,7 +94,11 @@ public class ProductDbRepository : IProductRepository
         Product product = FindById(id);
         if (product == null)
             return false;
-
+        // delete related order details
+        Context.OrderDetails.Where(od => od.ProductId == id)
+            .ToList()
+            .ForEach(od => Context.OrderDetails.Remove(od));
+        Context.SaveChanges();
         Context.Products.Remove(product);
 
         Context.SaveChanges();

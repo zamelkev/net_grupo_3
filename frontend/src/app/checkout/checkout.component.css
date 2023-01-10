@@ -1,0 +1,7 @@
+.img {
+    max-width: 150px;
+    height: 150px;
+}
+.min-width-img {
+    min-width: 150px;
+}

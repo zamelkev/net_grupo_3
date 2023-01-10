@@ -13,3 +13,28 @@
 .contador {
     display: none;
 }
+p.user-name-display {
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+}
+.user-icon {
+  height: 1.9rem;
+}
+
+::ng-deep div.mat-menu-content {
+  overflow: hidden !important;
+}
+.footer-fix {
+    max-width: 100%;
+}
+
+/** media query for mobile */
+@media (min-width: 0px) and (max-width: 390px) {
+  .logo {
+      width: 1.3rem;
+  }
+  .logo-text {
+      font-size: 1rem;
+  }
+}

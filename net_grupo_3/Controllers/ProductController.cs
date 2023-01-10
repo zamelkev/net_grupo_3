@@ -28,6 +28,13 @@ public class ProductController {
     {
         return ProductRepo.FindByIdWithInclude(id);
     }
+
+    [HttpPost("ids")]
+    public List<Product> FindByIdsWithInclude(List<int> ids)
+    {
+        return ProductRepo.FindByIdsWithInclude(ids);
+    }
+
     [HttpGet("product/{slug}")]
     public Product FindBySlug(string slug)
     {

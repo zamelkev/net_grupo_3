@@ -5,22 +5,6 @@
       <mat-card class="example-card" *ngIf="error">
         Se ha producido un error, Inténtalo de nuevo más tarde.
       </mat-card>
-
-      <!--
-
-      id?: number;
-        name?: string;
-        cost?: number;
-        price?: number;
-        stock?: number;
-        tax?: number;
-        releaseDate?: any;
-
-        cpu?: string;
-        ram?: number;
-        graphicCard?: string;
-      -->
-
       <form class="example-form" [formGroup]="editForm" (ngSubmit)="save()">
 
         <mat-form-field class="example-full-width" appearance="fill">
@@ -31,7 +15,37 @@
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="name">
+
+          <mat-error *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <span *ngIf="editForm.get('name')!.getError('required')">Nombre obligatorio</span>
+            <span *ngIf="editForm.get('name')!.getError('minlength') || editForm.get('name')!.getError('maxlength')">Longitud debe estar entre 5 y 100</span>
+          </mat-error>
+
         </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Slug</mat-label>
+          <input matInput formControlName="slug">
+
+          <mat-error *ngIf="editForm.get('slug')!.invalid && (editForm.get('slug')!.dirty || editForm.get('slug')!.touched)">
+            <span *ngIf="editForm.get('slug')!.getError('required')">Nombre obligatorio</span>
+            <span *ngIf="editForm.get('slug')!.getError('minlength') || editForm.get('slug')!.getError('maxlength')">Longitud debe estar entre 5 y 100</span>
+            <span *ngIf="editForm.get('slug')!.getError('pattern')">Introducir un slug valido, solo minusculas, numeros, y snake_case</span>
+          </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Imagen</mat-label>
+          <input matInput formControlName="imgUrl">
+
+          <mat-error *ngIf="editForm.get('imgUrl')!.invalid && (editForm.get('imgUrl')!.dirty || editForm.get('imgUrl')!.touched)">
+            <span *ngIf="editForm.get('imgUrl')!.getError('required')">Imagen obligatoria</span>
+            <span *ngIf="editForm.get('imgUrl')!.getError('minlength') || editForm.get('imgUrl')!.getError('maxlength')">Longitud debe estar entre 5 y 100</span>
+          </mat-error>
+
+        </mat-form-field>
+
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Coste</mat-label>
@@ -41,16 +55,34 @@
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Precio</mat-label>
           <textarea matInput type="number" formControlName="price"></textarea>
+
+          <mat-error *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+            <span *ngIf="editForm.get('price')!.getError('required')">Precio obligatorio</span>
+            <span *ngIf="editForm.get('price')!.getError('min') || editForm.get('price')!.getError('max')">El precio debe estar en rango 250 a 100000 €</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Estoc</mat-label>
+          <mat-label>Stock</mat-label>
           <input matInput type="number" type="number" formControlName="stock">
+
+          <mat-error *ngIf="editForm.get('stock')!.invalid && (editForm.get('stock')!.dirty || editForm.get('stock')!.touched)">
+            <span *ngIf="editForm.get('stock')!.getError('required')">Estoc obligatorio</span>
+            <span *ngIf="editForm.get('stock')!.getError('min') || editForm.get('stock')!.getError('max')">El estoc deve estar en rango 0 a 100000</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Año de lanzamiento</mat-label>
           <input matInput formControlName="releaseDate">
+
+          <mat-error *ngIf="editForm.get('releaseDate')!.invalid && (editForm.get('releaseDate')!.dirty || editForm.get('releaseDate')!.touched)">
+            <span *ngIf="editForm.get('releaseDate')!.getError('required')">Año de lanzamiento obligatorio</span>
+            <span *ngIf="editForm.get('releaseDate')!.getError('pattern')">Introducir una fecha valida (yyyy-mm-dd)</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
@@ -75,6 +107,11 @@
               {{category.name}}
             </mat-option>
           </mat-select>
+
+          <mat-error *ngIf="editForm.get('categoryId')!.invalid && (editForm.get('categoryId')!.dirty || editForm.get('categoryId')!.touched)">
+            <span *ngIf="editForm.get('categoryId')!.getError('required')">La categoria es obligatoria</span>
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -84,6 +121,11 @@
               {{manufacturer.name}}
             </mat-option>
           </mat-select>
+
+          <mat-error *ngIf="editForm.get('manufacturerId')!.invalid && (editForm.get('manufacturerId')!.dirty || editForm.get('categoryId')!.touched)">
+            <span *ngIf="editForm.get('manufacturerId')!.getError('required')">La marca es obligatoria</span>
+          </mat-error>
+
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit">Guardar</button>

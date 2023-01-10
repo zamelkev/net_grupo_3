@@ -13,8 +13,14 @@ public class StockService : IStockService
     {
         // if the stock is right
         foreach (var od in order.OrderDetails)
-            if (od.Quantity > _productRepository.FindById((int)od.ProductId).Stock)
-                throw new OutOfStockException($"Product {_productRepository.FindById((int)od.ProductId).Name} didn't have enough stock to meet the order.");
+            if (od.Quantity > _productRepository.FindById((int)od.ProductId)?.Stock)
+            {
+                Product p = _productRepository.FindById((int)od.ProductId);
+                throw new OutOfStockException(
+                    $"El producto {p.Name} no dispone de suficiente stock para completar la orden. Stock del producto: {p.Stock}, cantidad de pedido: {od.Quantity}"
+                    );
+            }
+                
         // create order
         Order myOrder = _orderRepository.Create(order);
         // update stock of all products according to order

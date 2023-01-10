@@ -12,7 +12,7 @@ export interface Product {
   ram?: number;
   graphicCard?: string;
 
-  imgUrl: string;
+  imgUrl?: string;
   slug: string;
 
   // Associations

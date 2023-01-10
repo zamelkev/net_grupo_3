@@ -18,5 +18,3 @@ public class ProductComment {
     public Product? Product { get; set; }
     public int ProductId { get; set; }
 }
-
-//test II

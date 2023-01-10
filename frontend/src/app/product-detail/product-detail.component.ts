@@ -14,6 +14,7 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product | undefined;
   count: number | undefined;
+  cartTracking: Product[] = [];
 
   constructor(
     private service: ProductService,
@@ -27,18 +28,21 @@ export class ProductDetailComponent implements OnInit {
     // extrae el id de la URL
     this.activatedRoute.paramMap.subscribe(
       {
-        next: pmap => this.fetchProduct(pmap.get("id")),
+        next: pmap => this.fetchProduct(pmap.get("slug")),
         error: err => console.log(err)
       }
     );
     this.shoppingService.count.subscribe(c => {
       this.count = c;
     });
+    this.shoppingService.cartTracking.subscribe(p => {
+      this.cartTracking.push(...p);
+    })
   }
 
-  private fetchProduct(id: string | number | null) {
+  private fetchProduct(slug: string | null) {
 
-    this.service.fingByIdWithInclude(Number(id)).subscribe(
+    this.service.findBySlug(slug + "").subscribe(
       {
         next: productFromBackend => this.product = productFromBackend,
         error: err => console.log(err)
@@ -65,5 +69,10 @@ export class ProductDetailComponent implements OnInit {
     this.shoppingService.nextCount();
     //this.shoppingService.setCount(4)
   }
+
+  addProduct(product: Product) {
+    this.shoppingService.addProduct(product)
+  }
+
 }
 

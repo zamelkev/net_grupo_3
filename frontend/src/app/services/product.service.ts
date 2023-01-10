@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get<Product>(`${this.url}/${id}`);
   }
 
+  findProductsById(ids: number[]) {
+    return this.http.post<Product[]>(`${this.url}/ids`, ids);
+  }
+
   fingByIdWithInclude(id: number) {
   return this.http.get<Product>(`${this.url}/include/${id}`);
 }
@@ -45,6 +49,10 @@ export class ProductService {
   }
   findByCategorySlug(slug: string | null) {
     return this.http.get<Product[]>(`${this.url}/category/slug/${slug}`);
+  }
+
+  findBySlug(slug: string = "") {
+    return this.http.get<Product>(`${this.url}/product/${slug}`);
   }
 }
 

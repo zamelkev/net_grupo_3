@@ -2,3 +2,16 @@ mat-card-content img {
     width: auto;
     height: auto;
 }
+.manufacturers-fix:last-child {
+  margin-right: 16px !important;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .manufacturers-fix:last-child {
+    max-width: 210px;
+    margin-right: auto !important;
+  }
+  .mat-card-content img {
+      width: auto;
+      height: auto;
+  }
+}

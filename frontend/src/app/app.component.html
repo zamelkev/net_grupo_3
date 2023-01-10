@@ -10,26 +10,86 @@
           <button mat-menu-item routerLink="/home">
             <span>Inicio</span>
           </button>
-          <button mat-menu-item routerLink="/back_office">
+          <button mat-menu-item routerLink="/back_office" *ngIf="userIsAdmin()">
             <span>Back-Office</span>
           </button>
         </mat-menu>
       </span>
-      <span routerLink="/home" class="fill-remaining-space pointer"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</span>
-      <button mat-icon-button routerLink="/login">
-        <mat-icon>account_circle</mat-icon>
-      </button>
-      <span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>shopping_cart</mat-icon>
+      <span routerLink="/home" class="fill-remaining-space pointer logo-text"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</span>
+
+
+
+      <div *ngIf="!userIsLoggedIn()">
+        <button mat-icon-button [matMenuTriggerFor]="userNotLoggedIn">
+          <mat-icon>account_circle</mat-icon>
         </button>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          
+        <mat-menu #userNotLoggedIn="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item routerLink="/login">
+            <span>Entrar</span>
+          </button>
+          <button mat-menu-item routerLink="/signup">
+            <span>Registrarse</span>
+          </button>
         </mat-menu>
+      </div>
+
+      <div *ngIf="userIsLoggedIn()">
+        <div class="username">
+          <button mat-icon-button [matMenuTriggerFor]="user" class="user-icon">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <p class="user-name-display">
+            {{getUserName()}}
+          </p>
+        </div>
+        <mat-menu #user="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item routerLink="/orders_list">
+            <span>Ver pedidos</span>
+          </button>
+          <button mat-menu-item (click)="logout()" routerLink="/">
+            <span>Salir</span>
+          </button>
+        </mat-menu>
+      </div>
+
+
+
+      <span>
+        <div *ngIf="cartTracking.length == 0">
+          <button mat-icon-button>
+
+            <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="cartTracking.length">
+          <button mat-icon-button [matMenuTriggerFor]="cartList">
+
+            <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
+          </button>
+          <mat-menu #cartList="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="/checkout">
+              <span>Proceder con la compra</span>
+            </button>
+            <button mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
+              <span>Vaciar Carrito</span>
+            </button>
+          </mat-menu>
+        </div>
       </span>
+
+
+
+
+
+
+
+
     </mat-toolbar>
     <div class="contador">
       Contador {{count}}
+    </div>
+    <div class="contador" *ngFor="let product of cartTracking">
+      Productos {{product.id}}
     </div>
   </header>
   <!-- END NAVBAR -->
@@ -40,9 +100,13 @@
 
   <!-- FOOTER -->
   <mat-toolbar id="footer" color="primary" class="mat-elevation-z8 nav-radial-gradient">
-    <div class="container2">
-      <span id="footer-left" class="fill-remaining-space my_accent_text"><img src="../assets/img/logo.png" class="logo-footer-eslogan" /> <br />TU ORDENADOR. <br />A TU MEDIDA. </span>
-      <span id="footer-right" class="fill-remaining-space"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</span>
+    <div class="container footer-fix">
+      <div class="row">
+        <div id="" class="fill-remaining-space my_accent_text col"><img src="../assets/img/logo.png" class="logo-footer-eslogan" /> <br />TU ORDENADOR. <br />A TU MEDIDA. </div>
+      </div>
+      <div class="row justify-content-end mt-5">
+        <div id="" class="col-auto"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</div>
+      </div>
     </div>
   </mat-toolbar>
   <!-- END FOOTER -->
