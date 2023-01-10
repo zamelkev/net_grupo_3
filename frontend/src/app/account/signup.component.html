@@ -6,26 +6,12 @@
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-              <label class="form-label">Nombre</label>
-              <input type="text" formControlName="firstName" class="form-control" />
-              <mat-error *ngIf="form.get('firstName')!.invalid && (form.get('firstName')!.dirty || form.get('firstName')!.touched)">
-                <span *ngIf="form.get('firstName')!.getError('required')">Nombre obligatorio</span>
+              <label class="form-label">Nombre y apellidos</label>
+              <input type="text" formControlName="fullName" class="form-control" />
+              <mat-error *ngIf="form.get('fullName')!.invalid && (form.get('fullName')!.dirty || form.get('fullName')!.touched)">
+                <span *ngIf="form.get('fullName')!.getError('required')">Nombre y apellidos obligatorios</span>
               </mat-error>
-              <!--<input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />-->
-              <!--<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-      <div *ngIf="f.firstName.errors.required">First Name is required</div>
-  </div>-->
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Apellidos</label>
-              <input type="text" formControlName="lastName" class="form-control" />
-              <mat-error *ngIf="form.get('lastName')!.invalid && (form.get('lastName')!.dirty || form.get('lastName')!.touched)">
-                <span *ngIf="form.get('lastName')!.getError('required')">Apellidos obligatorios</span>
-              </mat-error>
-              <!--<input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />-->
-              <!--<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-      <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-  </div>-->
+
             </div>
             <div class="mb-3">
               <label class="form-label">Nombre de Usuario</label>
