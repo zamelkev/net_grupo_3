@@ -115,7 +115,7 @@ ng serve
 3. En el navegador, ir a la url: `http://localhost:4200`
 
 # Presentación del proyecto
-https://docs.google.com/presentation/d/1Xxn2LFgyD44Wd1C4VNXBSvVRae465oHaUtzojXc8QF4/  
+[Computer-Box presentación](https://docs.google.com/presentation/d/13zWtD6AZKi0HZ74vZCqBkLNalHbZTWpZSX4wZSRIDA8)
   
   
 ## Otros documentos de interés  
