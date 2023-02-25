@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using net_grupo_3.Controllers;
 using net_grupo_3.Repositories;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +28,30 @@ builder.Services.AddCors(options => {
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen( options => {
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+});
+
+// JWT Authorization service (requires NuGet package)
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 // MYSQL connection
 // create MySQL DB setting
@@ -47,6 +74,7 @@ builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
 builder.Services.AddScoped<IManufacturerRepository, ManufacturerDbRepository>();
 // Services
 builder.Services.AddScoped<IStockService, StockService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 // Seeder
 builder.Services.AddScoped<ISeederRepository, SeederDbRepository>();
 
@@ -64,6 +92,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("frontend");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -14,10 +14,10 @@ namespace net_grupo_3.Controllers
         {
             UserRepo = userRpository;
         }
-
+        
         // métodos
 
-        [HttpGet("all")]
+        [HttpGet("all"), Authorize(Roles = "User,Admin")]
         public IList<User> FindAll()
         {
             return UserRepo.FindAll();

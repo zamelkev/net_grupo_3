@@ -10,9 +10,12 @@ namespace net_grupo_3.Controllers;
 public class AccountController : ControllerBase {
 
     private IUserRepository UserRepository;
+    private readonly IAccountService _accountService;
     private readonly ILogger<UserController> Logger;
-    public AccountController(IUserRepository userRepository, ILogger<UserController> logger) {
+    public AccountController(IUserRepository userRepository, ILogger<UserController> logger, IAccountService accountService)
+    {
         UserRepository = userRepository;
+        _accountService = accountService;
         Logger = logger;
     }
 
@@ -20,11 +23,18 @@ public class AccountController : ControllerBase {
     public IActionResult Login(User user) {
         try
         {
-            return Ok(UserRepository.Login(user));
+            //return Ok(UserRepository.Login(user));
+            return Ok(_accountService.Login(user));
+
+        }
+        catch (WrongCredentialsException ex)
+        {
+            Logger.LogWarning("Credenciales erroneos", ex);
+            return BadRequest("Credenciales erroneos.");
         }
         catch (Exception ex)
         {
-            Logger.LogWarning("Usuario no encontrado", ex);
+            Logger.LogWarning("Error de login", ex);
             return BadRequest();
         }
     }
@@ -46,6 +56,5 @@ public class AccountController : ControllerBase {
     public int FindUserIdByUserName(string userName) { 
         return UserRepository.FindByUserName(userName);
     }
-
 
 }
