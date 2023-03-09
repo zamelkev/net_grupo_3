@@ -20,7 +20,7 @@ export class AppComponent {
   count: number | undefined;
   user?: User | null;
   cartTracking: Product[] = [];
-
+  
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
 

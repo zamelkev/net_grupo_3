@@ -1,33 +1,38 @@
+<head>
+  <meta name="description"
+        content="Find the best deals on computers and laptops; your computer, your way"
+        >
+</head>
 <body>
   <!-- NAVBAR -->
   <header>
     <mat-toolbar color="primary" class="mat-elevation-z8 nav-gradient">
       <span class="fill-remaining-space">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <button [attr.aria-label]="'menu'" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item routerLink="/home">
+          <button [attr.aria-label]="'home'" mat-menu-item routerLink="/home">
             <span>Inicio</span>
           </button>
-          <button mat-menu-item routerLink="/back_office" *ngIf="userIsAdmin()">
+          <button [attr.aria-label]="'back-office'" mat-menu-item routerLink="/back_office" *ngIf="userIsAdmin()">
             <span>Back-Office</span>
           </button>
         </mat-menu>
       </span>
-      <span routerLink="/home" class="fill-remaining-space pointer logo-text"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</span>
+      <span routerLink="/home" class="fill-remaining-space pointer logo-text white-text"><img [attr.alt]="'logo, a vectorized cube outline'" src="../assets/img/logo.png" class="logo" /> Computer-Box</span>
 
 
 
       <div *ngIf="!userIsLoggedIn()">
-        <button mat-icon-button [matMenuTriggerFor]="userNotLoggedIn">
+        <button [attr.aria-label]="'user icon'" mat-icon-button [matMenuTriggerFor]="userNotLoggedIn">
           <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #userNotLoggedIn="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item routerLink="/login">
+          <button [attr.aria-label]="'login'" mat-menu-item routerLink="/login">
             <span>Entrar</span>
           </button>
-          <button mat-menu-item routerLink="/signup">
+          <button [attr.aria-label]="'signup'" mat-menu-item routerLink="/signup">
             <span>Registrarse</span>
           </button>
         </mat-menu>
@@ -35,7 +40,7 @@
 
       <div *ngIf="userIsLoggedIn()">
         <div class="username">
-          <button mat-icon-button [matMenuTriggerFor]="user" class="user-icon">
+          <button [attr.aria-label]="'user icon'" mat-icon-button [matMenuTriggerFor]="user" class="user-icon">
             <mat-icon>account_circle</mat-icon>
           </button>
           <p class="user-name-display">
@@ -43,10 +48,10 @@
           </p>
         </div>
         <mat-menu #user="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item routerLink="/orders_list">
+          <button [attr.aria-label]="'orders list'" mat-menu-item routerLink="/orders_list">
             <span>Ver pedidos</span>
           </button>
-          <button mat-menu-item (click)="logout()" routerLink="/">
+          <button [attr.aria-label]="'logout'" mat-menu-item (click)="logout()" routerLink="/">
             <span>Salir</span>
           </button>
         </mat-menu>
@@ -56,21 +61,21 @@
 
       <span>
         <div *ngIf="cartTracking.length == 0">
-          <button mat-icon-button>
+          <button [attr.aria-label]="'cart icon with item count ' + cartTracking.length" mat-icon-button>
 
             <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
           </button>
         </div>
         <div *ngIf="cartTracking.length">
-          <button mat-icon-button [matMenuTriggerFor]="cartList">
+          <button [attr.aria-label]="'cart item icon with count ' + cartTracking.length" mat-icon-button [matMenuTriggerFor]="cartList">
 
             <mat-icon matBadge="{{cartTracking.length}}" matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</mat-icon>
           </button>
           <mat-menu #cartList="matMenu" [overlapTrigger]="false">
-            <button mat-menu-item routerLink="/checkout">
+            <button [attr.aria-label]="'proceed with shoping to items list view'" mat-menu-item routerLink="/checkout">
               <span>Proceder con la compra</span>
             </button>
-            <button mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
+            <button [attr.aria-label]="'empty shopping cart'" mat-menu-item *ngIf="cartTracking.length > 0" (click)="emptyCart()">
               <span>Vaciar Carrito</span>
             </button>
           </mat-menu>
@@ -102,10 +107,10 @@
   <mat-toolbar id="footer" color="primary" class="mat-elevation-z8 nav-radial-gradient">
     <div class="container footer-fix">
       <div class="row">
-        <div id="" class="fill-remaining-space my_accent_text col"><img src="../assets/img/logo.png" class="logo-footer-eslogan" /> <br />TU ORDENADOR. <br />A TU MEDIDA. </div>
+        <div id="" class="fill-remaining-space white-text"><img [attr.alt]="'logo, a vectorized cube outline'" src="../assets/img/logo.png" class="logo-footer-eslogan" /> <br />TU ORDENADOR. <br />A TU MEDIDA. </div>
       </div>
       <div class="row justify-content-end mt-5">
-        <div id="" class="col-auto"><img src="../assets/img/logo.png" class="logo" /> Computer-Box</div>
+        <div id="" class="col-auto"><img [attr.alt]="'logo, a vectorized cube outline'" src="../assets/img/logo.png" class="logo" /> <h1 class="heading">Computer-Box</h1></div>
       </div>
     </div>
   </mat-toolbar>
