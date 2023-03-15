@@ -21,6 +21,9 @@ public class AppDbContext : DbContext
     public DbSet<Shop> Shops { get; set; }
     public DbSet<Manufacturer> Manufacturers { get; set; }
 
+    // JWT functionality
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
+
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }

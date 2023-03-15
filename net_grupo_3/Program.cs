@@ -72,6 +72,7 @@ builder.Services.AddScoped<IOrderDetailRepository, OrderDetailDbRepository>();
 builder.Services.AddScoped<IContainerRepository, ContainerDbRepository>();
 builder.Services.AddScoped<IShopRepository, ShopDbRepository>();
 builder.Services.AddScoped<IManufacturerRepository, ManufacturerDbRepository>();
+builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenDbRepository>();
 // Services
 builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
