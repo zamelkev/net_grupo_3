@@ -2,6 +2,7 @@
 {
     public interface IAccountService
     {
+        RefreshToken GenerateRefreshToken();
         string Login(User user);
     }
 }

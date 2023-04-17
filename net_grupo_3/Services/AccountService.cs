@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using net_grupo_3.DTO;
+using net_grupo_3.Models;
 using net_grupo_3.Repositories;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace net_grupo_3.Services
 {
@@ -22,10 +24,13 @@ namespace net_grupo_3.Services
             User userFromDB = _userRepository.Login(user);
             if (userFromDB is null)
                 throw new WrongCredentialsException("Wrong credentials");
-            return CreateToken(userFromDB);
+
+            string jWTToken =  CreateToken(userFromDB);
+
+            return jWTToken;
         }
         
-        public string CreateToken(User user)
+        private string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>
             {
@@ -49,5 +54,18 @@ namespace net_grupo_3.Services
 
             return jwt;
         }
+
+        public RefreshToken GenerateRefreshToken()
+        {
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7),
+                Created = DateTime.Now
+            };
+
+            return refreshToken;
+        }
+
     }
 }

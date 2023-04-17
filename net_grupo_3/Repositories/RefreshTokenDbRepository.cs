@@ -1,4 +1,6 @@
-﻿namespace net_grupo_3.Repositories
+﻿using net_grupo_3.Models;
+
+namespace net_grupo_3.Repositories
 {
     public class RefreshTokenDbRepository : IRefreshTokenRepository
     {
@@ -17,6 +19,14 @@
                 .Where(r => r.Token == refreshToken)
                 .First();
         }
+
+        public RefreshToken FindByUserId(int userId)
+        {
+            return Context.RefreshTokens
+                .Where(r => r.UserId == userId)
+                .First();
+        }
+
         public RefreshToken Create(string refreshToken, int userId)
         {
             RefreshToken token = new RefreshToken();

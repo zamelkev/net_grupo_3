@@ -26,6 +26,9 @@ public class AccountController : ControllerBase {
         try
         {
             //return Ok(UserRepository.Login(user));
+
+            RefreshToken refreshToken = _accountService.GenerateRefreshToken();
+            SetRefreshToken(refreshToken, user.Id);
             return Ok(_accountService.Login(user));
 
         }
@@ -59,30 +62,20 @@ public class AccountController : ControllerBase {
         return UserRepository.FindByUserName(userName);
     }
 
-    [HttpPost("refresh-token")]
-    public IActionResult RefreshToken(RefreshTokenDTO refreshRequest)
+    
+
+    private void SetRefreshToken(RefreshToken newRefreshToken, int userId)
     {
-        var refreshToken = Request.Cookies["refreshToken"];
-
-        var user = UserRepository.FindByUserName(refreshRequest.userName);
-
-
-
-
-        if (!user.RefreshToken.Equals(refreshToken))
+        var cookieOptions = new CookieOptions
         {
-            return Unauthorized("Invalid Refresh Token.");
-        }
-        else if (user.TokenExpires < DateTime.Now)
-        {
-            return Unauthorized("Token expired.");
-        }
+            HttpOnly = true,
+            Expires = newRefreshToken.Expires
+        };
+        // append token to Http Cookie
+        Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
 
-        string token = CreateToken(user);
-        var newRefreshToken = GenerateRefreshToken();
-        SetRefreshToken(newRefreshToken);
-
-        return Ok(token);
+        // create the new refresh token in the DB
+        _refreshTokenRepo.Create(newRefreshToken.Token, userId);
     }
 
 }
